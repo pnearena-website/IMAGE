@@ -3947,5 +3947,1013 @@
         // Initialize the page when DOM is loaded
         document.addEventListener('DOMContentLoaded', init);
     </script>
+    <!-- Add this at the end of your existing HTML, just before the closing </body> tag -->
+
+<!-- Hidden Admin Trigger -->
+<div id="admin-trigger" style="position: fixed; bottom: 10px; right: 10px; width: 20px; height: 20px; background: transparent; z-index: 1; cursor: pointer;"></div>
+
+<!-- Admin Page (Hidden) -->
+<div class="page" id="admin-page" style="display: none;">
+    <section class="content-page">
+        <div class="content-container">
+            <h1>Admin Panel</h1>
+            
+            <!-- Login Form -->
+            <div id="admin-login">
+                <div class="admin-form-container">
+                    <h2>Admin Login</h2>
+                    <form id="admin-login-form">
+                        <div class="form-group">
+                            <label for="admin-password">Password:</label>
+                            <input type="password" id="admin-password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                        <button type="button" class="btn btn-secondary" id="cancel-admin-login">Cancel</button>
+                    </form>
+                    <div id="login-error" class="notice" style="display: none;">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <p>Incorrect password. Please try again.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Admin Dashboard -->
+            <div id="admin-dashboard" style="display: none;">
+                <div class="admin-header">
+                    <h2>Admin Dashboard</h2>
+                    <button class="btn btn-secondary" id="admin-logout">Logout</button>
+                </div>
+                
+                <div class="admin-tabs">
+                    <button class="admin-tab-btn active" data-tab="products">Products</button>
+                    <button class="admin-tab-btn" data-tab="promotions">Promotions</button>
+                    <button class="admin-tab-btn" data-tab="orders">Orders</button>
+                </div>
+                
+                <!-- Products Management -->
+                <div id="products-tab" class="admin-tab-content active">
+                    <h2>Product Management</h2>
+                    <div class="admin-actions">
+                        <button class="btn btn-primary" id="refresh-products">
+                            <i class="fas fa-sync-alt"></i> Refresh Products
+                        </button>
+                    </div>
+                    
+                    <div class="admin-table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Product ID</th>
+                                    <th>Name</th>
+                                    <th>Price (RM)</th>
+                                    <th>Category</th>
+                                    <th>Stock Status</th>
+                                    <th>Best Seller</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="products-table-body">
+                                <!-- Products will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Promotions Management -->
+                <div id="promotions-tab" class="admin-tab-content">
+                    <h2>Promotion Management</h2>
+                    <div class="admin-actions">
+                        <button class="btn btn-primary" id="add-promotion-btn">
+                            <i class="fas fa-plus"></i> Add Promotion
+                        </button>
+                        <button class="btn btn-secondary" id="refresh-promotions">
+                            <i class="fas fa-sync-alt"></i> Refresh Promotions
+                        </button>
+                    </div>
+                    
+                    <div class="admin-table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Promotion ID</th>
+                                    <th>Product</th>
+                                    <th>Original Price</th>
+                                    <th>Promotion Price</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="promotions-table-body">
+                                <!-- Promotions will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Orders Management -->
+                <div id="orders-tab" class="admin-tab-content">
+                    <h2>Order Management</h2>
+                    <div class="admin-actions">
+                        <button class="btn btn-secondary" id="refresh-orders">
+                            <i class="fas fa-sync-alt"></i> Refresh Orders
+                        </button>
+                    </div>
+                    
+                    <div class="admin-table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Customer</th>
+                                    <th>Product</th>
+                                    <th>Order Details</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="orders-table-body">
+                                <!-- Orders will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Edit Product Modal -->
+    <div id="edit-product-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Product</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="edit-product-form">
+                    <input type="hidden" id="edit-product-id">
+                    <div class="form-group">
+                        <label for="edit-product-name">Product Name:</label>
+                        <input type="text" id="edit-product-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-product-price">Price (RM):</label>
+                        <input type="number" id="edit-product-price" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-product-category">Category:</label>
+                        <input type="text" id="edit-product-category" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-product-description">Description:</label>
+                        <textarea id="edit-product-description" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-product-stock">Stock Status:</label>
+                        <select id="edit-product-stock" required>
+                            <option value="In Stock">In Stock</option>
+                            <option value="Low Stock">Low Stock</option>
+                            <option value="Out of Stock">Out of Stock</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="edit-product-bestseller"> Best Seller
+                        </label>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        <button type="button" class="btn btn-secondary close-modal-btn">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add/Edit Promotion Modal -->
+    <div id="promotion-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="promotion-modal-title">Add Promotion</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="promotion-form">
+                    <input type="hidden" id="promotion-id">
+                    <div class="form-group">
+                        <label for="promotion-product">Product:</label>
+                        <select id="promotion-product" required>
+                            <!-- Products will be loaded here -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="promotion-price">Promotion Price (RM):</label>
+                        <input type="number" id="promotion-price" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="promotion-start">Start Date:</label>
+                        <input type="date" id="promotion-start" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="promotion-end">End Date:</label>
+                        <input type="date" id="promotion-end" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Save Promotion</button>
+                        <button type="button" class="btn btn-secondary close-modal-btn">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Update Order Status Modal -->
+    <div id="order-status-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Update Order Status</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="order-status-form">
+                    <input type="hidden" id="order-id">
+                    <div class="form-group">
+                        <label for="order-status">Status:</label>
+                        <select id="order-status" required>
+                            <option value="Pending">Pending</option>
+                            <option value="Processing">Processing</option>
+                            <option value="Completed">Completed</option>
+                            <option value="Cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Update Status</button>
+                        <button type="button" class="btn btn-secondary close-modal-btn">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Admin Notification -->
+    <div class="notification" id="admin-notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="admin-notification-text">Changes saved successfully!</span>
+    </div>
+</div>
+
+<style>
+/* Admin Panel Styles */
+.admin-form-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.admin-tabs {
+    display: flex;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.admin-tab-btn {
+    padding: 12px 24px;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--dark-gray);
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.admin-tab-btn.active {
+    color: var(--primary-color);
+}
+
+.admin-tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--secondary-color);
+}
+
+.admin-tab-content {
+    display: none;
+}
+
+.admin-tab-content.active {
+    display: block;
+}
+
+.admin-actions {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.admin-table-container {
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.admin-table th, .admin-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.admin-table th {
+    background-color: var(--light-gray);
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.admin-table tr:last-child td {
+    border-bottom: none;
+}
+
+.admin-table tr:hover {
+    background-color: rgba(0, 113, 227, 0.05);
+}
+
+.admin-actions-btn {
+    display: flex;
+    gap: 8px;
+}
+
+.admin-actions-btn button {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.close-modal {
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--dark-gray);
+    transition: color 0.3s ease;
+}
+
+.close-modal:hover {
+    color: var(--primary-color);
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.admin-status-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.status-pending {
+    background-color: rgba(255, 149, 0, 0.1);
+    color: #ff9500;
+}
+
+.status-processing {
+    background-color: rgba(0, 113, 227, 0.1);
+    color: var(--secondary-color);
+}
+
+.status-completed {
+    background-color: rgba(52, 199, 89, 0.1);
+    color: var(--success-color);
+}
+
+.status-cancelled {
+    background-color: rgba(255, 59, 48, 0.1);
+    color: var(--accent-color);
+}
+</style>
+
+<script>
+// Admin Panel JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+    // Setup admin panel
+    setupAdminPanel();
+});
+
+function setupAdminPanel() {
+    // Setup admin trigger
+    const adminTrigger = document.getElementById('admin-trigger');
+    let clickCount = 0;
+    let clickTimer = null;
+    
+    adminTrigger.addEventListener('click', function() {
+        clickCount++;
+        
+        if (clickCount === 1) {
+            clickTimer = setTimeout(function() {
+                clickCount = 0;
+            }, 2000);
+        } else if (clickCount === 5) {
+            clearTimeout(clickTimer);
+            clickCount = 0;
+            showAdminLogin();
+        }
+    });
+    
+    // Admin login form
+    const adminLoginForm = document.getElementById('admin-login-form');
+    const loginError = document.getElementById('login-error');
+    const cancelAdminLogin = document.getElementById('cancel-admin-login');
+    
+    adminLoginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const password = document.getElementById('admin-password').value;
+        
+        if (password === 'D@nial05') {
+            document.getElementById('admin-login').style.display = 'none';
+            document.getElementById('admin-dashboard').style.display = 'block';
+            
+            // Load admin data
+            loadProducts();
+            loadPromotions();
+            loadOrders();
+        } else {
+            loginError.style.display = 'block';
+            setTimeout(() => {
+                loginError.style.display = 'none';
+            }, 3000);
+        }
+    });
+    
+    cancelAdminLogin.addEventListener('click', function() {
+        hideAdminPanel();
+    });
+    
+    // Admin logout
+    const adminLogout = document.getElementById('admin-logout');
+    adminLogout.addEventListener('click', function() {
+        hideAdminPanel();
+    });
+    
+    // Admin tabs
+    const tabBtns = document.querySelectorAll('.admin-tab-btn');
+    const tabContents = document.querySelectorAll('.admin-tab-content');
+    
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const tabId = btn.getAttribute('data-tab');
+            
+            // Update active tab button
+            tabBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            // Update active tab content
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+                if (content.id === `${tabId}-tab`) {
+                    content.classList.add('active');
+                }
+            });
+        });
+    });
+    
+    // Refresh buttons
+    document.getElementById('refresh-products').addEventListener('click', loadProducts);
+    document.getElementById('refresh-promotions').addEventListener('click', loadPromotions);
+    document.getElementById('refresh-orders').addEventListener('click', loadOrders);
+    
+    // Add promotion button
+    document.getElementById('add-promotion-btn').addEventListener('click', () => {
+        document.getElementById('promotion-modal-title').textContent = 'Add Promotion';
+        document.getElementById('promotion-id').value = '';
+        document.getElementById('promotion-form').reset();
+        loadProductsForPromotion();
+        openModal('promotion-modal');
+    });
+    
+    // Modals
+    const modals = document.querySelectorAll('.modal');
+    const closeBtns = document.querySelectorAll('.close-modal, .close-modal-btn');
+    
+    closeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            modals.forEach(modal => {
+                modal.classList.remove('show');
+            });
+        });
+    });
+    
+    // Edit product form
+    const editProductForm = document.getElementById('edit-product-form');
+    editProductForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const productId = document.getElementById('edit-product-id').value;
+        const productData = {
+            productId: productId,
+            name: document.getElementById('edit-product-name').value,
+            price: document.getElementById('edit-product-price').value,
+            category: document.getElementById('edit-product-category').value,
+            description: document.getElementById('edit-product-description').value,
+            stockStatus: document.getElementById('edit-product-stock').value,
+            isBestSeller: document.getElementById('edit-product-bestseller').checked ? 'TRUE' : 'FALSE'
+        };
+        
+        const success = await updateProduct(productData);
+        
+        if (success) {
+            closeModal('edit-product-modal');
+            showAdminNotification('Product updated successfully!');
+            loadProducts();
+        } else {
+            showAdminNotification('Error updating product. Please try again.');
+        }
+    });
+    
+    // Promotion form
+    const promotionForm = document.getElementById('promotion-form');
+    promotionForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const promotionId = document.getElementById('promotion-id').value;
+        const promotionData = {
+            promotionId: promotionId || `promo${Date.now()}`,
+            productId: document.getElementById('promotion-product').value,
+            discountPrice: document.getElementById('promotion-price').value,
+            startDate: document.getElementById('promotion-start').value,
+            endDate: document.getElementById('promotion-end').value
+        };
+        
+        const success = await updatePromotion(promotionData);
+        
+        if (success) {
+            closeModal('promotion-modal');
+            showAdminNotification('Promotion saved successfully!');
+            loadPromotions();
+        } else {
+            showAdminNotification('Error saving promotion. Please try again.');
+        }
+    });
+    
+    // Order status form
+    const orderStatusForm = document.getElementById('order-status-form');
+    orderStatusForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const orderId = document.getElementById('order-id').value;
+        const status = document.getElementById('order-status').value;
+        
+        const success = await updateOrderStatus(orderId, status);
+        
+        if (success) {
+            closeModal('order-status-modal');
+            showAdminNotification('Order status updated successfully!');
+            loadOrders();
+        } else {
+            showAdminNotification('Error updating order status. Please try again.');
+        }
+    });
+}
+
+// Show admin login
+function showAdminLogin() {
+    // Hide all pages
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(page => {
+        page.classList.remove('active');
+    });
+    
+    // Show admin page
+    const adminPage = document.getElementById('admin-page');
+    adminPage.classList.add('active');
+    
+    // Reset login form
+    document.getElementById('admin-login-form').reset();
+    document.getElementById('admin-login').style.display = 'block';
+    document.getElementById('admin-dashboard').style.display = 'none';
+    
+    // Scroll to top
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+
+// Hide admin panel
+function hideAdminPanel() {
+    // Hide admin page
+    const adminPage = document.getElementById('admin-page');
+    adminPage.classList.remove('active');
+    
+    // Show home page
+    const homePage = document.getElementById('home-page');
+    homePage.classList.add('active');
+    
+    // Update active nav link
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('data-page') === 'home') {
+            link.classList.add('active');
+        }
+    });
+    
+    // Scroll to top
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+
+// Load products for admin
+async function loadProducts() {
+    try {
+        const response = await fetch(`${WEB_APP_URL}?action=getProducts`);
+        const data = await response.json();
+        
+        if (data.status === "error") {
+            throw new Error(data.message);
+        }
+        
+        const productsTableBody = document.getElementById('products-table-body');
+        productsTableBody.innerHTML = '';
+        
+        data.products.forEach(product => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${product.productId}</td>
+                <td>${product.name}</td>
+                <td>${product.price}</td>
+                <td>${product.category}</td>
+                <td>${product.stockStatus}</td>
+                <td>${product.isBestSeller === 'TRUE' ? 'Yes' : 'No'}</td>
+                <td>
+                    <div class="admin-actions-btn">
+                        <button class="btn btn-primary" onclick="editProduct('${product.productId}')">Edit</button>
+                    </div>
+                </td>
+            `;
+            productsTableBody.appendChild(row);
+        });
+        
+    } catch (error) {
+        console.error('Error loading products:', error);
+        showAdminNotification('Error loading products. Please try again.');
+    }
+}
+
+// Load promotions for admin
+async function loadPromotions() {
+    try {
+        const response = await fetch(`${WEB_APP_URL}?action=getPromotions`);
+        const data = await response.json();
+        
+        if (data.status === "error") {
+            throw new Error(data.message);
+        }
+        
+        const promotionsTableBody = document.getElementById('promotions-table-body');
+        promotionsTableBody.innerHTML = '';
+        
+        data.promotions.forEach(promotion => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${promotion.promotionId}</td>
+                <td>${promotion.productId}</td>
+                <td>${promotion.originalPrice || 'N/A'}</td>
+                <td>${promotion.discountPrice}</td>
+                <td>${promotion.startDate}</td>
+                <td>${promotion.endDate}</td>
+                <td>
+                    <div class="admin-actions-btn">
+                        <button class="btn btn-primary" onclick="editPromotion('${promotion.promotionId}')">Edit</button>
+                        <button class="btn btn-secondary" onclick="deletePromotion('${promotion.promotionId}')">Delete</button>
+                    </div>
+                </td>
+            `;
+            promotionsTableBody.appendChild(row);
+        });
+        
+    } catch (error) {
+        console.error('Error loading promotions:', error);
+        showAdminNotification('Error loading promotions. Please try again.');
+    }
+}
+
+// Load orders for admin
+async function loadOrders() {
+    try {
+        const response = await fetch(`${WEB_APP_URL}?action=getOrders`);
+        const data = await response.json();
+        
+        if (data.status === "error") {
+            throw new Error(data.message);
+        }
+        
+        const ordersTableBody = document.getElementById('orders-table-body');
+        ordersTableBody.innerHTML = '';
+        
+        data.orders.forEach(order => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${order.orderId}</td>
+                <td>${order.customerName}</td>
+                <td>${order.productId}</td>
+                <td>${order.orderDetails}</td>
+                <td>${order.date}</td>
+                <td><span class="admin-status-badge status-${order.status.toLowerCase()}">${order.status}</span></td>
+                <td>
+                    <div class="admin-actions-btn">
+                        <button class="btn btn-primary" onclick="updateOrderStatusModal('${order.orderId}', '${order.status}')">Update Status</button>
+                    </div>
+                </td>
+            `;
+            ordersTableBody.appendChild(row);
+        });
+        
+    } catch (error) {
+        console.error('Error loading orders:', error);
+        showAdminNotification('Error loading orders. Please try again.');
+    }
+}
+
+// Edit product
+async function editProduct(productId) {
+    try {
+        const response = await fetch(`${WEB_APP_URL}?action=getProduct&productId=${productId}`);
+        const data = await response.json();
+        
+        if (data.status === "error") {
+            throw new Error(data.message);
+        }
+        
+        const product = data.product;
+        
+        document.getElementById('edit-product-id').value = product.productId;
+        document.getElementById('edit-product-name').value = product.name;
+        document.getElementById('edit-product-price').value = product.price;
+        document.getElementById('edit-product-category').value = product.category;
+        document.getElementById('edit-product-description').value = product.description;
+        document.getElementById('edit-product-stock').value = product.stockStatus;
+        document.getElementById('edit-product-bestseller').checked = product.isBestSeller === 'TRUE';
+        
+        openModal('edit-product-modal');
+        
+    } catch (error) {
+        console.error('Error loading product:', error);
+        showAdminNotification('Error loading product. Please try again.');
+    }
+}
+
+// Update product
+async function updateProduct(productData) {
+    try {
+        const response = await fetch(WEB_APP_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                action: 'updateProduct',
+                ...productData
+            })
+        });
+        
+        return true;
+    } catch (error) {
+        console.error('Error updating product:', error);
+        return false;
+    }
+}
+
+// Load products for promotion dropdown
+async function loadProductsForPromotion() {
+    try {
+        const response = await fetch(`${WEB_APP_URL}?action=getProducts`);
+        const data = await response.json();
+        
+        if (data.status === "error") {
+            throw new Error(data.message);
+        }
+        
+        const productSelect = document.getElementById('promotion-product');
+        productSelect.innerHTML = '';
+        
+        data.products.forEach(product => {
+            const option = document.createElement('option');
+            option.value = product.productId;
+            option.textContent = `${product.name} (RM${product.price})`;
+            productSelect.appendChild(option);
+        });
+        
+    } catch (error) {
+        console.error('Error loading products for promotion:', error);
+        showAdminNotification('Error loading products. Please try again.');
+    }
+}
+
+// Edit promotion
+async function editPromotion(promotionId) {
+    try {
+        const response = await fetch(`${WEB_APP_URL}?action=getPromotion&promotionId=${promotionId}`);
+        const data = await response.json();
+        
+        if (data.status === "error") {
+            throw new Error(data.message);
+        }
+        
+        const promotion = data.promotion;
+        
+        document.getElementById('promotion-modal-title').textContent = 'Edit Promotion';
+        document.getElementById('promotion-id').value = promotion.promotionId;
+        document.getElementById('promotion-product').value = promotion.productId;
+        document.getElementById('promotion-price').value = promotion.discountPrice;
+        document.getElementById('promotion-start').value = promotion.startDate;
+        document.getElementById('promotion-end').value = promotion.endDate;
+        
+        openModal('promotion-modal');
+        
+    } catch (error) {
+        console.error('Error loading promotion:', error);
+        showAdminNotification('Error loading promotion. Please try again.');
+    }
+}
+
+// Update promotion
+async function updatePromotion(promotionData) {
+    try {
+        const response = await fetch(WEB_APP_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                action: 'updatePromotion',
+                ...promotionData
+            })
+        });
+        
+        return true;
+    } catch (error) {
+        console.error('Error updating promotion:', error);
+        return false;
+    }
+}
+
+// Delete promotion
+async function deletePromotion(promotionId) {
+    if (confirm('Are you sure you want to delete this promotion?')) {
+        try {
+            const response = await fetch(WEB_APP_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    action: 'deletePromotion',
+                    promotionId: promotionId
+                })
+            });
+            
+            showAdminNotification('Promotion deleted successfully!');
+            loadPromotions();
+            
+        } catch (error) {
+            console.error('Error deleting promotion:', error);
+            showAdminNotification('Error deleting promotion. Please try again.');
+        }
+    }
+}
+
+// Update order status modal
+function updateOrderStatusModal(orderId, currentStatus) {
+    document.getElementById('order-id').value = orderId;
+    document.getElementById('order-status').value = currentStatus;
+    openModal('order-status-modal');
+}
+
+// Update order status
+async function updateOrderStatus(orderId, status) {
+    try {
+        const response = await fetch(WEB_APP_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                action: 'updateOrderStatus',
+                orderId: orderId,
+                status: status
+            })
+        });
+        
+        return true;
+    } catch (error) {
+        console.error('Error updating order status:', error);
+        return false;
+    }
+}
+
+// Modal functions
+function openModal(modalId) {
+    document.getElementById(modalId).classList.add('show');
+}
+
+function closeModal(modalId) {
+    document.getElementById(modalId).classList.remove('show');
+}
+
+// Show admin notification
+function showAdminNotification(message) {
+    const notification = document.getElementById('admin-notification');
+    const notificationText = document.getElementById('admin-notification-text');
+    
+    notificationText.textContent = message;
+    notification.classList.add('show');
+    
+    setTimeout(() => {
+        notification.classList.remove('show');
+    }, 3000);
+}
+</script>
 </body>
 </html>
