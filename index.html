@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PNE Arena - Online Store</title>
+    <title>PNE ARENA ONLINE STORE</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -87,6 +87,32 @@
             }
         }
         
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        @keyframes blink {
+            0%, 50% { border-color: transparent; }
+            51%, 100% { border-color: var(--black); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes parallax {
+            from { transform: translateY(0); }
+            to { transform: translateY(-20px); }
+        }
+        
         .animate-fade-in {
             animation: fadeIn 0.8s ease forwards;
         }
@@ -126,6 +152,21 @@
             background-color: var(--white);
             animation: revealText 1s ease forwards;
             animation-delay: 0.3s;
+        }
+        
+        .typing-effect {
+            overflow: hidden;
+            border-right: 3px solid var(--black);
+            white-space: nowrap;
+            animation: typing 3s steps(40, end), blink 0.75s step-end infinite;
+        }
+        
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .pulse-animation:hover {
+            animation: pulse 1s ease-in-out infinite;
         }
         
         /* Header Styles */
@@ -415,6 +456,12 @@
             transition: all 0.4s ease;
             position: relative;
             cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .product-card.visible {
+            animation: slideInUp 0.6s ease forwards;
         }
         
         .product-card::before {
@@ -452,6 +499,10 @@
         
         .product-card:hover .product-img {
             background-color: var(--gray-200);
+        }
+        
+        .product-card:hover .product-img i {
+            animation: pulse 1s ease-in-out infinite;
         }
         
         .product-info {
@@ -556,6 +607,11 @@
             color: var(--gray-400);
             position: relative;
             overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .product-image:hover {
+            transform: scale(1.02);
         }
         
         .product-image::before {
@@ -572,6 +628,11 @@
         .product-image i {
             position: relative;
             z-index: 2;
+            transition: transform 0.3s ease;
+        }
+        
+        .product-image:hover i {
+            animation: pulse 1.5s ease-in-out infinite;
         }
         
         .product-info h1 {
@@ -612,6 +673,12 @@
             margin-bottom: 10px;
             display: flex;
             align-items: flex-start;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        
+        .features-list li.visible {
+            animation: slideInUp 0.5s ease forwards;
         }
         
         .features-list li i {
@@ -691,6 +758,7 @@
             font-size: 3.5rem;
             color: var(--gray-500);
             margin-bottom: 15px;
+            animation: float 3s ease-in-out infinite;
         }
         
         .error-message h2 {
@@ -919,6 +987,7 @@
         .notification-header i {
             margin-right: 12px;
             font-size: 18px;
+            animation: pulse 2s ease-in-out infinite;
         }
         
         .notification-header h3 {
@@ -1160,13 +1229,13 @@
                 <div class="hero-bg"></div>
                 <div class="container">
                     <div class="hero-content">
-                        <h1 class="reveal-text">Elegance in Customization</h1>
+                        <h1 class="typing-effect">Elegance in Customization</h1>
                         <p class="animate-fade-in animate-delay-1">Crafting bespoke products with meticulous attention to detail. From convocation robes to corporate attire, we bring your vision to life.</p>
                         <a href="#" class="btn animate-fade-in animate-delay-2" id="explore-btn">Explore Collection</a>
                         <a href="#" class="btn btn-outline animate-fade-in animate-delay-2">Contact Us</a>
                     </div>
                 </div>
-                <div class="scroll-indicator">
+                <div class="scroll-indicator float-animation">
                     <span>Scroll Down</span>
                     <i class="fas fa-chevron-down"></i>
                 </div>
@@ -1353,7 +1422,7 @@
                     </div>
                     
                     <div class="copyright">
-                        <p>&copy; 2023 PNE ARENA. All Rights Reserved.</p>
+                        <p>Belongs to PNE ARENA © 2025 Manage by Danial Danish Development.</p>
                     </div>
                 </div>
             </footer>
@@ -1462,7 +1531,7 @@
                     </div>
                     
                     <div class="copyright">
-                        <p>&copy; 2023 PNE ARENA. All Rights Reserved.</p>
+                        <p>Belongs to PNE ARENA © 2025 Manage by Danial Danish Development.</p>
                     </div>
                 </div>
             </footer>
@@ -1685,6 +1754,7 @@
         const notification = document.getElementById('notification');
         const notificationClose = document.querySelector('.notification-close');
         const header = document.querySelector('header');
+        const heroBg = document.querySelector('.hero-bg');
         
         // View elements
         const homeView = document.getElementById('home-view');
@@ -1742,13 +1812,21 @@
                 productIcon.className = currentProduct.icon;
                 breadcrumbProduct.textContent = currentProduct.name;
                 
-                // Update features list
+                // Update features list with staggered animation
                 productFeatures.innerHTML = '';
-                currentProduct.features.forEach(feature => {
+                currentProduct.features.forEach((feature, index) => {
                     const li = document.createElement('li');
                     li.innerHTML = `<i class="fas fa-check"></i> ${feature}`;
+                    li.style.animationDelay = `${index * 0.1}s`;
                     productFeatures.appendChild(li);
                 });
+                
+                // Trigger animation for features list items
+                setTimeout(() => {
+                    document.querySelectorAll('.features-list li').forEach(item => {
+                        item.classList.add('visible');
+                    });
+                }, 100);
                 
                 // Show product container, hide error message
                 productContainer.style.display = 'grid';
@@ -1879,9 +1957,14 @@
             }
         });
 
-        // Add scroll effect to header
+        // Parallax effect for hero section
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
+            const scrolled = window.pageYOffset;
+            const parallax = scrolled * 0.5;
+            heroBg.style.transform = `translateY(${parallax}px)`;
+            
+            // Add scroll effect to header
+            if (scrolled > 50) {
                 header.style.padding = '8px 0';
                 header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
             } else {
@@ -1968,7 +2051,7 @@
             notification.classList.remove('show');
         });
 
-        // Add scroll animations
+        // Add scroll animations for product cards
         const observerOptions = {
             root: null,
             rootMargin: '0px',
@@ -1978,17 +2061,13 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('visible');
                 }
             });
         }, observerOptions);
 
-        // Observe elements for animation
+        // Observe product cards for animation
         document.querySelectorAll('.product-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
             observer.observe(card);
         });
     </script>
