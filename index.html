@@ -3947,12 +3947,19 @@
         // Initialize the page when DOM is loaded
         document.addEventListener('DOMContentLoaded', init);
     </script>
-    <!-- Add this at the end of your existing HTML, just before the closing </body> tag -->
+   <!-- Add this at the end of your existing HTML, just before the closing </body> tag -->
 
-<!-- Hidden Admin Trigger -->
-<div id="admin-trigger" style="position: fixed; bottom: 10px; right: 10px; width: 20px; height: 20px; background: transparent; z-index: 1; cursor: pointer;"></div>
+<!-- Admin Access Symbol -->
+<div id="admin-access" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;">
+    <div id="admin-trigger" style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, rgba(0, 113, 227, 0.1), rgba(90, 200, 250, 0.1)); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; backdrop-filter: blur(10px); border: 1px solid rgba(0, 113, 227, 0.2);">
+        <i class="fas fa-cog" style="font-size: 18px; color: rgba(0, 113, 227, 0.6); transition: all 0.3s ease;"></i>
+    </div>
+    <div id="admin-tooltip" style="position: absolute; bottom: 50px; right: 0; background: rgba(0, 0, 0, 0.8); color: white; padding: 8px 12px; border-radius: 6px; font-size: 12px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;">
+        Admin Access (3 clicks)
+    </div>
+</div>
 
-<!-- Admin Page (Hidden) -->
+<!-- Admin Panel -->
 <div class="page" id="admin-page" style="display: none;">
     <section class="content-page">
         <div class="content-container">
@@ -3981,22 +3988,34 @@
             <div id="admin-dashboard" style="display: none;">
                 <div class="admin-header">
                     <h2>Admin Dashboard</h2>
-                    <button class="btn btn-secondary" id="admin-logout">Logout</button>
+                    <div class="admin-header-actions">
+                        <button class="btn btn-secondary" id="admin-logout">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </div>
                 </div>
                 
                 <div class="admin-tabs">
-                    <button class="admin-tab-btn active" data-tab="products">Products</button>
-                    <button class="admin-tab-btn" data-tab="promotions">Promotions</button>
-                    <button class="admin-tab-btn" data-tab="orders">Orders</button>
+                    <button class="admin-tab-btn active" data-tab="products">
+                        <i class="fas fa-box"></i> Products
+                    </button>
+                    <button class="admin-tab-btn" data-tab="promotions">
+                        <i class="fas fa-tags"></i> Promotions
+                    </button>
+                    <button class="admin-tab-btn" data-tab="orders">
+                        <i class="fas fa-shopping-cart"></i> Orders
+                    </button>
                 </div>
                 
                 <!-- Products Management -->
                 <div id="products-tab" class="admin-tab-content active">
-                    <h2>Product Management</h2>
-                    <div class="admin-actions">
-                        <button class="btn btn-primary" id="refresh-products">
-                            <i class="fas fa-sync-alt"></i> Refresh Products
-                        </button>
+                    <div class="admin-section-header">
+                        <h2>Product Management</h2>
+                        <div class="admin-actions">
+                            <button class="btn btn-primary" id="refresh-products">
+                                <i class="fas fa-sync-alt"></i> Refresh
+                            </button>
+                        </div>
                     </div>
                     
                     <div class="admin-table-container">
@@ -4007,7 +4026,7 @@
                                     <th>Name</th>
                                     <th>Price (RM)</th>
                                     <th>Category</th>
-                                    <th>Stock Status</th>
+                                    <th>Stock</th>
                                     <th>Best Seller</th>
                                     <th>Actions</th>
                                 </tr>
@@ -4021,14 +4040,16 @@
                 
                 <!-- Promotions Management -->
                 <div id="promotions-tab" class="admin-tab-content">
-                    <h2>Promotion Management</h2>
-                    <div class="admin-actions">
-                        <button class="btn btn-primary" id="add-promotion-btn">
-                            <i class="fas fa-plus"></i> Add Promotion
-                        </button>
-                        <button class="btn btn-secondary" id="refresh-promotions">
-                            <i class="fas fa-sync-alt"></i> Refresh Promotions
-                        </button>
+                    <div class="admin-section-header">
+                        <h2>Promotion Management</h2>
+                        <div class="admin-actions">
+                            <button class="btn btn-primary" id="add-promotion-btn">
+                                <i class="fas fa-plus"></i> Add Promotion
+                            </button>
+                            <button class="btn btn-secondary" id="refresh-promotions">
+                                <i class="fas fa-sync-alt"></i> Refresh
+                            </button>
+                        </div>
                     </div>
                     
                     <div class="admin-table-container">
@@ -4053,11 +4074,13 @@
                 
                 <!-- Orders Management -->
                 <div id="orders-tab" class="admin-tab-content">
-                    <h2>Order Management</h2>
-                    <div class="admin-actions">
-                        <button class="btn btn-secondary" id="refresh-orders">
-                            <i class="fas fa-sync-alt"></i> Refresh Orders
-                        </button>
+                    <div class="admin-section-header">
+                        <h2>Order Management</h2>
+                        <div class="admin-actions">
+                            <button class="btn btn-secondary" id="refresh-orders">
+                                <i class="fas fa-sync-alt"></i> Refresh
+                            </button>
+                        </div>
                     </div>
                     
                     <div class="admin-table-container">
@@ -4067,7 +4090,7 @@
                                     <th>Order ID</th>
                                     <th>Customer</th>
                                     <th>Product</th>
-                                    <th>Order Details</th>
+                                    <th>Details</th>
                                     <th>Date</th>
                                     <th>Status</th>
                                     <th>Actions</th>
@@ -4204,6 +4227,22 @@
 </div>
 
 <style>
+/* Admin Access Styles */
+#admin-access:hover #admin-trigger {
+    background: linear-gradient(135deg, rgba(0, 113, 227, 0.2), rgba(90, 200, 250, 0.2));
+    border: 1px solid rgba(0, 113, 227, 0.4);
+    transform: scale(1.1);
+}
+
+#admin-access:hover #admin-trigger i {
+    color: var(--secondary-color);
+    transform: rotate(90deg);
+}
+
+#admin-access:hover #admin-tooltip {
+    opacity: 1;
+}
+
 /* Admin Panel Styles */
 .admin-form-container {
     max-width: 500px;
@@ -4215,6 +4254,20 @@
 }
 
 .admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.admin-header-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.admin-section-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -4237,6 +4290,13 @@
     cursor: pointer;
     position: relative;
     transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.admin-tab-btn i {
+    font-size: 0.9rem;
 }
 
 .admin-tab-btn.active {
@@ -4264,20 +4324,18 @@
 .admin-actions {
     display: flex;
     gap: 15px;
-    margin-bottom: 20px;
 }
 
 .admin-table-container {
     overflow-x: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .admin-table {
     width: 100%;
     border-collapse: collapse;
     background-color: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .admin-table th, .admin-table td {
@@ -4290,6 +4348,9 @@
     background-color: var(--light-gray);
     font-weight: 600;
     color: var(--primary-color);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .admin-table tr:last-child td {
@@ -4427,9 +4488,17 @@ function setupAdminPanel() {
             clickTimer = setTimeout(function() {
                 clickCount = 0;
             }, 2000);
-        } else if (clickCount === 5) {
+        } else if (clickCount === 3) {
             clearTimeout(clickTimer);
             clickCount = 0;
+            showAdminLogin();
+        }
+    });
+    
+    // Add keyboard shortcut for admin access (Ctrl+Shift+A)
+    document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && e.shiftKey && e.key === 'A') {
+            e.preventDefault();
             showAdminLogin();
         }
     });
