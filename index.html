@@ -937,6 +937,54 @@
             margin-right: 5px;
         }
         
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 980px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .whatsapp-btn i {
+            margin-right: 8px;
+        }
+        
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+        }
+        
+        /* Customer Info Section */
+        .customer-info {
+            background-color: var(--light-gray);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .customer-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .customer-form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-links {
@@ -956,6 +1004,10 @@
             }
             
             .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .customer-form-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -2245,6 +2297,25 @@
                     <h1>Custom Made Convocation Robe</h1>
                     <p class="product-description">Premium quality convocation robes tailored to your specifications. Available in various colors and sizes.</p>
                     
+                    <!-- Customer Information Section -->
+                    <div class="customer-info">
+                        <h3>Your Information</h3>
+                        <div class="customer-form-grid">
+                            <div class="form-group">
+                                <label for="customer-name">Name:</label>
+                                <input type="text" id="customer-name" name="customer-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="customer-email">Email:</label>
+                                <input type="email" id="customer-email" name="customer-email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="customer-phone">Phone:</label>
+                                <input type="tel" id="customer-phone" name="customer-phone" required>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <form id="convocation-robe-form">
                         <div class="form-group">
                             <label for="color">Choose Colour:</label>
@@ -2266,7 +2337,9 @@
                         
                         <div class="form-actions">
                             <button type="submit" class="btn btn-primary">Submit Remarks</button>
-                            <button type="button" class="btn btn-secondary" id="checkout-convocation-robe">Checkout via WhatsApp</button>
+                            <button type="button" class="whatsapp-btn" id="checkout-convocation-robe">
+                                <i class="fab fa-whatsapp"></i> Checkout via WhatsApp
+                            </button>
                         </div>
                     </form>
                     
@@ -2342,6 +2415,25 @@
                     <h1>T-Shirt Printing</h1>
                     <p class="product-description">Custom t-shirt printing for all occasions. High-quality prints with various design options available.</p>
                     
+                    <!-- Customer Information Section -->
+                    <div class="customer-info">
+                        <h3>Your Information</h3>
+                        <div class="customer-form-grid">
+                            <div class="form-group">
+                                <label for="customer-name">Name:</label>
+                                <input type="text" id="customer-name" name="customer-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="customer-email">Email:</label>
+                                <input type="email" id="customer-email" name="customer-email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="customer-phone">Phone:</label>
+                                <input type="tel" id="customer-phone" name="customer-phone" required>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <form id="t-shirt-printing-form">
                         <div class="form-group">
                             <label for="remarks">Remarks:</label>
@@ -2350,7 +2442,9 @@
                         
                         <div class="form-actions">
                             <button type="submit" class="btn btn-primary">Submit Remarks</button>
-                            <button type="button" class="btn btn-secondary" id="checkout-t-shirt-printing">Checkout via WhatsApp</button>
+                            <button type="button" class="whatsapp-btn" id="checkout-t-shirt-printing">
+                                <i class="fab fa-whatsapp"></i> Checkout via WhatsApp
+                            </button>
                         </div>
                     </form>
                     
@@ -2426,6 +2520,25 @@
                     <h1>Medal / Trophy</h1>
                     <p class="product-description">Custom medals and trophies for all events and competitions. High-quality materials with personalized engraving options.</p>
                     
+                    <!-- Customer Information Section -->
+                    <div class="customer-info">
+                        <h3>Your Information</h3>
+                        <div class="customer-form-grid">
+                            <div class="form-group">
+                                <label for="customer-name">Name:</label>
+                                <input type="text" id="customer-name" name="customer-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="customer-email">Email:</label>
+                                <input type="email" id="customer-email" name="customer-email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="customer-phone">Phone:</label>
+                                <input type="tel" id="customer-phone" name="customer-phone" required>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <form id="medal-trophy-form">
                         <div class="form-group">
                             <label for="item">Type of Medal/Trophy:</label>
@@ -2439,7 +2552,9 @@
                         
                         <div class="form-actions">
                             <button type="submit" class="btn btn-primary">Submit Remarks</button>
-                            <button type="button" class="btn btn-secondary" id="checkout-medal-trophy">Checkout via WhatsApp</button>
+                            <button type="button" class="whatsapp-btn" id="checkout-medal-trophy">
+                                <i class="fab fa-whatsapp"></i> Checkout via WhatsApp
+                            </button>
                         </div>
                     </form>
                     
@@ -2515,6 +2630,25 @@
                     <h1>Towel</h1>
                     <p class="product-description">High-quality towels with optional embroidery. Perfect for sports, schools, and corporate events.</p>
                     
+                    <!-- Customer Information Section -->
+                    <div class="customer-info">
+                        <h3>Your Information</h3>
+                        <div class="customer-form-grid">
+                            <div class="form-group">
+                                <label for="customer-name">Name:</label>
+                                <input type="text" id="customer-name" name="customer-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="customer-email">Email:</label>
+                                <input type="email" id="customer-email" name="customer-email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="customer-phone">Phone:</label>
+                                <input type="tel" id="customer-phone" name="customer-phone" required>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <form id="towel-form">
                         <div class="form-group">
                             <label>Embroidery Option:</label>
@@ -2535,7 +2669,9 @@
                         
                         <div class="form-actions">
                             <button type="submit" class="btn btn-primary">Submit Remarks</button>
-                            <button type="button" class="btn btn-secondary" id="checkout-towel">Checkout via WhatsApp</button>
+                            <button type="button" class="whatsapp-btn" id="checkout-towel">
+                                <i class="fab fa-whatsapp"></i> Checkout via WhatsApp
+                            </button>
                         </div>
                     </form>
                     
@@ -2611,6 +2747,25 @@
                     <h1>Custom Made Keychain</h1>
                     <p class="product-description">Personalized keychains in various shapes and materials. Perfect for gifts, promotions, and personal use.</p>
                     
+                    <!-- Customer Information Section -->
+                    <div class="customer-info">
+                        <h3>Your Information</h3>
+                        <div class="customer-form-grid">
+                            <div class="form-group">
+                                <label for="customer-name">Name:</label>
+                                <input type="text" id="customer-name" name="customer-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="customer-email">Email:</label>
+                                <input type="email" id="customer-email" name="customer-email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="customer-phone">Phone:</label>
+                                <input type="tel" id="customer-phone" name="customer-phone" required>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <form id="keychain-form">
                         <div class="form-group">
                             <label for="remarks">Remarks:</label>
@@ -2619,7 +2774,9 @@
                         
                         <div class="form-actions">
                             <button type="submit" class="btn btn-primary">Submit Remarks</button>
-                            <button type="button" class="btn btn-secondary" id="checkout-keychain">Checkout via WhatsApp</button>
+                            <button type="button" class="whatsapp-btn" id="checkout-keychain">
+                                <i class="fab fa-whatsapp"></i> Checkout via WhatsApp
+                            </button>
                         </div>
                     </form>
                     
@@ -2695,6 +2852,25 @@
                     <h1>Custom Made Nametag</h1>
                     <p class="product-description">Professional nametags for corporate and events. High-quality materials with various customization options.</p>
                     
+                    <!-- Customer Information Section -->
+                    <div class="customer-info">
+                        <h3>Your Information</h3>
+                        <div class="customer-form-grid">
+                            <div class="form-group">
+                                <label for="customer-name">Name:</label>
+                                <input type="text" id="customer-name" name="customer-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="customer-email">Email:</label>
+                                <input type="email" id="customer-email" name="customer-email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="customer-phone">Phone:</label>
+                                <input type="tel" id="customer-phone" name="customer-phone" required>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <form id="nametag-form">
                         <div class="form-group">
                             <label for="remarks">Remarks:</label>
@@ -2703,7 +2879,9 @@
                         
                         <div class="form-actions">
                             <button type="submit" class="btn btn-primary">Submit Remarks</button>
-                            <button type="button" class="btn btn-secondary" id="checkout-nametag">Checkout via WhatsApp</button>
+                            <button type="button" class="whatsapp-btn" id="checkout-nametag">
+                                <i class="fab fa-whatsapp"></i> Checkout via WhatsApp
+                            </button>
                         </div>
                     </form>
                     
@@ -2779,6 +2957,25 @@
                     <h1>Custom Made Corporate Shirt</h1>
                     <p class="product-description">Professional corporate shirts with custom designs. High-quality materials with various customization options.</p>
                     
+                    <!-- Customer Information Section -->
+                    <div class="customer-info">
+                        <h3>Your Information</h3>
+                        <div class="customer-form-grid">
+                            <div class="form-group">
+                                <label for="customer-name">Name:</label>
+                                <input type="text" id="customer-name" name="customer-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="customer-email">Email:</label>
+                                <input type="email" id="customer-email" name="customer-email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="customer-phone">Phone:</label>
+                                <input type="tel" id="customer-phone" name="customer-phone" required>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <form id="corporate-shirt-form">
                         <div class="form-group">
                             <label for="size">Choose Size:</label>
@@ -2813,7 +3010,9 @@
                         
                         <div class="form-actions">
                             <button type="submit" class="btn btn-primary">Submit Remarks</button>
-                            <button type="button" class="btn btn-secondary" id="checkout-corporate-shirt">Checkout via WhatsApp</button>
+                            <button type="button" class="whatsapp-btn" id="checkout-corporate-shirt">
+                                <i class="fab fa-whatsapp"></i> Checkout via WhatsApp
+                            </button>
                         </div>
                     </form>
                     
@@ -2889,6 +3088,25 @@
                     <h1>Carta Kehadiran</h1>
                     <p class="product-description">Custom attendance cards for schools and events. Durable material with personalization options including name, class, and school logo.</p>
                     
+                    <!-- Customer Information Section -->
+                    <div class="customer-info">
+                        <h3>Your Information</h3>
+                        <div class="customer-form-grid">
+                            <div class="form-group">
+                                <label for="customer-name">Name:</label>
+                                <input type="text" id="customer-name" name="customer-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="customer-email">Email:</label>
+                                <input type="email" id="customer-email" name="customer-email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="customer-phone">Phone:</label>
+                                <input type="tel" id="customer-phone" name="customer-phone" required>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <form id="carta-kehadiran-form">
                         <div class="form-group">
                             <label for="remarks">Remarks:</label>
@@ -2897,7 +3115,9 @@
                         
                         <div class="form-actions">
                             <button type="submit" class="btn btn-primary">Submit Remarks</button>
-                            <button type="button" class="btn btn-secondary" id="checkout-carta-kehadiran">Checkout via WhatsApp</button>
+                            <button type="button" class="whatsapp-btn" id="checkout-carta-kehadiran">
+                                <i class="fab fa-whatsapp"></i> Checkout via WhatsApp
+                            </button>
                         </div>
                     </form>
                     
@@ -2969,15 +3189,15 @@
     </div>
     
     <script>
-      // Google Sheets Configuration
-const SHEET_ID = '1SvzxmtY_nnTZk3F9bWfdPKT-G3F50uw_L0ECBV5hpiQ'; // Your Google Sheet ID
-const API_KEY = 'AIzaSyAt5zpc2m1nB_4xbkU9OYfiVZirjMAvA-I'; // Your API key
-const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzp6DIpHmWW4wj0FTyxUUjujemK_JcpghtasgOhfDVoW34RDuqtrTwtx0bI5EnDAdSQ/exec'; // Your Web App URL
+        // Google Sheets Configuration
+        const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxTXlKwEzzm4MKH9TuFErvMtlRQtrdx0YGQs2hD9kI4O-kcMfoXr4MxGvxsU_LPY-Cz/exec';
+        const WHATSAPP_PAYMENT_URL = 'https://www.wasap.my/60134036123/ProceedPayment';
+        
         // Global variables
         let lastOrderCheck = null;
         let lastProductUpdate = null;
         let notificationSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-alarm-digital-clock-beep-989.mp3');
-
+        
         // Function to get current Malaysia time (UTC+8)
         function getMalaysiaTime() {
             const now = new Date();
@@ -2996,7 +3216,7 @@ const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzp6DIpHmWW4wj0FTyx
             
             return malaysiaTime.toLocaleString('en-MY', options);
         }
-
+        
         // Update the time display
         function updateTimeDisplay() {
             const timeElement = document.getElementById('current-time');
@@ -3004,47 +3224,145 @@ const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzp6DIpHmWW4wj0FTyx
                 timeElement.textContent = getMalaysiaTime();
             }
         }
-
+        
         // Update time immediately and then every second
         updateTimeDisplay();
         setInterval(updateTimeDisplay, 1000);
-
+        
         // Function to load product data from Google Sheets
         async function loadProductData() {
             try {
-                // Load products
-                const productsResponse = await fetch(
-                    `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/Products!A2:H?key=${API_KEY}`
-                );
-                const productsData = await productsResponse.json();
-                const products = productsData.values;
+                // Load products from Web App
+                const response = await fetch(`${WEB_APP_URL}?action=getProducts`);
+                const data = await response.json();
                 
-                // Load promotions
-                const promotionsResponse = await fetch(
-                    `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/Promotions!A2:E?key=${API_KEY}`
-                );
-                const promotionsData = await promotionsResponse.json();
-                const promotions = promotionsData.values;
+                if (data.status === "error") {
+                    throw new Error(data.message);
+                }
                 
                 // Process and display products
-                updateProductPages(products, promotions);
+                updateProductPages(data.products, data.promotions);
                 
             } catch (error) {
                 console.error('Error loading product data:', error);
+                
+                // If Google Sheets fails, use fallback data
+                console.log('Using fallback product data');
+                const fallbackProducts = [
+                    {
+                        productId: 'convocation-robe',
+                        name: 'Custom Made Convocation Robe',
+                        price: '120',
+                        imageUrl: '',
+                        category: 'Convocation',
+                        description: 'Premium quality convocation robes tailored to your specifications. Available in various colors and sizes.',
+                        isBestSeller: 'TRUE',
+                        stockStatus: 'In Stock'
+                    },
+                    {
+                        productId: 't-shirt-printing',
+                        name: 'T-Shirt Printing',
+                        price: '25',
+                        imageUrl: '',
+                        category: 'Apparel',
+                        description: 'Custom t-shirt printing for all occasions. High-quality prints with various design options available.',
+                        isBestSeller: 'FALSE',
+                        stockStatus: 'In Stock'
+                    },
+                    {
+                        productId: 'medal-trophy',
+                        name: 'Medal / Trophy',
+                        price: '35',
+                        imageUrl: '',
+                        category: 'Awards',
+                        description: 'Custom medals and trophies for all events and competitions. High-quality materials with personalized engraving options.',
+                        isBestSeller: 'TRUE',
+                        stockStatus: 'In Stock'
+                    },
+                    {
+                        productId: 'towel',
+                        name: 'Towel',
+                        price: '15',
+                        imageUrl: '',
+                        category: 'Accessories',
+                        description: 'High-quality towels with optional embroidery. Perfect for sports, schools, and corporate events.',
+                        isBestSeller: 'FALSE',
+                        stockStatus: 'In Stock'
+                    },
+                    {
+                        productId: 'keychain',
+                        name: 'Custom Made Keychain',
+                        price: '10',
+                        imageUrl: '',
+                        category: 'Accessories',
+                        description: 'Personalized keychains in various shapes and materials. Perfect for gifts, promotions, and personal use.',
+                        isBestSeller: 'FALSE',
+                        stockStatus: 'In Stock'
+                    },
+                    {
+                        productId: 'nametag',
+                        name: 'Custom Made Nametag',
+                        price: '20',
+                        imageUrl: '',
+                        category: 'Accessories',
+                        description: 'Professional nametags for corporate and events. High-quality materials with various customization options.',
+                        isBestSeller: 'TRUE',
+                        stockStatus: 'In Stock'
+                    },
+                    {
+                        productId: 'corporate-shirt',
+                        name: 'Custom Made Corporate Shirt',
+                        price: '45',
+                        imageUrl: '',
+                        category: 'Apparel',
+                        description: 'Professional corporate shirts with custom designs. High-quality materials with various customization options.',
+                        isBestSeller: 'FALSE',
+                        stockStatus: 'In Stock'
+                    },
+                    {
+                        productId: 'carta-kehadiran',
+                        name: 'Carta Kehadiran',
+                        price: '5',
+                        imageUrl: '',
+                        category: 'Stationery',
+                        description: 'Custom attendance cards for schools and events. Durable material with personalization options.',
+                        isBestSeller: 'FALSE',
+                        stockStatus: 'In Stock'
+                    }
+                ];
+                
+                const fallbackPromotions = [
+                    {
+                        promotionId: 'promo1',
+                        productId: 'medal-trophy',
+                        discountPrice: '25',
+                        startDate: '2023-01-01',
+                        endDate: '2023-12-31'
+                    },
+                    {
+                        promotionId: 'promo2',
+                        productId: 'keychain',
+                        discountPrice: '7',
+                        startDate: '2023-01-01',
+                        endDate: '2023-12-31'
+                    }
+                ];
+                
+                updateProductPages(fallbackProducts, fallbackPromotions);
             }
         }
-
+        
         // Function to update product pages with data from Google Sheets
         function updateProductPages(products, promotions) {
             // Create a promotions lookup object
             const promotionsMap = {};
             promotions.forEach(promo => {
-                promotionsMap[promo[1]] = promo; // Map by ProductID
+                promotionsMap[promo.productId] = promo; // Map by ProductID
             });
             
             // Update each product page
             products.forEach(product => {
-                const [productId, name, price, imageUrl, category, description, isBestSeller, stockStatus] = product;
+                const { productId, name, price, imageUrl, category, description, isBestSeller, stockStatus } = product;
                 
                 // Get the product page element
                 const productPage = document.getElementById(`${productId}-page`);
@@ -3066,7 +3384,7 @@ const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzp6DIpHmWW4wj0FTyx
                     // Check if there's a promotion
                     if (promotionsMap[productId]) {
                         const promotion = promotionsMap[productId];
-                        const discountPrice = promotion[2];
+                        const discountPrice = promotion.discountPrice;
                         priceDiv.innerHTML = `
                             <span class="original-price">RM${price}</span>
                             <span class="promotion-price">RM${discountPrice}</span>
@@ -3110,7 +3428,7 @@ const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzp6DIpHmWW4wj0FTyx
                 }
             });
         }
-
+        
         // Function to submit order to Google Sheets
         async function submitOrderToGoogleSheets(orderData) {
             try {
@@ -3131,7 +3449,7 @@ const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzp6DIpHmWW4wj0FTyx
                 return false;
             }
         }
-
+        
         // Function to show notification
         function showNotification(message) {
             const notification = document.getElementById('notification');
@@ -3144,7 +3462,7 @@ const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzp6DIpHmWW4wj0FTyx
                 notification.classList.remove('show');
             }, 3000);
         }
-
+        
         // Initialize the page
         function init() {
             showLoading();
@@ -3156,17 +3474,17 @@ const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzp6DIpHmWW4wj0FTyx
                 loadProductData();
             }, 1500);
         }
-
+        
         // Show loading spinner
         function showLoading() {
             document.getElementById('loading').classList.add('show');
         }
-
+        
         // Hide loading spinner
         function hideLoading() {
             document.getElementById('loading').classList.remove('show');
         }
-
+        
         // Setup navigation between pages
         function setupNavigation() {
             // Get all navigation links
@@ -3192,7 +3510,7 @@ const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzp6DIpHmWW4wj0FTyx
                 });
             });
         }
-
+        
         // Navigate to a specific page
         function navigateToPage(pageId) {
             // Hide all pages
@@ -3222,7 +3540,7 @@ const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzp6DIpHmWW4wj0FTyx
                 });
             }
         }
-
+        
         // Setup product forms
         function setupProductForms() {
             // Convocation Robe Form
@@ -3246,14 +3564,18 @@ const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzp6DIpHmWW4wj0FTyx
                     return;
                 }
                 
+                const customerName = document.querySelector('#convocation-robe-page #customer-name').value;
+                const customerEmail = document.querySelector('#convocation-robe-page #customer-email').value;
+                const customerPhone = document.querySelector('#convocation-robe-page #customer-phone').value;
                 const color = document.querySelector('#convocation-robe-page #color').value;
                 const remarks = document.querySelector('#convocation-robe-page #remarks').value;
                 
                 const orderData = {
+                    action: 'submitOrder',
                     productId: 'convocation-robe',
-                    customerName: '', // You'll need to add these fields to your forms
-                    customerEmail: '',
-                    customerPhone: '',
+                    customerName: customerName,
+                    customerEmail: customerEmail,
+                    customerPhone: customerPhone,
                     orderDetails: `Color: ${color}, Remarks: ${remarks}`,
                     status: 'Pending'
                 };
@@ -3262,10 +3584,8 @@ const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzp6DIpHmWW4wj0FTyx
                 
                 if (success) {
                     showNotification('Order submitted successfully!');
-                    // Open WhatsApp with order details
-                    const message = `Custom Made Convocation Robe - Color: ${color} - Remarks: ${remarks}`;
-                    const whatsappUrl = `https://www.wasap.my/60134036123/${encodeURIComponent(message)}`;
-                    window.open(whatsappUrl, '_blank');
+                    // Open WhatsApp with payment link
+                    window.open(WHATSAPP_PAYMENT_URL, '_blank');
                 } else {
                     showNotification('Error submitting order. Please try again.');
                 }
@@ -3292,13 +3612,17 @@ const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzp6DIpHmWW4wj0FTyx
                     return;
                 }
                 
+                const customerName = document.querySelector('#t-shirt-printing-page #customer-name').value;
+                const customerEmail = document.querySelector('#t-shirt-printing-page #customer-email').value;
+                const customerPhone = document.querySelector('#t-shirt-printing-page #customer-phone').value;
                 const remarks = document.querySelector('#t-shirt-printing-page #remarks').value;
                 
                 const orderData = {
+                    action: 'submitOrder',
                     productId: 't-shirt-printing',
-                    customerName: '',
-                    customerEmail: '',
-                    customerPhone: '',
+                    customerName: customerName,
+                    customerEmail: customerEmail,
+                    customerPhone: customerPhone,
                     orderDetails: `Remarks: ${remarks}`,
                     status: 'Pending'
                 };
@@ -3307,10 +3631,8 @@ const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzp6DIpHmWW4wj0FTyx
                 
                 if (success) {
                     showNotification('Order submitted successfully!');
-                    // Open WhatsApp with order details
-                    const message = `T-Shirt Printing - Remarks: ${remarks}`;
-                    const whatsappUrl = `https://www.wasap.my/60134036123/${encodeURIComponent(message)}`;
-                    window.open(whatsappUrl, '_blank');
+                    // Open WhatsApp with payment link
+                    window.open(WHATSAPP_PAYMENT_URL, '_blank');
                 } else {
                     showNotification('Error submitting order. Please try again.');
                 }
@@ -3337,14 +3659,18 @@ const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzp6DIpHmWW4wj0FTyx
                     return;
                 }
                 
+                const customerName = document.querySelector('#medal-trophy-page #customer-name').value;
+                const customerEmail = document.querySelector('#medal-trophy-page #customer-email').value;
+                const customerPhone = document.querySelector('#medal-trophy-page #customer-phone').value;
                 const item = document.querySelector('#medal-trophy-page #item').value;
                 const remarks = document.querySelector('#medal-trophy-page #remarks').value;
                 
                 const orderData = {
+                    action: 'submitOrder',
                     productId: 'medal-trophy',
-                    customerName: '',
-                    customerEmail: '',
-                    customerPhone: '',
+                    customerName: customerName,
+                    customerEmail: customerEmail,
+                    customerPhone: customerPhone,
                     orderDetails: `Item: ${item}, Remarks: ${remarks}`,
                     status: 'Pending'
                 };
@@ -3353,10 +3679,8 @@ const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzp6DIpHmWW4wj0FTyx
                 
                 if (success) {
                     showNotification('Order submitted successfully!');
-                    // Open WhatsApp with order details
-                    const message = `Medal/Trophy - Item: ${item} - Remarks: ${remarks}`;
-                    const whatsappUrl = `https://www.wasap.my/60134036123/${encodeURIComponent(message)}`;
-                    window.open(whatsappUrl, '_blank');
+                    // Open WhatsApp with payment link
+                    window.open(WHATSAPP_PAYMENT_URL, '_blank');
                 } else {
                     showNotification('Error submitting order. Please try again.');
                 }
@@ -3383,14 +3707,18 @@ const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzp6DIpHmWW4wj0FTyx
                     return;
                 }
                 
+                const customerName = document.querySelector('#towel-page #customer-name').value;
+                const customerEmail = document.querySelector('#towel-page #customer-email').value;
+                const customerPhone = document.querySelector('#towel-page #customer-phone').value;
                 const embroidery = document.querySelector('#towel-page input[name="embroidery"]:checked').value;
                 const remarks = document.querySelector('#towel-page #remarks').value;
                 
                 const orderData = {
+                    action: 'submitOrder',
                     productId: 'towel',
-                    customerName: '',
-                    customerEmail: '',
-                    customerPhone: '',
+                    customerName: customerName,
+                    customerEmail: customerEmail,
+                    customerPhone: customerPhone,
                     orderDetails: `Embroidery: ${embroidery}, Remarks: ${remarks}`,
                     status: 'Pending'
                 };
@@ -3399,10 +3727,8 @@ const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzp6DIpHmWW4wj0FTyx
                 
                 if (success) {
                     showNotification('Order submitted successfully!');
-                    // Open WhatsApp with order details
-                    const message = `Towel - Embroidery: ${embroidery} - Remarks: ${remarks}`;
-                    const whatsappUrl = `https://www.wasap.my/60134036123/${encodeURIComponent(message)}`;
-                    window.open(whatsappUrl, '_blank');
+                    // Open WhatsApp with payment link
+                    window.open(WHATSAPP_PAYMENT_URL, '_blank');
                 } else {
                     showNotification('Error submitting order. Please try again.');
                 }
@@ -3429,13 +3755,17 @@ const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzp6DIpHmWW4wj0FTyx
                     return;
                 }
                 
+                const customerName = document.querySelector('#keychain-page #customer-name').value;
+                const customerEmail = document.querySelector('#keychain-page #customer-email').value;
+                const customerPhone = document.querySelector('#keychain-page #customer-phone').value;
                 const remarks = document.querySelector('#keychain-page #remarks').value;
                 
                 const orderData = {
+                    action: 'submitOrder',
                     productId: 'keychain',
-                    customerName: '',
-                    customerEmail: '',
-                    customerPhone: '',
+                    customerName: customerName,
+                    customerEmail: customerEmail,
+                    customerPhone: customerPhone,
                     orderDetails: `Remarks: ${remarks}`,
                     status: 'Pending'
                 };
@@ -3444,10 +3774,8 @@ const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzp6DIpHmWW4wj0FTyx
                 
                 if (success) {
                     showNotification('Order submitted successfully!');
-                    // Open WhatsApp with order details
-                    const message = `Custom Made Keychain - Remarks: ${remarks}`;
-                    const whatsappUrl = `https://www.wasap.my/60134036123/${encodeURIComponent(message)}`;
-                    window.open(whatsappUrl, '_blank');
+                    // Open WhatsApp with payment link
+                    window.open(WHATSAPP_PAYMENT_URL, '_blank');
                 } else {
                     showNotification('Error submitting order. Please try again.');
                 }
@@ -3474,13 +3802,17 @@ const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzp6DIpHmWW4wj0FTyx
                     return;
                 }
                 
+                const customerName = document.querySelector('#nametag-page #customer-name').value;
+                const customerEmail = document.querySelector('#nametag-page #customer-email').value;
+                const customerPhone = document.querySelector('#nametag-page #customer-phone').value;
                 const remarks = document.querySelector('#nametag-page #remarks').value;
                 
                 const orderData = {
+                    action: 'submitOrder',
                     productId: 'nametag',
-                    customerName: '',
-                    customerEmail: '',
-                    customerPhone: '',
+                    customerName: customerName,
+                    customerEmail: customerEmail,
+                    customerPhone: customerPhone,
                     orderDetails: `Remarks: ${remarks}`,
                     status: 'Pending'
                 };
@@ -3489,10 +3821,8 @@ const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzp6DIpHmWW4wj0FTyx
                 
                 if (success) {
                     showNotification('Order submitted successfully!');
-                    // Open WhatsApp with order details
-                    const message = `Custom Made Nametag - Remarks: ${remarks}`;
-                    const whatsappUrl = `https://www.wasap.my/60134036123/${encodeURIComponent(message)}`;
-                    window.open(whatsappUrl, '_blank');
+                    // Open WhatsApp with payment link
+                    window.open(WHATSAPP_PAYMENT_URL, '_blank');
                 } else {
                     showNotification('Error submitting order. Please try again.');
                 }
@@ -3519,15 +3849,19 @@ const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzp6DIpHmWW4wj0FTyx
                     return;
                 }
                 
+                const customerName = document.querySelector('#corporate-shirt-page #customer-name').value;
+                const customerEmail = document.querySelector('#corporate-shirt-page #customer-email').value;
+                const customerPhone = document.querySelector('#corporate-shirt-page #customer-phone').value;
                 const size = document.querySelector('#corporate-shirt-page #size').value;
                 const color = document.querySelector('#corporate-shirt-page #color').value;
                 const remarks = document.querySelector('#corporate-shirt-page #remarks').value;
                 
                 const orderData = {
+                    action: 'submitOrder',
                     productId: 'corporate-shirt',
-                    customerName: '',
-                    customerEmail: '',
-                    customerPhone: '',
+                    customerName: customerName,
+                    customerEmail: customerEmail,
+                    customerPhone: customerPhone,
                     orderDetails: `Size: ${size}, Color: ${color}, Remarks: ${remarks}`,
                     status: 'Pending'
                 };
@@ -3536,10 +3870,8 @@ const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzp6DIpHmWW4wj0FTyx
                 
                 if (success) {
                     showNotification('Order submitted successfully!');
-                    // Open WhatsApp with order details
-                    const message = `Custom Made Corporate Shirt - Size: ${size} - Color: ${color} - Remarks: ${remarks}`;
-                    const whatsappUrl = `https://www.wasap.my/60134036123/${encodeURIComponent(message)}`;
-                    window.open(whatsappUrl, '_blank');
+                    // Open WhatsApp with payment link
+                    window.open(WHATSAPP_PAYMENT_URL, '_blank');
                 } else {
                     showNotification('Error submitting order. Please try again.');
                 }
@@ -3566,13 +3898,17 @@ const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzp6DIpHmWW4wj0FTyx
                     return;
                 }
                 
+                const customerName = document.querySelector('#carta-kehadiran-page #customer-name').value;
+                const customerEmail = document.querySelector('#carta-kehadiran-page #customer-email').value;
+                const customerPhone = document.querySelector('#carta-kehadiran-page #customer-phone').value;
                 const remarks = document.querySelector('#carta-kehadiran-page #remarks').value;
                 
                 const orderData = {
+                    action: 'submitOrder',
                     productId: 'carta-kehadiran',
-                    customerName: '',
-                    customerEmail: '',
-                    customerPhone: '',
+                    customerName: customerName,
+                    customerEmail: customerEmail,
+                    customerPhone: customerPhone,
                     orderDetails: `Remarks: ${remarks}`,
                     status: 'Pending'
                 };
@@ -3581,16 +3917,14 @@ const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzp6DIpHmWW4wj0FTyx
                 
                 if (success) {
                     showNotification('Order submitted successfully!');
-                    // Open WhatsApp with order details
-                    const message = `Carta Kehadiran - Remarks: ${remarks}`;
-                    const whatsappUrl = `https://www.wasap.my/60134036123/${encodeURIComponent(message)}`;
-                    window.open(whatsappUrl, '_blank');
+                    // Open WhatsApp with payment link
+                    window.open(WHATSAPP_PAYMENT_URL, '_blank');
                 } else {
                     showNotification('Error submitting order. Please try again.');
                 }
             });
         }
-
+        
         // Setup contact form
         function setupContactForm() {
             const contactForm = document.getElementById('contact-form');
@@ -3609,7 +3943,7 @@ const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzp6DIpHmWW4wj0FTyx
                 formNotice.scrollIntoView({ behavior: 'smooth' });
             });
         }
-
+        
         // Initialize the page when DOM is loaded
         document.addEventListener('DOMContentLoaded', init);
     </script>
