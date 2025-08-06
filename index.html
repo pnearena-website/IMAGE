@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PNE Arena | Custom Products</title>
+    <title>PNE ARENA | Premium Custom Products</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -226,7 +226,20 @@
             font-weight: 600;
         }
         
-        /* Hero Section */
+        /* Main Content */
+        .main-content {
+            margin-top: 90px;
+        }
+        
+        .view {
+            display: none;
+        }
+        
+        .view.active {
+            display: block;
+        }
+        
+        /* Home View */
         .hero {
             height: 100vh;
             display: flex;
@@ -401,6 +414,7 @@
             box-shadow: 0 5px 20px rgba(0,0,0,0.05);
             transition: all 0.5s ease;
             position: relative;
+            cursor: pointer;
         }
         
         .product-card::before {
@@ -480,10 +494,216 @@
             letter-spacing: 1px;
             font-weight: 600;
             transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
         }
         
         .btn-product:hover {
             background-color: var(--gray-700);
+        }
+        
+        /* Product Detail View */
+        .breadcrumb {
+            background-color: var(--gray-100);
+            padding: 20px 0;
+        }
+        
+        .breadcrumb-nav {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+        
+        .breadcrumb-nav a {
+            color: var(--gray-600);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .breadcrumb-nav a:hover {
+            color: var(--black);
+        }
+        
+        .breadcrumb-nav span {
+            margin: 0 10px;
+            color: var(--gray-500);
+        }
+        
+        .breadcrumb-nav .current {
+            color: var(--black);
+            font-weight: 500;
+        }
+        
+        .product-detail {
+            padding: 80px 0;
+        }
+        
+        .product-detail-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .product-image {
+            background-color: var(--gray-100);
+            height: 500px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            color: var(--gray-400);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0,0,0,0.03) 0%, rgba(0,0,0,0.08) 100%);
+            z-index: 1;
+        }
+        
+        .product-image i {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .product-info h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--black);
+        }
+        
+        .product-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 30px;
+        }
+        
+        .product-description {
+            color: var(--gray-600);
+            margin-bottom: 40px;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        .product-features {
+            margin-bottom: 40px;
+        }
+        
+        .product-features h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: var(--black);
+        }
+        
+        .features-list {
+            list-style: none;
+        }
+        
+        .features-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .features-list li i {
+            color: var(--black);
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+        
+        .btn-order {
+            padding: 18px 50px;
+            background-color: var(--black);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 2px;
+            font-weight: 600;
+            font-size: 16px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-order::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--gray-700);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            z-index: -1;
+        }
+        
+        .btn-order:hover::before {
+            transform: translateX(0);
+        }
+        
+        .btn-back {
+            margin-left: 20px;
+            padding: 18px 40px;
+            background-color: transparent;
+            color: var(--black);
+            text-decoration: none;
+            border: 2px solid var(--black);
+            border-radius: 2px;
+            font-weight: 600;
+            font-size: 16px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .btn-back:hover {
+            background-color: var(--black);
+            color: var(--white);
+        }
+        
+        /* Error Message */
+        .error-message {
+            text-align: center;
+            padding: 60px 20px;
+            background-color: var(--gray-100);
+            border-radius: 4px;
+            margin-bottom: 40px;
+        }
+        
+        .error-message i {
+            font-size: 4rem;
+            color: var(--gray-500);
+            margin-bottom: 20px;
+        }
+        
+        .error-message h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--gray-700);
+        }
+        
+        .error-message p {
+            color: var(--gray-600);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         /* Order Form Modal */
@@ -667,6 +887,61 @@
             color: var(--black);
         }
         
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background-color: var(--black);
+            color: var(--white);
+            padding: 20px 30px;
+            border-radius: 2px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 2000;
+            transform: translateX(150%);
+            transition: transform 0.5s ease;
+            max-width: 350px;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .notification-header i {
+            margin-right: 15px;
+            font-size: 20px;
+        }
+        
+        .notification-header h3 {
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .notification-body {
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--gray-300);
+        }
+        
+        .notification-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: var(--gray-400);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .notification-close:hover {
+            color: var(--white);
+        }
+        
         /* Footer */
         footer {
             background-color: var(--black);
@@ -773,61 +1048,6 @@
             font-size: 14px;
         }
         
-        /* Notification */
-        .notification {
-            position: fixed;
-            top: 30px;
-            right: 30px;
-            background-color: var(--black);
-            color: var(--white);
-            padding: 20px 30px;
-            border-radius: 2px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            z-index: 2000;
-            transform: translateX(150%);
-            transition: transform 0.5s ease;
-            max-width: 350px;
-        }
-        
-        .notification.show {
-            transform: translateX(0);
-        }
-        
-        .notification-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        
-        .notification-header i {
-            margin-right: 15px;
-            font-size: 20px;
-        }
-        
-        .notification-header h3 {
-            font-size: 16px;
-            font-weight: 600;
-        }
-        
-        .notification-body {
-            font-size: 14px;
-            line-height: 1.5;
-            color: var(--gray-300);
-        }
-        
-        .notification-close {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            color: var(--gray-400);
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-        
-        .notification-close:hover {
-            color: var(--white);
-        }
-        
         /* Responsive */
         @media (max-width: 992px) {
             .hero h1 {
@@ -837,6 +1057,15 @@
             .product-grid {
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
                 gap: 30px;
+            }
+            
+            .product-detail-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .product-image {
+                height: 400px;
             }
         }
         
@@ -871,6 +1100,20 @@
                 margin: 15px auto 0;
             }
             
+            .product-info h1 {
+                font-size: 2.2rem;
+            }
+            
+            .product-price {
+                font-size: 1.6rem;
+            }
+            
+            .btn-order, .btn-back {
+                display: block;
+                text-align: center;
+                margin: 10px 0;
+            }
+            
             .form-row {
                 flex-direction: column;
                 gap: 0;
@@ -886,11 +1129,11 @@
     <!-- Header -->
     <header>
         <div class="container header-container">
-            <a href="#" class="logo">PNE ARENA</a>
+            <a href="#" class="logo" id="home-link">PNE ARENA</a>
             <nav>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#products">Products</a></li>
+                    <li><a href="#" id="nav-home">Home</a></li>
+                    <li><a href="#" id="nav-products">Products</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="#">Contact</a></li>
                 </ul>
@@ -902,154 +1145,323 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-bg"></div>
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="reveal-text">Elegance in Customization</h1>
-                <p class="animate-fade-in animate-delay-1">Crafting bespoke products with meticulous attention to detail. From convocation robes to corporate attire, we bring your vision to life.</p>
-                <a href="#products" class="btn animate-fade-in animate-delay-2">Explore Collection</a>
-                <a href="#" class="btn btn-outline animate-fade-in animate-delay-2">Contact Us</a>
-            </div>
-        </div>
-        <div class="scroll-indicator">
-            <span>Scroll Down</span>
-            <i class="fas fa-chevron-down"></i>
-        </div>
-    </section>
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Home View -->
+        <div id="home-view" class="view active">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-bg"></div>
+                <div class="container">
+                    <div class="hero-content">
+                        <h1 class="reveal-text">Elegance in Customization</h1>
+                        <p class="animate-fade-in animate-delay-1">Crafting bespoke products with meticulous attention to detail. From convocation robes to corporate attire, we bring your vision to life.</p>
+                        <a href="#" class="btn animate-fade-in animate-delay-2" id="explore-btn">Explore Collection</a>
+                        <a href="#" class="btn btn-outline animate-fade-in animate-delay-2">Contact Us</a>
+                    </div>
+                </div>
+                <div class="scroll-indicator">
+                    <span>Scroll Down</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
 
-    <!-- Products Section -->
-    <section class="products" id="products">
-        <div class="container">
-            <div class="section-header animate-slide-up">
-                <h2>Our Exclusive Collection</h2>
-                <p>Browse our curated selection of premium custom products designed to make a lasting impression</p>
-            </div>
-            
-            <div class="product-grid">
-                <!-- Product 1 -->
-                <div class="product-card animate-slide-up animate-delay-1" data-product="convocation-robe">
-                    <div class="product-img">
-                        <i class="fas fa-graduation-cap"></i>
+            <!-- Products Section -->
+            <section class="products" id="products-section">
+                <div class="container">
+                    <div class="section-header animate-slide-up">
+                        <h2>Our Exclusive Collection</h2>
+                        <p>Browse our curated selection of premium custom products designed to make a lasting impression</p>
                     </div>
-                    <div class="product-info">
-                        <h3>Custom Convocation Robe</h3>
-                        <p>Premium quality convocation robes with custom embroidery and precise tailoring.</p>
-                        <div class="product-footer">
-                            <div class="product-price">RM 150</div>
-                            <button class="btn-product">Order Now</button>
+                    
+                    <div class="product-grid">
+                        <!-- Product 1 -->
+                        <div class="product-card animate-slide-up animate-delay-1" data-product="convocation-robe">
+                            <div class="product-img">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="product-info">
+                                <h3>Custom Convocation Robe</h3>
+                                <p>Premium quality convocation robes with custom embroidery and precise tailoring.</p>
+                                <div class="product-footer">
+                                    <div class="product-price">RM 150</div>
+                                    <button class="btn-product view-details">View Details</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 2 -->
+                        <div class="product-card animate-slide-up animate-delay-2" data-product="tshirt">
+                            <div class="product-img">
+                                <i class="fas fa-tshirt"></i>
+                            </div>
+                            <div class="product-info">
+                                <h3>T-Shirt Printing</h3>
+                                <p>High-quality custom t-shirts with your design, logo or message.</p>
+                                <div class="product-footer">
+                                    <div class="product-price">RM 35</div>
+                                    <button class="btn-product view-details">View Details</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 3 -->
+                        <div class="product-card animate-slide-up animate-delay-3" data-product="medal">
+                            <div class="product-img">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <div class="product-info">
+                                <h3>Medal / Trophy</h3>
+                                <p>Custom medals and trophies for competitions, events and recognition.</p>
+                                <div class="product-footer">
+                                    <div class="product-price">RM 45</div>
+                                    <button class="btn-product view-details">View Details</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 4 -->
+                        <div class="product-card animate-slide-up animate-delay-1" data-product="towel">
+                            <div class="product-img">
+                                <i class="fas fa-hand-sparkles"></i>
+                            </div>
+                            <div class="product-info">
+                                <h3>Custom Towels</h3>
+                                <p>Premium towels with custom embroidery or printing for businesses and events.</p>
+                                <div class="product-footer">
+                                    <div class="product-price">RM 25</div>
+                                    <button class="btn-product view-details">View Details</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 5 -->
+                        <div class="product-card animate-slide-up animate-delay-2" data-product="keychain">
+                            <div class="product-img">
+                                <i class="fas fa-key"></i>
+                            </div>
+                            <div class="product-info">
+                                <h3>Custom Keychains</h3>
+                                <p>Promotional keychains with your logo or design in various materials.</p>
+                                <div class="product-footer">
+                                    <div class="product-price">RM 15</div>
+                                    <button class="btn-product view-details">View Details</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 6 -->
+                        <div class="product-card animate-slide-up animate-delay-3" data-product="nametag">
+                            <div class="product-img">
+                                <i class="fas fa-id-card"></i>
+                            </div>
+                            <div class="product-info">
+                                <h3>Custom Nametags</h3>
+                                <p>Professional nametags for employees, events and conferences.</p>
+                                <div class="product-footer">
+                                    <div class="product-price">RM 12</div>
+                                    <button class="btn-product view-details">View Details</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 7 -->
+                        <div class="product-card animate-slide-up animate-delay-1" data-product="corporate-shirt">
+                            <div class="product-img">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div class="product-info">
+                                <h3>Corporate Shirts</h3>
+                                <p>Professional corporate shirts with embroidery for your team.</p>
+                                <div class="product-footer">
+                                    <div class="product-price">RM 60</div>
+                                    <button class="btn-product view-details">View Details</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 8 -->
+                        <div class="product-card animate-slide-up animate-delay-2" data-product="attendance-card">
+                            <div class="product-img">
+                                <i class="fas fa-id-badge"></i>
+                            </div>
+                            <div class="product-info">
+                                <h3>Attendance Cards</h3>
+                                <p>Custom attendance cards for events, classes and organizations.</p>
+                                <div class="product-footer">
+                                    <div class="product-price">RM 5</div>
+                                    <button class="btn-product view-details">View Details</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Product 2 -->
-                <div class="product-card animate-slide-up animate-delay-2" data-product="tshirt">
-                    <div class="product-img">
-                        <i class="fas fa-tshirt"></i>
-                    </div>
-                    <div class="product-info">
-                        <h3>T-Shirt Printing</h3>
-                        <p>High-quality custom t-shirts with your design, logo or message.</p>
-                        <div class="product-footer">
-                            <div class="product-price">RM 35</div>
-                            <button class="btn-product">Order Now</button>
+            </section>
+
+            <!-- Footer -->
+            <footer>
+                <div class="container">
+                    <div class="footer-grid">
+                        <div class="footer-col">
+                            <h3>PNE ARENA</h3>
+                            <p>We create premium custom products for individuals, businesses and events. Quality craftsmanship and attention to detail in every product.</p>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="footer-col">
+                            <h3>Quick Links</h3>
+                            <ul class="footer-links">
+                                <li><a href="#" id="footer-home">Home</a></li>
+                                <li><a href="#" id="footer-products">Products</a></li>
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Testimonials</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="footer-col">
+                            <h3>Products</h3>
+                            <ul class="footer-links">
+                                <li><a href="#" data-product="convocation-robe" class="footer-product">Convocation Robes</a></li>
+                                <li><a href="#" data-product="tshirt" class="footer-product">T-Shirt Printing</a></li>
+                                <li><a href="#" data-product="medal" class="footer-product">Medals & Trophies</a></li>
+                                <li><a href="#" data-product="towel" class="footer-product">Custom Towels</a></li>
+                                <li><a href="#" data-product="corporate-shirt" class="footer-product">Corporate Shirts</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="footer-col">
+                            <h3>Contact Us</h3>
+                            <ul class="footer-links">
+                                <li><i class="fas fa-map-marker-alt"></i> 123 Craft Street, Kuala Lumpur</li>
+                                <li><i class="fas fa-phone"></i> +60 12-345 6789</li>
+                                <li><i class="fas fa-envelope"></i> info@pnearena.com</li>
+                                <li><i class="fas fa-clock"></i> Mon-Fri: 9am-6pm</li>
+                            </ul>
                         </div>
                     </div>
-                </div>
-                
-                <!-- Product 3 -->
-                <div class="product-card animate-slide-up animate-delay-3" data-product="medal">
-                    <div class="product-img">
-                        <i class="fas fa-medal"></i>
-                    </div>
-                    <div class="product-info">
-                        <h3>Medal / Trophy</h3>
-                        <p>Custom medals and trophies for competitions, events and recognition.</p>
-                        <div class="product-footer">
-                            <div class="product-price">RM 45</div>
-                            <button class="btn-product">Order Now</button>
-                        </div>
+                    
+                    <div class="copyright">
+                        <p>&copy; 2023 PNE ARENA. All Rights Reserved.</p>
                     </div>
                 </div>
-                
-                <!-- Product 4 -->
-                <div class="product-card animate-slide-up animate-delay-1" data-product="towel">
-                    <div class="product-img">
-                        <i class="fas fa-hand-sparkles"></i>
-                    </div>
-                    <div class="product-info">
-                        <h3>Custom Towels</h3>
-                        <p>Premium towels with custom embroidery or printing for businesses and events.</p>
-                        <div class="product-footer">
-                            <div class="product-price">RM 25</div>
-                            <button class="btn-product">Order Now</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product 5 -->
-                <div class="product-card animate-slide-up animate-delay-2" data-product="keychain">
-                    <div class="product-img">
-                        <i class="fas fa-key"></i>
-                    </div>
-                    <div class="product-info">
-                        <h3>Custom Keychains</h3>
-                        <p>Promotional keychains with your logo or design in various materials.</p>
-                        <div class="product-footer">
-                            <div class="product-price">RM 15</div>
-                            <button class="btn-product">Order Now</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product 6 -->
-                <div class="product-card animate-slide-up animate-delay-3" data-product="nametag">
-                    <div class="product-img">
-                        <i class="fas fa-id-card"></i>
-                    </div>
-                    <div class="product-info">
-                        <h3>Custom Nametags</h3>
-                        <p>Professional nametags for employees, events and conferences.</p>
-                        <div class="product-footer">
-                            <div class="product-price">RM 12</div>
-                            <button class="btn-product">Order Now</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product 7 -->
-                <div class="product-card animate-slide-up animate-delay-1" data-product="corporate-shirt">
-                    <div class="product-img">
-                        <i class="fas fa-user-tie"></i>
-                    </div>
-                    <div class="product-info">
-                        <h3>Corporate Shirts</h3>
-                        <p>Professional corporate shirts with embroidery for your team.</p>
-                        <div class="product-footer">
-                            <div class="product-price">RM 60</div>
-                            <button class="btn-product">Order Now</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product 8 -->
-                <div class="product-card animate-slide-up animate-delay-2" data-product="attendance-card">
-                    <div class="product-img">
-                        <i class="fas fa-id-badge"></i>
-                    </div>
-                    <div class="product-info">
-                        <h3>Attendance Cards</h3>
-                        <p>Custom attendance cards for events, classes and organizations.</p>
-                        <div class="product-footer">
-                            <div class="product-price">RM 5</div>
-                            <button class="btn-product">Order Now</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </footer>
         </div>
-    </section>
+
+        <!-- Product Detail View -->
+        <div id="product-view" class="view">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <div class="container">
+                    <div class="breadcrumb-nav">
+                        <a href="#" id="breadcrumb-home">Home</a>
+                        <span><i class="fas fa-chevron-right"></i></span>
+                        <a href="#" id="breadcrumb-products">Products</a>
+                        <span><i class="fas fa-chevron-right"></i></span>
+                        <span class="current" id="breadcrumb-product">Product</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Detail Section -->
+            <section class="product-detail">
+                <div class="container">
+                    <!-- Error Message (shown if product not found) -->
+                    <div class="error-message" id="error-message" style="display: none;">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h2>Product Not Found</h2>
+                        <p>The product you are looking for does not exist or has been removed.</p>
+                        <a href="#" class="btn-order" id="error-back-btn">Back to Products</a>
+                    </div>
+                    
+                    <!-- Product Detail Container (shown if product found) -->
+                    <div class="product-detail-container" id="product-container">
+                        <div class="product-image animate-slide-up">
+                            <i id="product-icon" class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="product-info animate-slide-up">
+                            <h1 id="product-name">Product Name</h1>
+                            <div class="product-price" id="product-price">RM 0</div>
+                            <div class="product-description" id="product-description">
+                                Product description will be loaded here.
+                            </div>
+                            <div class="product-features">
+                                <h3>Key Features</h3>
+                                <ul class="features-list" id="product-features">
+                                    <li><i class="fas fa-check"></i> Feature 1</li>
+                                    <li><i class="fas fa-check"></i> Feature 2</li>
+                                    <li><i class="fas fa-check"></i> Feature 3</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <button class="btn-order" id="order-button">Order Now</button>
+                                <a href="#" class="btn-back" id="back-btn">Back to Products</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer>
+                <div class="container">
+                    <div class="footer-grid">
+                        <div class="footer-col">
+                            <h3>PNE ARENA</h3>
+                            <p>We create premium custom products for individuals, businesses and events. Quality craftsmanship and attention to detail in every product.</p>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="footer-col">
+                            <h3>Quick Links</h3>
+                            <ul class="footer-links">
+                                <li><a href="#" id="footer-home-detail">Home</a></li>
+                                <li><a href="#" id="footer-products-detail">Products</a></li>
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Testimonials</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="footer-col">
+                            <h3>Products</h3>
+                            <ul class="footer-links">
+                                <li><a href="#" data-product="convocation-robe" class="footer-product-detail">Convocation Robes</a></li>
+                                <li><a href="#" data-product="tshirt" class="footer-product-detail">T-Shirt Printing</a></li>
+                                <li><a href="#" data-product="medal" class="footer-product-detail">Medals & Trophies</a></li>
+                                <li><a href="#" data-product="towel" class="footer-product-detail">Custom Towels</a></li>
+                                <li><a href="#" data-product="corporate-shirt" class="footer-product-detail">Corporate Shirts</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="footer-col">
+                            <h3>Contact Us</h3>
+                            <ul class="footer-links">
+                                <li><i class="fas fa-map-marker-alt"></i> 123 Craft Street, Kuala Lumpur</li>
+                                <li><i class="fas fa-phone"></i> +60 12-345 6789</li>
+                                <li><i class="fas fa-envelope"></i> info@pnearena.com</li>
+                                <li><i class="fas fa-clock"></i> Mon-Fri: 9am-6pm</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="copyright">
+                        <p>&copy; 2023 PNE ARENA. All Rights Reserved.</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
 
     <!-- Order Form Modal -->
     <div class="modal" id="orderModal">
@@ -1126,7 +1538,7 @@
                         <textarea id="notes" class="form-control" placeholder="Any special instructions or notes"></textarea>
                     </div>
                     
-                    <button type="submit" class="btn" style="width: 100%;">Submit Order</button>
+                    <button type="submit" class="btn-order" style="width: 100%;">Submit Order</button>
                 </form>
             </div>
         </div>
@@ -1144,94 +1556,112 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h3>CustomCrafts</h3>
-                    <p>We create premium custom products for individuals, businesses and events. Quality craftsmanship and attention to detail in every product.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-col">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#products">Products</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Testimonials</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h3>Products</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Convocation Robes</a></li>
-                        <li><a href="#">T-Shirt Printing</a></li>
-                        <li><a href="#">Medals & Trophies</a></li>
-                        <li><a href="#">Custom Towels</a></li>
-                        <li><a href="#">Corporate Shirts</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h3>Contact Us</h3>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Craft Street, Kuala Lumpur</li>
-                        <li><i class="fas fa-phone"></i> +60 12-345 6789</li>
-                        <li><i class="fas fa-envelope"></i> info@customcrafts.com</li>
-                        <li><i class="fas fa-clock"></i> Mon-Fri: 9am-6pm</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                <p>&copy; 2023 CustomCrafts. All Rights Reserved.</p>
-            </div>
-        </div>
-    </footer>
-
     <script>
         // Product data
         const products = {
             "convocation-robe": {
                 name: "Custom Convocation Robe",
-                price: 150
+                price: 150,
+                icon: "fas fa-graduation-cap",
+                description: "Our premium convocation robes are crafted with the finest materials and attention to detail. Each robe is custom-tailored to ensure the perfect fit and features elegant embroidery options for a truly personalized graduation experience.",
+                features: [
+                    "Premium quality fabric with elegant drape",
+                    "Custom embroidery with your name and institution",
+                    "Available in various sizes with precise tailoring",
+                    "Traditional design with modern comfort",
+                    "Durable construction for lasting memories"
+                ]
             },
             "tshirt": {
                 name: "T-Shirt Printing",
-                price: 35
+                price: 35,
+                icon: "fas fa-tshirt",
+                description: "Transform your ideas into wearable art with our high-quality custom t-shirt printing service. We use advanced printing techniques to ensure vibrant colors and durable designs that withstand washing and regular wear.",
+                features: [
+                    "High-quality 100% cotton or cotton blend options",
+                    "Multiple printing techniques (screen, digital, embroidery)",
+                    "Vibrant colors that last wash after wash",
+                    "Available in all sizes from XS to 3XL",
+                    "Bulk order discounts available"
+                ]
             },
             "medal": {
                 name: "Medal / Trophy",
-                price: 45
+                price: 45,
+                icon: "fas fa-medal",
+                description: "Celebrate achievements with our custom medals and trophies. Perfect for competitions, corporate events, sports tournaments, and recognition ceremonies. Each piece is crafted with precision and can be fully customized to your specifications.",
+                features: [
+                    "High-quality metal or resin construction",
+                    "Custom engraving with text and logos",
+                    "Various sizes and finishes available",
+                    "Ribbon options in multiple colors",
+                    "Bulk orders with quick turnaround"
+                ]
             },
             "towel": {
                 name: "Custom Towels",
-                price: 25
+                price: 25,
+                icon: "fas fa-hand-sparkles",
+                description: "Elevate your brand or event with our premium custom towels. Ideal for hotels, gyms, corporate gifts, and promotional events. Our towels are made from absorbent, high-quality materials and feature durable customization options.",
+                features: [
+                    "100% cotton for maximum absorbency",
+                    "Custom embroidery or printing options",
+                    "Various sizes (hand, bath, beach towels)",
+                    "Reinforced edges for durability",
+                    "Soft and plush feel with every use"
+                ]
             },
             "keychain": {
                 name: "Custom Keychains",
-                price: 15
+                price: 15,
+                icon: "fas fa-key",
+                description: "Promote your brand or create memorable gifts with our custom keychains. Available in various materials and designs, these practical accessories are perfect for events, marketing campaigns, and personal use.",
+                features: [
+                    "Multiple materials (metal, acrylic, leather)",
+                    "Custom shapes and sizes available",
+                    "Durable construction for everyday use",
+                    "Vibrant printing or engraving options",
+                    "Affordable for bulk promotional orders"
+                ]
             },
             "nametag": {
                 name: "Custom Nametags",
-                price: 12
+                price: 12,
+                icon: "fas fa-id-card",
+                description: "Professional nametags for employees, events, and conferences. Our nametags are designed to make a great first impression while clearly identifying individuals in any setting.",
+                features: [
+                    "High-quality materials with professional finish",
+                    "Custom printing with names and titles",
+                    "Various attachment options (magnetic, pin, clip)",
+                    "Durable and lightweight design",
+                    "Quick turnaround for urgent orders"
+                ]
             },
             "corporate-shirt": {
                 name: "Corporate Shirts",
-                price: 60
+                price: 60,
+                icon: "fas fa-user-tie",
+                description: "Elevate your team's professional appearance with our custom corporate shirts. Perfect for uniforms, events, and promotional wear, these shirts combine comfort with a polished look that represents your brand well.",
+                features: [
+                    "Premium fabrics for comfort and durability",
+                    "Custom embroidery with your company logo",
+                    "Available in various styles and colors",
+                    "Professional fit for all body types",
+                    "Bulk order discounts available"
+                ]
             },
             "attendance-card": {
                 name: "Attendance Cards",
-                price: 5
+                price: 5,
+                icon: "fas fa-id-badge",
+                description: "Streamline attendance tracking with our custom attendance cards. Ideal for schools, events, training sessions, and organizations, these cards are designed to be both functional and professional.",
+                features: [
+                    "Durable card stock for long-lasting use",
+                    "Custom printing with organization details",
+                    "Various sizes and formats available",
+                    "Professional design with clear information",
+                    "Affordable for large quantity orders"
+                ]
             }
         };
 
@@ -1239,7 +1669,7 @@
         const modal = document.getElementById('orderModal');
         const closeBtn = document.querySelector('.close');
         const orderForm = document.getElementById('orderForm');
-        const productCards = document.querySelectorAll('.product-card');
+        const orderButton = document.getElementById('order-button');
         const summaryProduct = document.getElementById('summaryProduct');
         const summaryPrice = document.getElementById('summaryPrice');
         const summaryQuantity = document.getElementById('summaryQuantity');
@@ -1249,6 +1679,199 @@
         const notification = document.getElementById('notification');
         const notificationClose = document.querySelector('.notification-close');
         const header = document.querySelector('header');
+        
+        // View elements
+        const homeView = document.getElementById('home-view');
+        const productView = document.getElementById('product-view');
+        
+        // Product detail elements
+        const productName = document.getElementById('product-name');
+        const productPrice = document.getElementById('product-price');
+        const productDescription = document.getElementById('product-description');
+        const productIcon = document.getElementById('product-icon');
+        const productFeatures = document.getElementById('product-features');
+        const breadcrumbProduct = document.getElementById('breadcrumb-product');
+        const productContainer = document.getElementById('product-container');
+        const errorMessage = document.getElementById('error-message');
+        
+        // Navigation elements
+        const homeLink = document.getElementById('home-link');
+        const navHome = document.getElementById('nav-home');
+        const navProducts = document.getElementById('nav-products');
+        const exploreBtn = document.getElementById('explore-btn');
+        const breadcrumbHome = document.getElementById('breadcrumb-home');
+        const breadcrumbProducts = document.getElementById('breadcrumb-products');
+        const backBtn = document.getElementById('back-btn');
+        const errorBackBtn = document.getElementById('error-back-btn');
+        
+        // Footer navigation
+        const footerHome = document.getElementById('footer-home');
+        const footerProducts = document.getElementById('footer-products');
+        const footerHomeDetail = document.getElementById('footer-home-detail');
+        const footerProductsDetail = document.getElementById('footer-products-detail');
+        
+        // Current product
+        let currentProduct = null;
+        
+        // Show home view
+        function showHomeView() {
+            homeView.classList.add('active');
+            productView.classList.remove('active');
+            window.scrollTo(0, 0);
+        }
+        
+        // Show product detail view
+        function showProductView(productId) {
+            homeView.classList.remove('active');
+            productView.classList.add('active');
+            
+            // Load product data
+            if (productId && products[productId]) {
+                currentProduct = products[productId];
+                
+                // Update product details
+                productName.textContent = currentProduct.name;
+                productPrice.textContent = `RM ${currentProduct.price}`;
+                productDescription.textContent = currentProduct.description;
+                productIcon.className = currentProduct.icon;
+                breadcrumbProduct.textContent = currentProduct.name;
+                
+                // Update features list
+                productFeatures.innerHTML = '';
+                currentProduct.features.forEach(feature => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<i class="fas fa-check"></i> ${feature}`;
+                    productFeatures.appendChild(li);
+                });
+                
+                // Show product container, hide error message
+                productContainer.style.display = 'grid';
+                errorMessage.style.display = 'none';
+            } else {
+                // Product not found - show error message
+                productContainer.style.display = 'none';
+                errorMessage.style.display = 'block';
+            }
+            
+            window.scrollTo(0, 0);
+        }
+        
+        // Set up navigation event listeners
+        homeLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            showHomeView();
+        });
+        
+        navHome.addEventListener('click', (e) => {
+            e.preventDefault();
+            showHomeView();
+        });
+        
+        navProducts.addEventListener('click', (e) => {
+            e.preventDefault();
+            showHomeView();
+            document.getElementById('products-section').scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        exploreBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            showHomeView();
+            document.getElementById('products-section').scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        breadcrumbHome.addEventListener('click', (e) => {
+            e.preventDefault();
+            showHomeView();
+        });
+        
+        breadcrumbProducts.addEventListener('click', (e) => {
+            e.preventDefault();
+            showHomeView();
+            document.getElementById('products-section').scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        backBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            showHomeView();
+            document.getElementById('products-section').scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        errorBackBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            showHomeView();
+            document.getElementById('products-section').scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        footerHome.addEventListener('click', (e) => {
+            e.preventDefault();
+            showHomeView();
+        });
+        
+        footerProducts.addEventListener('click', (e) => {
+            e.preventDefault();
+            showHomeView();
+            document.getElementById('products-section').scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        footerHomeDetail.addEventListener('click', (e) => {
+            e.preventDefault();
+            showHomeView();
+        });
+        
+        footerProductsDetail.addEventListener('click', (e) => {
+            e.preventDefault();
+            showHomeView();
+            document.getElementById('products-section').scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        // Set up product card event listeners
+        document.querySelectorAll('.view-details').forEach(button => {
+            button.addEventListener('click', () => {
+                const productCard = button.closest('.product-card');
+                const productId = productCard.dataset.product;
+                showProductView(productId);
+            });
+        });
+        
+        // Set up footer product links
+        document.querySelectorAll('.footer-product').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const productId = link.dataset.product;
+                showProductView(productId);
+            });
+        });
+        
+        document.querySelectorAll('.footer-product-detail').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const productId = link.dataset.product;
+                showProductView(productId);
+            });
+        });
+        
+        // Set up order button
+        orderButton.addEventListener('click', () => {
+            if (currentProduct) {
+                // Set product info in the summary
+                summaryProduct.textContent = currentProduct.name;
+                summaryPrice.textContent = `RM ${currentProduct.price}`;
+                summaryQuantity.textContent = quantityInput.value;
+                summaryTotal.textContent = `RM ${currentProduct.price * quantityInput.value}`;
+                
+                // Store product data in form
+                orderForm.dataset.productId = currentProduct.name.toLowerCase().replace(/\s+/g, '-');
+                orderForm.dataset.productName = currentProduct.name;
+                orderForm.dataset.productPrice = currentProduct.price;
+                
+                // Show modal with animation
+                modal.style.display = 'flex';
+                setTimeout(() => {
+                    modal.classList.add('show');
+                }, 10);
+                document.body.style.overflow = 'hidden';
+            }
+        });
 
         // Add scroll effect to header
         window.addEventListener('scroll', () => {
@@ -1259,33 +1882,6 @@
                 header.style.padding = '20px 0';
                 header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)';
             }
-        });
-
-        // Open modal when product card is clicked
-        productCards.forEach(card => {
-            const btn = card.querySelector('.btn-product');
-            btn.addEventListener('click', () => {
-                const productId = card.dataset.product;
-                const product = products[productId];
-                
-                // Set product info in the summary
-                summaryProduct.textContent = product.name;
-                summaryPrice.textContent = `RM ${product.price}`;
-                summaryQuantity.textContent = quantityInput.value;
-                summaryTotal.textContent = `RM ${product.price * quantityInput.value}`;
-                
-                // Store product data in form
-                orderForm.dataset.productId = productId;
-                orderForm.dataset.productName = product.name;
-                orderForm.dataset.productPrice = product.price;
-                
-                // Show modal with animation
-                modal.style.display = 'flex';
-                setTimeout(() => {
-                    modal.classList.add('show');
-                }, 10);
-                document.body.style.overflow = 'hidden';
-            });
         });
 
         // Close modal
@@ -1364,20 +1960,6 @@
         // Close notification
         notificationClose.addEventListener('click', () => {
             notification.classList.remove('show');
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
         });
 
         // Add scroll animations
