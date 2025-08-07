@@ -2945,6 +2945,77 @@
                 -webkit-overflow-scrolling: touch;
             }
         }
+        
+        /* --- Add to Cart Button High-Class Redesign --- */
+        .btn-product.add-to-cart, .btn-order#add-to-cart-btn {
+            background: linear-gradient(90deg, var(--gold) 0%, #fffbe6 100%);
+            color: var(--black);
+            border: none;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: 700;
+            padding: 12px 32px 12px 48px;
+            box-shadow: 0 4px 24px rgba(212, 175, 55, 0.15), 0 1.5px 6px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+            transition: box-shadow 0.3s cubic-bezier(.4,2,.6,1), transform 0.2s cubic-bezier(.4,2,.6,1);
+            z-index: 1;
+        }
+        .btn-product.add-to-cart::before, .btn-order#add-to-cart-btn::before {
+            content: '\f07a'; /* FontAwesome cart icon */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+            color: var(--gold);
+            background: linear-gradient(90deg, var(--gold) 0%, #fffbe6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: color 0.3s;
+        }
+        .btn-product.add-to-cart:hover, .btn-order#add-to-cart-btn:hover {
+            box-shadow: 0 8px 32px rgba(212, 175, 55, 0.25), 0 3px 12px rgba(0,0,0,0.12);
+            transform: translateY(-2px) scale(1.04);
+        }
+        
+        /* Add style for the new icon */
+        .view-details-icon {
+            display: inline-block;
+            margin-left: 12px;
+            cursor: pointer;
+            color: var(--gray-700);
+            font-size: 20px;
+            vertical-align: middle;
+            transition: color 0.2s, transform 0.2s;
+        }
+        .view-details-icon:hover {
+            color: var(--gold);
+            transform: scale(1.15) rotate(-8deg);
+        }
+        
+        /* --- Premium Card Animations --- */
+        .product-card, .sales-card {
+            animation: fadeIn 0.8s cubic-bezier(.4,2,.6,1) both;
+            transition: box-shadow 0.3s cubic-bezier(.4,2,.6,1), transform 0.2s cubic-bezier(.4,2,.6,1);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border-radius: 18px;
+        }
+        .product-card:hover, .sales-card:hover {
+            box-shadow: 0 8px 32px rgba(212, 175, 55, 0.10), 0 3px 12px rgba(0,0,0,0.14);
+            transform: translateY(-6px) scale(1.03);
+            z-index: 2;
+        }
+        
+        .btn-product.add-to-cart:hover, .btn-order#add-to-cart-btn:hover {
+            animation: float 1.2s infinite ease-in-out;
+        }
+        
+        .view-details-icon:hover {
+            animation: float 1.2s infinite ease-in-out;
+        }
     </style>
 </head>
 <body>
@@ -4809,9 +4880,9 @@
             });
             
             // Add event listeners to product cards
-            document.querySelectorAll('.product-card .view-details').forEach(button => {
-                button.addEventListener('click', () => {
-                    const productCard = button.closest('.product-card');
+            document.querySelectorAll('.product-card .view-details-icon').forEach(icon => {
+                icon.addEventListener('click', () => {
+                    const productCard = icon.closest('.product-card');
                     const productId = productCard.dataset.product;
                     showProductView(productId);
                 });
@@ -4841,9 +4912,9 @@
             });
             
             // Add event listeners to sales cards
-            document.querySelectorAll('.sales-card .view-details').forEach(button => {
-                button.addEventListener('click', () => {
-                    const salesCard = button.closest('.sales-card');
+            document.querySelectorAll('.sales-card .view-details-icon').forEach(icon => {
+                icon.addEventListener('click', () => {
+                    const salesCard = icon.closest('.sales-card');
                     const productId = salesCard.dataset.product;
                     showProductView(productId);
                 });
@@ -4887,7 +4958,7 @@
                         <div class="product-price" data-product="${productId}">${priceHtml}</div>
                         <div>
                             <button class="btn-product add-to-cart" data-i18n="product.addToCart">Add to Cart</button>
-                            <button class="btn-product view-details" data-i18n="product.viewDetails">View Details</button>
+                            <span class="view-details-icon" title="View Details"><i class="fas fa-eye"></i></span>
                         </div>
                     </div>
                 </div>
@@ -4917,7 +4988,7 @@
                     </div>
                     <div>
                         <button class="btn-product add-to-cart" data-i18n="product.addToCart">Add to Cart</button>
-                        <button class="btn-product view-details" data-i18n="product.viewDetails">View Details</button>
+                        <span class="view-details-icon" title="View Details"><i class="fas fa-eye"></i></span>
                     </div>
                 </div>
             `;
