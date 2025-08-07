@@ -36,8 +36,8 @@
         
         body {
             font-family: 'Montserrat', sans-serif;
-            color: var(--gray-100);
-            background: linear-gradient(135deg, var(--gray-900) 0%, var(--black) 100%);
+            color: var(--gray-900);
+            background: var(--white);
             line-height: 1.5;
             overflow-x: hidden;
         }
@@ -53,7 +53,7 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 15px;
-            background: linear-gradient(120deg, var(--gray-900) 60%, var(--gray-800) 100%);
+            background: var(--white);
         }
         
         /* Enhanced Animations */
@@ -247,9 +247,9 @@
         
         /* Header Styles */
         header {
-            background: var(--gray-900);
-            color: var(--gray-100);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            background: var(--white);
+            color: var(--gray-900);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
             position: fixed;
             top: 0;
             width: 100%;
@@ -673,7 +673,7 @@
             padding: 30px 20px;
             border-radius: 8px;
             transition: all 0.3s ease;
-            background-color: var(--gray-900);
+            background-color: var(--white);
         }
         
         .feature-card:hover {
@@ -727,16 +727,16 @@
         }
         
         .sales-card {
-            background-color: var(--gray-900);
+            background-color: var(--white);
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
             transition: all 0.4s ease;
             position: relative;
             cursor: pointer;
             opacity: 0;
             transform: translateY(20px);
-            border: 1px solid var(--gray-800);
+            border: 1px solid var(--gray-300);
         }
         
         .sales-card.visible {
@@ -878,7 +878,7 @@
         }
         
         .product-card {
-            background-color: var(--gray-900);
+            background-color: var(--white);
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
@@ -887,7 +887,7 @@
             cursor: pointer;
             opacity: 0;
             transform: translateY(20px);
-            border: 1px solid var(--gray-800);
+            border: 1px solid var(--gray-300);
         }
         
         .product-card.visible {
@@ -1024,7 +1024,7 @@
         }
         
         .testimonial-card {
-            background-color: var(--gray-900);
+            background-color: var(--white);
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
@@ -1186,7 +1186,7 @@
         .stat-item {
             text-align: center;
             padding: 20px;
-            background-color: var(--gray-900);
+            background-color: var(--white);
             border-radius: 8px;
         }
         
@@ -1257,7 +1257,7 @@
         }
         
         .contact-form {
-            background-color: var(--gray-900);
+            background-color: var(--white);
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
@@ -1289,8 +1289,8 @@
             font-family: 'Montserrat', sans-serif;
             font-size: 15px;
             transition: all 0.3s ease;
-            background: var(--gray-800);
-            color: var(--gray-100);
+            background: var(--gray-100);
+            color: var(--gray-900);
         }
         
         .form-control:focus {
@@ -1547,7 +1547,7 @@
             right: -400px;
             width: 400px;
             height: 100%;
-            background-color: var(--gray-900);
+            background-color: var(--white);
             box-shadow: -5px 0 15px rgba(0,0,0,0.1);
             z-index: 1000;
             transition: right 0.3s ease;
@@ -1742,7 +1742,7 @@
         }
         
         .auth-modal-content {
-            background-color: var(--gray-900);
+            background-color: var(--white);
             max-width: 450px;
             width: 90%;
             margin: 40px auto;
@@ -1826,8 +1826,8 @@
             font-family: 'Montserrat', sans-serif;
             font-size: 15px;
             transition: all 0.3s ease;
-            background: var(--gray-800);
-            color: var(--gray-100);
+            background: var(--gray-100);
+            color: var(--gray-900);
         }
         
         .auth-form .form-control:focus {
@@ -1908,7 +1908,7 @@
         .error-message {
             text-align: center;
             padding: 60px 20px;
-            background-color: var(--gray-800);
+            background-color: var(--white);
             border-radius: 8px;
             margin-bottom: 40px;
         }
@@ -1957,7 +1957,7 @@
         }
         
         .modal-content {
-            background-color: var(--gray-900);
+            background-color: var(--white);
             max-width: 600px;
             width: 90%;
             margin: 40px auto;
@@ -2025,8 +2025,8 @@
             font-family: 'Montserrat', sans-serif;
             font-size: 15px;
             transition: all 0.3s ease;
-            background: var(--gray-800);
-            color: var(--gray-100);
+            background: var(--gray-100);
+            color: var(--gray-900);
         }
         
         .form-control:focus {
@@ -2086,7 +2086,7 @@
         }
         
         .order-summary {
-            background-color: var(--gray-800);
+            background-color: var(--white);
             padding: 20px;
             border-radius: 8px;
             margin-bottom: 25px;
@@ -2535,8 +2535,8 @@
         
         /* Footer */
         footer {
-            background: var(--gray-900);
-            color: var(--gray-100);
+            background: var(--white);
+            color: var(--gray-900);
             padding: 80px 0 40px;
         }
         
@@ -2959,39 +2959,33 @@
             }
         }
         
-        /* --- Add to Cart Button High-Class Redesign --- */
-        .btn-product.add-to-cart, .btn-order#add-to-cart-btn {
-            background: linear-gradient(90deg, var(--gold) 0%, #fffbe6 100%);
-            color: var(--black);
-            border: none;
+        /* --- Remove Gold from Buttons, Use Soft Black/Gray/Transparent --- */
+        .btn-product, .btn-order, .btn-back {
+            background: transparent;
+            color: var(--gray-900);
+            border: 1.5px solid var(--gray-300);
             border-radius: 30px;
             font-size: 15px;
+            font-weight: 600;
+            padding: 12px 32px;
+            box-shadow: none;
+            transition: background 0.2s, color 0.2s, border 0.2s, transform 0.2s;
+        }
+        .btn-product.add-to-cart, .btn-order#add-to-cart-btn {
+            background: transparent;
+            color: var(--gray-900);
+            border: 1.5px solid var(--gray-400);
             font-weight: 700;
-            padding: 12px 32px 12px 48px;
-            box-shadow: 0 4px 24px rgba(212, 175, 55, 0.15), 0 1.5px 6px rgba(0,0,0,0.08);
-            position: relative;
-            overflow: hidden;
-            transition: box-shadow 0.3s cubic-bezier(.4,2,.6,1), transform 0.2s cubic-bezier(.4,2,.6,1);
-            z-index: 1;
+            padding: 12px 32px;
+        }
+        .btn-product:hover, .btn-order:hover, .btn-back:hover, .btn-product.add-to-cart:hover, .btn-order#add-to-cart-btn:hover {
+            background: var(--gray-100);
+            color: var(--black);
+            border-color: var(--gray-700);
+            transform: translateY(-2px) scale(1.03);
         }
         .btn-product.add-to-cart::before, .btn-order#add-to-cart-btn::before {
-            content: '\f07a'; /* FontAwesome cart icon */
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            position: absolute;
-            left: 18px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 18px;
-            color: var(--gold);
-            background: linear-gradient(90deg, var(--gold) 0%, #fffbe6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            transition: color 0.3s;
-        }
-        .btn-product.add-to-cart:hover, .btn-order#add-to-cart-btn:hover {
-            box-shadow: 0 8px 32px rgba(212, 175, 55, 0.25), 0 3px 12px rgba(0,0,0,0.12);
-            transform: translateY(-2px) scale(1.04);
+            display: none;
         }
         
         /* Add style for the new icon */
@@ -3028,6 +3022,34 @@
         
         .view-details-icon:hover {
             animation: float 1.2s infinite ease-in-out;
+        }
+        
+        /* Add card click animation */
+        .card-clicked {
+            animation: cardClickPop 0.3s cubic-bezier(.4,2,.6,1);
+        }
+        @keyframes cardClickPop {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.97); }
+            100% { transform: scale(1); }
+        }
+        
+        /* --- Upgrade Card and Button Animations for Clean UI --- */
+        .product-card, .sales-card {
+            transition: box-shadow 0.25s cubic-bezier(.4,2,.6,1), transform 0.18s cubic-bezier(.4,2,.6,1);
+        }
+        .product-card:hover, .sales-card:hover {
+            box-shadow: 0 8px 32px rgba(0,0,0,0.10), 0 3px 12px rgba(0,0,0,0.14);
+            transform: translateY(-4px) scale(1.025);
+            z-index: 2;
+        }
+        
+        .btn-product, .btn-order, .btn-back {
+            transition: background 0.18s, color 0.18s, border 0.18s, box-shadow 0.18s, transform 0.18s;
+        }
+        .btn-product:active, .btn-order:active, .btn-back:active {
+            transform: scale(0.97);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
     </style>
 </head>
@@ -4893,11 +4915,14 @@
             });
             
             // Add event listeners to product cards
-            document.querySelectorAll('.product-card .view-details-icon').forEach(icon => {
-                icon.addEventListener('click', () => {
-                    const productCard = icon.closest('.product-card');
-                    const productId = productCard.dataset.product;
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    // Prevent click if add-to-cart button is clicked
+                    if (e.target.closest('.add-to-cart')) return;
+                    const productId = card.dataset.product;
                     showProductView(productId);
+                    card.classList.add('card-clicked');
+                    setTimeout(() => card.classList.remove('card-clicked'), 300);
                 });
             });
             
@@ -4925,11 +4950,13 @@
             });
             
             // Add event listeners to sales cards
-            document.querySelectorAll('.sales-card .view-details-icon').forEach(icon => {
-                icon.addEventListener('click', () => {
-                    const salesCard = icon.closest('.sales-card');
-                    const productId = salesCard.dataset.product;
+            document.querySelectorAll('.sales-card').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    if (e.target.closest('.add-to-cart')) return;
+                    const productId = card.dataset.product;
                     showProductView(productId);
+                    card.classList.add('card-clicked');
+                    setTimeout(() => card.classList.remove('card-clicked'), 300);
                 });
             });
             
