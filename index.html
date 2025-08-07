@@ -3051,6 +3051,51 @@
             transform: scale(0.97);
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
+        
+        /* --- Improve Readability and Clarity for Text, Price, and Icons --- */
+        body, .container, .product-card, .sales-card, .newsletter, .auth-modal-content, .modal-content, .contact-form, .testimonial-card, .feature-card, .stat-item, .order-summary, .error-message, .cart-sidebar, .admin-product-item, .admin-image-preview {
+            color: var(--gray-900) !important;
+            font-weight: 500;
+        }
+        
+        .product-info h3, .product-info p, .product-footer, .price-container, .product-price, .sales-price, .original-price {
+            color: var(--black) !important;
+            font-weight: 700 !important;
+            letter-spacing: 0.01em;
+        }
+        
+        .product-price, .sales-price, .original-price {
+            font-size: 1.35rem !important;
+            font-weight: 800 !important;
+            color: var(--black) !important;
+            text-shadow: 0 1px 0 #fff, 0 0.5px 1.5px rgba(0,0,0,0.08);
+        }
+        
+        .btn-product, .btn-order, .btn-back {
+            color: var(--black);
+            font-weight: 700;
+            border: 1.5px solid var(--gray-400);
+            background: rgba(255,255,255,0.85);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+        }
+        .btn-product:hover, .btn-order:hover, .btn-back:hover {
+            background: var(--gray-100);
+            color: var(--black);
+            border-color: var(--gray-700);
+        }
+        
+        /* Make icons darker and more visible */
+        .product-card i, .sales-card i, .cart-icon i, .user-icon, .footer-links i, .contact-info i, .admin-action-btn i {
+            color: var(--gray-800) !important;
+            font-weight: 900;
+            filter: drop-shadow(0 1px 0 #fff);
+        }
+        
+        /* Increase contrast for placeholder text */
+        input::placeholder, textarea::placeholder {
+            color: var(--gray-500);
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
