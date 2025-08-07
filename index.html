@@ -21,6 +21,7 @@
             --gray-900: #0a0a0a;
             --primary: #000000;
             --secondary: #ffffff;
+            --accent: #e53935;
         }
         
         * {
@@ -50,7 +51,7 @@
             padding: 0 15px;
         }
         
-        /* Animations */
+        /* Enhanced Animations */
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -58,7 +59,7 @@
         
         @keyframes slideInUp {
             from {
-                transform: translateY(20px);
+                transform: translateY(30px);
                 opacity: 0;
             }
             to {
@@ -69,7 +70,7 @@
         
         @keyframes slideInDown {
             from {
-                transform: translateY(-20px);
+                transform: translateY(-30px);
                 opacity: 0;
             }
             to {
@@ -99,18 +100,49 @@
         
         @keyframes float {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-15px); }
         }
         
         @keyframes pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            50% { transform: scale(1.08); }
             100% { transform: scale(1); }
         }
         
         @keyframes parallax {
             from { transform: translateY(0); }
-            to { transform: translateY(-20px); }
+            to { transform: translateY(-30px); }
+        }
+        
+        @keyframes shimmer {
+            0% {
+                background-position: -100% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(20, 20);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
         
         .animate-fade-in {
@@ -295,9 +327,10 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            height: 120%;
             background: linear-gradient(135deg, var(--gray-100) 0%, var(--white) 100%);
             z-index: -1;
+            will-change: transform;
         }
         
         .hero-content {
@@ -337,21 +370,22 @@
             z-index: 1;
         }
         
-        .btn::before {
+        .btn::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--gray-700);
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
-            z-index: -1;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
         }
         
-        .btn:hover::before {
-            transform: translateX(0);
+        .btn:hover::after {
+            animation: ripple 1s ease-out;
         }
         
         .btn-outline {
@@ -403,6 +437,140 @@
         .scroll-indicator i {
             color: var(--gray-500);
             font-size: 18px;
+        }
+        
+        /* Sales Section */
+        .sales-offer {
+            padding: 70px 0;
+            background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .sales-offer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="none" stroke="%23e0e0e0" stroke-width="0.5"/></svg>');
+            opacity: 0.3;
+            z-index: 0;
+        }
+        
+        .sales-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .sales-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .sales-card.visible {
+            animation: scaleIn 0.7s ease forwards;
+        }
+        
+        .sales-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        
+        .sales-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--accent);
+            color: var(--white);
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            z-index: 2;
+            box-shadow: 0 4px 8px rgba(229, 57, 53, 0.3);
+            animation: pulse 2s infinite;
+        }
+        
+        .sales-card .product-img {
+            height: 200px;
+            background-color: var(--gray-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--gray-400);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .sales-card .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .sales-card .product-img::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .sales-card:hover .product-img::after {
+            opacity: 1;
+        }
+        
+        .sales-card:hover .product-img {
+            background-color: var(--gray-200);
+        }
+        
+        .sales-card .product-info {
+            padding: 20px;
+        }
+        
+        .sales-card .product-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: var(--black);
+        }
+        
+        .price-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .original-price {
+            font-size: 1.1rem;
+            color: var(--gray-500);
+            text-decoration: line-through;
+            margin-right: 10px;
+        }
+        
+        .sales-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
         }
         
         /* Products Section */
@@ -495,6 +663,32 @@
             font-size: 3.5rem;
             color: var(--gray-400);
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .product-img::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .product-card:hover .product-img::after {
+            opacity: 1;
         }
         
         .product-card:hover .product-img {
@@ -608,6 +802,12 @@
             position: relative;
             overflow: hidden;
             transition: transform 0.3s ease;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         
         .product-image:hover {
@@ -978,6 +1178,14 @@
             transform: translateX(0);
         }
         
+        .notification.admin-notification {
+            background-color: #4caf50;
+        }
+        
+        .notification.error-notification {
+            background-color: #f44336;
+        }
+        
         .notification-header {
             display: flex;
             align-items: center;
@@ -1013,6 +1221,44 @@
         
         .notification-close:hover {
             color: var(--white);
+        }
+        
+        /* Admin Mode Styles */
+        .admin-edit-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .product-card:hover .admin-edit-btn {
+            opacity: 1;
+        }
+        
+        .admin-edit-detail-btn {
+            margin-left: 10px;
+            background-color: #4caf50;
+        }
+        
+        .admin-modal .modal-header {
+            background-color: #4caf50;
+        }
+        
+        /* Password Modal */
+        .password-modal .modal-header {
+            background-color: #2196f3;
         }
         
         /* Footer */
@@ -1163,11 +1409,37 @@
             }
             
             .hero h1 {
-                font-size: 2.4rem;
+                font-size: 2rem;
             }
             
             .hero p {
-                font-size: 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .sales-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 15px;
+            }
+            
+            .product-card {
+                margin-bottom: 15px;
+            }
+            
+            .product-img {
+                height: 140px;
+            }
+            
+            .sales-card .product-img {
+                height: 180px;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
             
             .btn-outline {
@@ -1198,6 +1470,29 @@
                 padding: 25px 20px;
             }
         }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .product-info h3 {
+                font-size: 1rem;
+            }
+            
+            .product-price {
+                font-size: 1.1rem;
+            }
+            
+            .btn-product {
+                padding: 6px 12px;
+                font-size: 11px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1219,7 +1514,6 @@
             </div>
         </div>
     </header>
-
     <!-- Main Content -->
     <div class="main-content">
         <!-- Home View -->
@@ -1240,7 +1534,66 @@
                     <i class="fas fa-chevron-down"></i>
                 </div>
             </section>
-
+            
+            <!-- Sales Section -->
+            <section class="sales-offer">
+                <div class="container">
+                    <div class="section-header animate-slide-up">
+                        <h2>Special Offers</h2>
+                        <p>Limited time deals on our premium products</p>
+                    </div>
+                    <div class="sales-grid">
+                        <!-- Sales Product 1 -->
+                        <div class="sales-card animate-slide-up animate-delay-1" data-product="convocation-robe">
+                            <div class="sales-badge">-20%</div>
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Convocation Robe">
+                            </div>
+                            <div class="product-info">
+                                <h3>Convocation Robe</h3>
+                                <div class="price-container">
+                                    <div class="original-price">RM 150</div>
+                                    <div class="sales-price">RM 120</div>
+                                </div>
+                                <button class="btn-product view-details">View Details</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Sales Product 2 -->
+                        <div class="sales-card animate-slide-up animate-delay-2" data-product="tshirt">
+                            <div class="sales-badge">-15%</div>
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="T-Shirt Printing">
+                            </div>
+                            <div class="product-info">
+                                <h3>T-Shirt Printing</h3>
+                                <div class="price-container">
+                                    <div class="original-price">RM 35</div>
+                                    <div class="sales-price">RM 29.75</div>
+                                </div>
+                                <button class="btn-product view-details">View Details</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Sales Product 3 -->
+                        <div class="sales-card animate-slide-up animate-delay-3" data-product="corporate-shirt">
+                            <div class="sales-badge">-25%</div>
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1606761568489-cf7a2b16e4c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Corporate Shirts">
+                            </div>
+                            <div class="product-info">
+                                <h3>Corporate Shirts</h3>
+                                <div class="price-container">
+                                    <div class="original-price">RM 60</div>
+                                    <div class="sales-price">RM 45</div>
+                                </div>
+                                <button class="btn-product view-details">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
             <!-- Products Section -->
             <section class="products" id="products-section">
                 <div class="container">
@@ -1253,7 +1606,7 @@
                         <!-- Product 1 -->
                         <div class="product-card animate-slide-up animate-delay-1" data-product="convocation-robe">
                             <div class="product-img">
-                                <i class="fas fa-graduation-cap"></i>
+                                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Convocation Robe">
                             </div>
                             <div class="product-info">
                                 <h3>Custom Convocation Robe</h3>
@@ -1268,7 +1621,7 @@
                         <!-- Product 2 -->
                         <div class="product-card animate-slide-up animate-delay-2" data-product="tshirt">
                             <div class="product-img">
-                                <i class="fas fa-tshirt"></i>
+                                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="T-Shirt Printing">
                             </div>
                             <div class="product-info">
                                 <h3>T-Shirt Printing</h3>
@@ -1283,7 +1636,7 @@
                         <!-- Product 3 -->
                         <div class="product-card animate-slide-up animate-delay-3" data-product="medal">
                             <div class="product-img">
-                                <i class="fas fa-medal"></i>
+                                <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Medal / Trophy">
                             </div>
                             <div class="product-info">
                                 <h3>Medal / Trophy</h3>
@@ -1298,7 +1651,7 @@
                         <!-- Product 4 -->
                         <div class="product-card animate-slide-up animate-delay-1" data-product="towel">
                             <div class="product-img">
-                                <i class="fas fa-hand-sparkles"></i>
+                                <img src="https://images.unsplash.com/photo-1584395605514-1a6e1b0635cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Custom Towels">
                             </div>
                             <div class="product-info">
                                 <h3>Custom Towels</h3>
@@ -1313,7 +1666,7 @@
                         <!-- Product 5 -->
                         <div class="product-card animate-slide-up animate-delay-2" data-product="keychain">
                             <div class="product-img">
-                                <i class="fas fa-key"></i>
+                                <img src="https://images.unsplash.com/photo-1556740758-1c716d4ab267?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Custom Keychains">
                             </div>
                             <div class="product-info">
                                 <h3>Custom Keychains</h3>
@@ -1328,7 +1681,7 @@
                         <!-- Product 6 -->
                         <div class="product-card animate-slide-up animate-delay-3" data-product="nametag">
                             <div class="product-img">
-                                <i class="fas fa-id-card"></i>
+                                <img src="https://images.unsplash.com/photo-1556740758-1c716d4ab267?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Custom Nametags">
                             </div>
                             <div class="product-info">
                                 <h3>Custom Nametags</h3>
@@ -1343,7 +1696,7 @@
                         <!-- Product 7 -->
                         <div class="product-card animate-slide-up animate-delay-1" data-product="corporate-shirt">
                             <div class="product-img">
-                                <i class="fas fa-user-tie"></i>
+                                <img src="https://images.unsplash.com/photo-1606761568489-cf7a2b16e4c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Corporate Shirts">
                             </div>
                             <div class="product-info">
                                 <h3>Corporate Shirts</h3>
@@ -1358,7 +1711,7 @@
                         <!-- Product 8 -->
                         <div class="product-card animate-slide-up animate-delay-2" data-product="attendance-card">
                             <div class="product-img">
-                                <i class="fas fa-id-badge"></i>
+                                <img src="https://images.unsplash.com/photo-1584395605514-1a6e1b0635cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Attendance Cards">
                             </div>
                             <div class="product-info">
                                 <h3>Attendance Cards</h3>
@@ -1372,7 +1725,6 @@
                     </div>
                 </div>
             </section>
-
             <!-- Footer -->
             <footer>
                 <div class="container">
@@ -1381,6 +1733,7 @@
                             <h3>PNE ARENA</h3>
                             <p>We create premium custom products for individuals, businesses and events. Quality craftsmanship and attention to detail in every product.</p>
                             <div class="social-links">
+                                <a href="#" id="admin-icon"><i class="fas fa-store"></i></a>
                                 <a href="#"><i class="fab fa-facebook-f"></i></a>
                                 <a href="#"><i class="fab fa-instagram"></i></a>
                                 <a href="#"><i class="fab fa-twitter"></i></a>
@@ -1427,7 +1780,6 @@
                 </div>
             </footer>
         </div>
-
         <!-- Product Detail View -->
         <div id="product-view" class="view">
             <!-- Breadcrumb -->
@@ -1442,7 +1794,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Product Detail Section -->
             <section class="product-detail">
                 <div class="container">
@@ -1457,7 +1808,7 @@
                     <!-- Product Detail Container (shown if product found) -->
                     <div class="product-detail-container" id="product-container">
                         <div class="product-image animate-slide-up">
-                            <i id="product-icon" class="fas fa-graduation-cap"></i>
+                            <img id="product-image" src="" alt="">
                         </div>
                         <div class="product-info animate-slide-up">
                             <h1 id="product-name">Product Name</h1>
@@ -1481,7 +1832,6 @@
                     </div>
                 </div>
             </section>
-
             <!-- Footer -->
             <footer>
                 <div class="container">
@@ -1490,6 +1840,7 @@
                             <h3>PNE ARENA</h3>
                             <p>We create premium custom products for individuals, businesses and events. Quality craftsmanship and attention to detail in every product.</p>
                             <div class="social-links">
+                                <a href="#" id="admin-icon-detail"><i class="fas fa-store"></i></a>
                                 <a href="#"><i class="fab fa-facebook-f"></i></a>
                                 <a href="#"><i class="fab fa-instagram"></i></a>
                                 <a href="#"><i class="fab fa-twitter"></i></a>
@@ -1537,7 +1888,6 @@
             </footer>
         </div>
     </div>
-
     <!-- Order Form Modal -->
     <div class="modal" id="orderModal">
         <div class="modal-content">
@@ -1618,7 +1968,26 @@
             </div>
         </div>
     </div>
-
+    
+    <!-- Password Modal -->
+    <div class="modal password-modal" id="passwordModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Admin Access</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="passwordForm">
+                    <div class="form-group">
+                        <label for="adminPassword">Enter Password</label>
+                        <input type="password" id="adminPassword" class="form-control" placeholder="Enter admin password" required>
+                    </div>
+                    <button type="submit" class="btn-order" style="width: 100%;">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
     <!-- Notification -->
     <div class="notification" id="notification">
         <div class="notification-header">
@@ -1630,14 +1999,17 @@
             Your order has been submitted successfully. We will contact you soon to confirm the details.
         </div>
     </div>
-
     <script>
-        // Product data
+        // Product data with example images
         const products = {
             "convocation-robe": {
                 name: "Custom Convocation Robe",
                 price: 150,
+                salePrice: 120,
+                onSale: true,
+                stock: 50,
                 icon: "fas fa-graduation-cap",
+                image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                 description: "Our premium convocation robes are crafted with the finest materials and attention to detail. Each robe is custom-tailored to ensure the perfect fit and features elegant embroidery options for a truly personalized graduation experience.",
                 features: [
                     "Premium quality fabric with elegant drape",
@@ -1650,7 +2022,11 @@
             "tshirt": {
                 name: "T-Shirt Printing",
                 price: 35,
+                salePrice: 29.75,
+                onSale: true,
+                stock: 200,
                 icon: "fas fa-tshirt",
+                image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                 description: "Transform your ideas into wearable art with our high-quality custom t-shirt printing service. We use advanced printing techniques to ensure vibrant colors and durable designs that withstand washing and regular wear.",
                 features: [
                     "High-quality 100% cotton or cotton blend options",
@@ -1663,7 +2039,11 @@
             "medal": {
                 name: "Medal / Trophy",
                 price: 45,
+                salePrice: null,
+                onSale: false,
+                stock: 75,
                 icon: "fas fa-medal",
+                image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                 description: "Celebrate achievements with our custom medals and trophies. Perfect for competitions, corporate events, sports tournaments, and recognition ceremonies. Each piece is crafted with precision and can be fully customized to your specifications.",
                 features: [
                     "High-quality metal or resin construction",
@@ -1676,7 +2056,11 @@
             "towel": {
                 name: "Custom Towels",
                 price: 25,
+                salePrice: null,
+                onSale: false,
+                stock: 150,
                 icon: "fas fa-hand-sparkles",
+                image: "https://images.unsplash.com/photo-1584395605514-1a6e1b0635cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                 description: "Elevate your brand or event with our premium custom towels. Ideal for hotels, gyms, corporate gifts, and promotional events. Our towels are made from absorbent, high-quality materials and feature durable customization options.",
                 features: [
                     "100% cotton for maximum absorbency",
@@ -1689,7 +2073,11 @@
             "keychain": {
                 name: "Custom Keychains",
                 price: 15,
+                salePrice: null,
+                onSale: false,
+                stock: 300,
                 icon: "fas fa-key",
+                image: "https://images.unsplash.com/photo-1556740758-1c716d4ab267?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                 description: "Promote your brand or create memorable gifts with our custom keychains. Available in various materials and designs, these practical accessories are perfect for events, marketing campaigns, and personal use.",
                 features: [
                     "Multiple materials (metal, acrylic, leather)",
@@ -1702,7 +2090,11 @@
             "nametag": {
                 name: "Custom Nametags",
                 price: 12,
+                salePrice: null,
+                onSale: false,
+                stock: 500,
                 icon: "fas fa-id-card",
+                image: "https://images.unsplash.com/photo-1556740758-1c716d4ab267?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                 description: "Professional nametags for employees, events, and conferences. Our nametags are designed to make a great first impression while clearly identifying individuals in any setting.",
                 features: [
                     "High-quality materials with professional finish",
@@ -1715,7 +2107,11 @@
             "corporate-shirt": {
                 name: "Corporate Shirts",
                 price: 60,
+                salePrice: 45,
+                onSale: true,
+                stock: 100,
                 icon: "fas fa-user-tie",
+                image: "https://images.unsplash.com/photo-1606761568489-cf7a2b16e4c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                 description: "Elevate your team's professional appearance with our custom corporate shirts. Perfect for uniforms, events, and promotional wear, these shirts combine comfort with a polished look that represents your brand well.",
                 features: [
                     "Premium fabrics for comfort and durability",
@@ -1728,7 +2124,11 @@
             "attendance-card": {
                 name: "Attendance Cards",
                 price: 5,
+                salePrice: null,
+                onSale: false,
+                stock: 1000,
                 icon: "fas fa-id-badge",
+                image: "https://images.unsplash.com/photo-1584395605514-1a6e1b0635cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                 description: "Streamline attendance tracking with our custom attendance cards. Ideal for schools, events, training sessions, and organizations, these cards are designed to be both functional and professional.",
                 features: [
                     "Durable card stock for long-lasting use",
@@ -1739,11 +2139,13 @@
                 ]
             }
         };
-
+        
         // DOM Elements
         const modal = document.getElementById('orderModal');
+        const passwordModal = document.getElementById('passwordModal');
         const closeBtn = document.querySelector('.close');
         const orderForm = document.getElementById('orderForm');
+        const passwordForm = document.getElementById('passwordForm');
         const orderButton = document.getElementById('order-button');
         const summaryProduct = document.getElementById('summaryProduct');
         const summaryPrice = document.getElementById('summaryPrice');
@@ -1764,7 +2166,7 @@
         const productName = document.getElementById('product-name');
         const productPrice = document.getElementById('product-price');
         const productDescription = document.getElementById('product-description');
-        const productIcon = document.getElementById('product-icon');
+        const productImage = document.getElementById('product-image');
         const productFeatures = document.getElementById('product-features');
         const breadcrumbProduct = document.getElementById('breadcrumb-product');
         const productContainer = document.getElementById('product-container');
@@ -1786,13 +2188,38 @@
         const footerHomeDetail = document.getElementById('footer-home-detail');
         const footerProductsDetail = document.getElementById('footer-products-detail');
         
+        // Admin elements
+        const adminIcon = document.getElementById('admin-icon');
+        const adminIconDetail = document.getElementById('admin-icon-detail');
+        const adminPasswordInput = document.getElementById('adminPassword');
+        
         // Current product
         let currentProduct = null;
+        let currentProductId = null;
+        let adminMode = false;
+        
+        // Page state persistence
+        window.addEventListener('DOMContentLoaded', () => {
+            // Check if there's a saved view state
+            const savedView = localStorage.getItem('currentView');
+            const savedProduct = localStorage.getItem('currentProduct');
+            
+            if (savedView === 'product' && savedProduct) {
+                showProductView(savedProduct);
+            } else if (savedView === 'home') {
+                showHomeView();
+            } else {
+                // Default to home view
+                showHomeView();
+            }
+        });
         
         // Show home view
         function showHomeView() {
             homeView.classList.add('active');
             productView.classList.remove('active');
+            localStorage.setItem('currentView', 'home');
+            localStorage.removeItem('currentProduct');
             window.scrollTo(0, 0);
         }
         
@@ -1800,16 +2227,30 @@
         function showProductView(productId) {
             homeView.classList.remove('active');
             productView.classList.add('active');
+            localStorage.setItem('currentView', 'product');
+            localStorage.setItem('currentProduct', productId);
             
             // Load product data
             if (productId && products[productId]) {
                 currentProduct = products[productId];
+                currentProductId = productId;
                 
                 // Update product details
                 productName.textContent = currentProduct.name;
-                productPrice.textContent = `RM ${currentProduct.price}`;
+                
+                // Handle pricing with sale support
+                if (currentProduct.onSale && currentProduct.salePrice) {
+                    productPrice.innerHTML = `
+                        <span style="text-decoration:line-through;color:var(--gray-500);font-size:0.8em;">RM ${currentProduct.price}</span> 
+                        <span style="color:var(--accent);">RM ${currentProduct.salePrice}</span>
+                    `;
+                } else {
+                    productPrice.textContent = `RM ${currentProduct.price}`;
+                }
+                
                 productDescription.textContent = currentProduct.description;
-                productIcon.className = currentProduct.icon;
+                productImage.src = currentProduct.image;
+                productImage.alt = currentProduct.name;
                 breadcrumbProduct.textContent = currentProduct.name;
                 
                 // Update features list with staggered animation
@@ -1831,6 +2272,15 @@
                 // Show product container, hide error message
                 productContainer.style.display = 'grid';
                 errorMessage.style.display = 'none';
+                
+                // Add admin edit button if in admin mode
+                if (adminMode) {
+                    const editBtn = document.createElement('button');
+                    editBtn.className = 'btn-order admin-edit-detail-btn';
+                    editBtn.innerHTML = '<i class="fas fa-edit"></i> Edit Product';
+                    editBtn.addEventListener('click', () => openAdminPanel(productId));
+                    document.querySelector('.product-info div').appendChild(editBtn);
+                }
             } else {
                 // Product not found - show error message
                 productContainer.style.display = 'none';
@@ -1911,7 +2361,7 @@
         // Set up product card event listeners
         document.querySelectorAll('.view-details').forEach(button => {
             button.addEventListener('click', () => {
-                const productCard = button.closest('.product-card');
+                const productCard = button.closest('.product-card, .sales-card');
                 const productId = productCard.dataset.product;
                 showProductView(productId);
             });
@@ -1939,14 +2389,17 @@
             if (currentProduct) {
                 // Set product info in the summary
                 summaryProduct.textContent = currentProduct.name;
-                summaryPrice.textContent = `RM ${currentProduct.price}`;
+                
+                // Handle pricing with sale support
+                const price = currentProduct.onSale && currentProduct.salePrice ? currentProduct.salePrice : currentProduct.price;
+                summaryPrice.textContent = `RM ${price}`;
                 summaryQuantity.textContent = quantityInput.value;
-                summaryTotal.textContent = `RM ${currentProduct.price * quantityInput.value}`;
+                summaryTotal.textContent = `RM ${price * quantityInput.value}`;
                 
                 // Store product data in form
-                orderForm.dataset.productId = currentProduct.name.toLowerCase().replace(/\s+/g, '-');
+                orderForm.dataset.productId = currentProductId;
                 orderForm.dataset.productName = currentProduct.name;
-                orderForm.dataset.productPrice = currentProduct.price;
+                orderForm.dataset.productPrice = price;
                 
                 // Show modal with animation
                 modal.style.display = 'flex';
@@ -1956,11 +2409,11 @@
                 document.body.style.overflow = 'hidden';
             }
         });
-
+        
         // Parallax effect for hero section
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
-            const parallax = scrolled * 0.5;
+            const parallax = scrolled * 0.6;
             heroBg.style.transform = `translateY(${parallax}px)`;
             
             // Add scroll effect to header
@@ -1971,28 +2424,42 @@
                 header.style.padding = '12px 0';
                 header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)';
             }
+            
+            // Animate elements on scroll
+            const animateElements = document.querySelectorAll('.animate-slide-up, .animate-slide-down');
+            animateElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
         });
-
+        
         // Close modal
-        closeBtn.addEventListener('click', () => {
-            modal.classList.remove('show');
-            setTimeout(() => {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }, 300);
-        });
-
-        // Close modal when clicking outside
-        window.addEventListener('click', (e) => {
-            if (e.target === modal) {
+        document.querySelectorAll('.close').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const modal = e.target.closest('.modal');
                 modal.classList.remove('show');
                 setTimeout(() => {
                     modal.style.display = 'none';
                     document.body.style.overflow = 'auto';
                 }, 300);
+            });
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                e.target.classList.remove('show');
+                setTimeout(() => {
+                    e.target.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }, 300);
             }
         });
-
+        
         // Update order summary when quantity changes
         quantityInput.addEventListener('input', () => {
             const quantity = parseInt(quantityInput.value) || 1;
@@ -2001,7 +2468,7 @@
             summaryQuantity.textContent = quantity;
             summaryTotal.textContent = `RM ${price * quantity}`;
         });
-
+        
         // Handle form submission
         orderForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -2038,26 +2505,81 @@
             orderForm.reset();
             
             // Show notification
+            showNotification('Order Successful', 'Your order has been submitted successfully. We will contact you soon to confirm the details.');
+        });
+        
+        // Handle password form submission
+        passwordForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const password = adminPasswordInput.value;
+            const correctPassword = "D@nial05";
+            
+            if (password === correctPassword) {
+                // Close password modal
+                passwordModal.classList.remove('show');
+                setTimeout(() => {
+                    passwordModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }, 300);
+                
+                // Activate admin mode
+                activateAdminMode();
+                
+                // Reset password form
+                passwordForm.reset();
+            } else {
+                // Show error notification
+                showNotification('Access Denied', 'Incorrect password. Please try again.', 'error');
+                
+                // Clear password field
+                adminPasswordInput.value = '';
+                adminPasswordInput.focus();
+            }
+        });
+        
+        // Close notification
+        notificationClose.addEventListener('click', () => {
+            notification.classList.remove('show');
+        });
+        
+        // Show notification function
+        function showNotification(title, message, type = 'success') {
+            const notificationHeader = notification.querySelector('h3');
+            const notificationBody = notification.querySelector('.notification-body');
+            const notificationIcon = notification.querySelector('.notification-header i');
+            
+            notificationHeader.textContent = title;
+            notificationBody.textContent = message;
+            
+            // Reset classes
+            notification.classList.remove('admin-notification', 'error-notification');
+            
+            // Add appropriate class based on type
+            if (type === 'admin') {
+                notification.classList.add('admin-notification');
+                notificationIcon.className = 'fas fa-check-circle';
+            } else if (type === 'error') {
+                notification.classList.add('error-notification');
+                notificationIcon.className = 'fas fa-exclamation-circle';
+            } else {
+                notificationIcon.className = 'fas fa-check-circle';
+            }
+            
             notification.classList.add('show');
             
             // Hide notification after 5 seconds
             setTimeout(() => {
                 notification.classList.remove('show');
             }, 5000);
-        });
-
-        // Close notification
-        notificationClose.addEventListener('click', () => {
-            notification.classList.remove('show');
-        });
-
+        }
+        
         // Add scroll animations for product cards
         const observerOptions = {
             root: null,
             rootMargin: '0px',
             threshold: 0.1
         };
-
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -2065,11 +2587,152 @@
                 }
             });
         }, observerOptions);
-
+        
         // Observe product cards for animation
-        document.querySelectorAll('.product-card').forEach(card => {
+        document.querySelectorAll('.product-card, .sales-card').forEach(card => {
             observer.observe(card);
         });
+        
+        // Admin mode functionality
+        let adminClickCount = 0;
+        
+        function activateAdminMode() {
+            adminMode = true;
+            showNotification('Admin Mode Activated', 'You can now edit product details', 'admin');
+            
+            // Add edit buttons to product cards
+            document.querySelectorAll('.product-card, .sales-card').forEach(card => {
+                const productId = card.dataset.product;
+                const editBtn = document.createElement('button');
+                editBtn.className = 'admin-edit-btn';
+                editBtn.innerHTML = '<i class="fas fa-edit"></i>';
+                editBtn.addEventListener('click', () => openAdminPanel(productId));
+                card.appendChild(editBtn);
+            });
+            
+            // Add edit button to product detail view if active
+            if (document.getElementById('product-view').classList.contains('active') && currentProductId) {
+                const editBtn = document.createElement('button');
+                editBtn.className = 'btn-order admin-edit-detail-btn';
+                editBtn.innerHTML = '<i class="fas fa-edit"></i> Edit Product';
+                editBtn.addEventListener('click', () => openAdminPanel(currentProductId));
+                document.querySelector('.product-info div').appendChild(editBtn);
+            }
+        }
+        
+        function openAdminPanel(productId) {
+            const product = products[productId];
+            if (!product) return;
+            
+            // Create admin panel modal
+            const adminModal = document.createElement('div');
+            adminModal.className = 'modal admin-modal';
+            adminModal.innerHTML = `
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>Edit Product: ${product.name}</h2>
+                        <span class="close">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <form id="admin-form">
+                            <div class="form-group">
+                                <label for="admin-price">Price (RM)</label>
+                                <input type="number" id="admin-price" class="form-control" value="${product.price}" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="admin-sale-price">Sale Price (RM)</label>
+                                <input type="number" id="admin-sale-price" class="form-control" value="${product.salePrice || ''}">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="admin-stock">Stock Quantity</label>
+                                <input type="number" id="admin-stock" class="form-control" value="${product.stock || 0}" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>
+                                    <input type="checkbox" id="admin-on-sale" ${product.onSale ? 'checked' : ''}> On Sale
+                                </label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="admin-image">Image URL</label>
+                                <input type="text" id="admin-image" class="form-control" value="${product.image || ''}">
+                            </div>
+                            
+                            <button type="submit" class="btn-order">Save Changes</button>
+                        </form>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(adminModal);
+            
+            // Show modal with animation
+            setTimeout(() => {
+                adminModal.classList.add('show');
+            }, 10);
+            
+            // Handle form submission
+            const adminForm = adminModal.querySelector('#admin-form');
+            adminForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // Update product data
+                product.price = parseFloat(document.getElementById('admin-price').value);
+                product.salePrice = parseFloat(document.getElementById('admin-sale-price').value) || null;
+                product.stock = parseInt(document.getElementById('admin-stock').value);
+                product.onSale = document.getElementById('admin-on-sale').checked;
+                product.image = document.getElementById('admin-image').value;
+                
+                // Save to localStorage
+                localStorage.setItem('products', JSON.stringify(products));
+                
+                // Close modal
+                adminModal.classList.remove('show');
+                setTimeout(() => {
+                    document.body.removeChild(adminModal);
+                }, 300);
+                
+                // Refresh the current view
+                if (document.getElementById('product-view').classList.contains('active')) {
+                    showProductView(productId);
+                } else {
+                    showHomeView();
+                }
+                
+                showNotification('Product Updated', 'Changes have been saved successfully', 'admin');
+            });
+            
+            // Close modal
+            adminModal.querySelector('.close').addEventListener('click', () => {
+                adminModal.classList.remove('show');
+                setTimeout(() => {
+                    document.body.removeChild(adminModal);
+                }, 300);
+            });
+        }
+        
+        // Admin icon click handler
+        function handleAdminIconClick(e) {
+            e.preventDefault();
+            adminClickCount++;
+            
+            if (adminClickCount >= 5) {
+                // Show password modal
+                passwordModal.style.display = 'flex';
+                setTimeout(() => {
+                    passwordModal.classList.add('show');
+                }, 10);
+                document.body.style.overflow = 'hidden';
+                adminPasswordInput.focus();
+                adminClickCount = 0;
+            }
+        }
+        
+        adminIcon.addEventListener('click', handleAdminIconClick);
+        adminIconDetail.addEventListener('click', handleAdminIconClick);
     </script>
 </body>
 </html>
