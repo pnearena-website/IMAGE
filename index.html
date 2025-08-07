@@ -36,8 +36,8 @@
         
         body {
             font-family: 'Montserrat', sans-serif;
-            color: var(--gray-800);
-            background-color: var(--white);
+            color: var(--gray-100);
+            background: linear-gradient(135deg, var(--gray-900) 0%, var(--black) 100%);
             line-height: 1.5;
             overflow-x: hidden;
         }
@@ -53,6 +53,7 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 15px;
+            background: linear-gradient(120deg, var(--gray-900) 60%, var(--gray-800) 100%);
         }
         
         /* Enhanced Animations */
@@ -246,7 +247,8 @@
         
         /* Header Styles */
         header {
-            background-color: var(--white);
+            background: var(--gray-900);
+            color: var(--gray-100);
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             position: fixed;
             top: 0;
@@ -265,7 +267,7 @@
         .logo {
             font-size: 24px;
             font-weight: 700;
-            color: var(--black);
+            color: var(--white);
             text-decoration: none;
             letter-spacing: 1px;
             transition: all 0.3s ease;
@@ -294,7 +296,7 @@
         
         nav ul li a {
             text-decoration: none;
-            color: var(--gray-700);
+            color: var(--gray-100);
             font-weight: 500;
             font-size: 15px;
             transition: color 0.3s ease;
@@ -308,12 +310,12 @@
             left: 0;
             width: 0;
             height: 2px;
-            background-color: var(--black);
+            background-color: var(--white);
             transition: width 0.3s ease;
         }
         
         nav ul li a:hover {
-            color: var(--black);
+            color: var(--gold);
         }
         
         nav ul li a:hover::after {
@@ -334,36 +336,38 @@
         
         .search-bar input {
             padding: 8px 15px 8px 40px;
-            border: 1px solid var(--gray-300);
+            border: 1px solid var(--gray-700);
             border-radius: 20px;
             width: 200px;
             transition: all 0.3s ease;
             font-family: 'Montserrat', sans-serif;
             font-size: 14px;
+            background: var(--gray-800);
+            color: var(--gray-100);
         }
         
         .search-bar input:focus {
             outline: none;
-            border-color: var(--black);
+            border-color: var(--gold);
             width: 250px;
         }
         
         .search-bar i {
             position: absolute;
             left: 15px;
-            color: var(--gray-500);
+            color: var(--gray-400);
         }
         
         .cart-icon {
             position: relative;
             font-size: 20px;
-            color: var(--gray-700);
+            color: var(--gray-100);
             cursor: pointer;
             transition: all 0.3s ease;
         }
         
         .cart-icon:hover {
-            color: var(--black);
+            color: var(--gold);
             transform: scale(1.1);
         }
         
@@ -371,8 +375,8 @@
             position: absolute;
             top: -8px;
             right: -8px;
-            background-color: var(--black);
-            color: var(--white);
+            background-color: var(--white);
+            color: var(--black);
             font-size: 10px;
             width: 18px;
             height: 18px;
@@ -389,20 +393,20 @@
         
         .user-icon {
             font-size: 20px;
-            color: var(--gray-700);
+            color: var(--gray-100);
             cursor: pointer;
             transition: all 0.3s ease;
         }
         
         .user-icon:hover {
-            color: var(--black);
+            color: var(--gold);
         }
         
         .user-dropdown {
             position: absolute;
             top: 100%;
             right: 0;
-            background-color: var(--white);
+            background-color: var(--gray-900);
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             z-index: 99;
@@ -423,14 +427,14 @@
         .user-dropdown a {
             display: block;
             padding: 12px 20px;
-            color: var(--gray-700);
+            color: var(--gray-100);
             text-decoration: none;
             transition: background-color 0.3s ease;
             font-size: 14px;
         }
         
         .user-dropdown a:hover {
-            background-color: var(--gray-100);
+            background-color: var(--gray-800);
         }
         
         .user-dropdown a i {
@@ -443,7 +447,7 @@
             position: fixed;
             top: 80px;
             right: 20px;
-            background-color: var(--white);
+            background-color: var(--gray-900);
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             z-index: 99;
@@ -470,11 +474,11 @@
         }
         
         .language-option:hover {
-            background-color: var(--gray-100);
+            background-color: var(--gray-800);
         }
         
         .language-option.active {
-            background-color: var(--gray-200);
+            background-color: var(--gray-700);
             font-weight: 600;
         }
         
@@ -543,14 +547,14 @@
         .hero h1 {
             font-size: 3.5rem;
             margin-bottom: 20px;
-            color: var(--black);
+            color: var(--white);
             line-height: 1.1;
         }
         
         .hero p {
             font-size: 1.2rem;
             margin-bottom: 30px;
-            color: var(--gray-600);
+            color: var(--gray-400);
             max-width: 550px;
             line-height: 1.6;
         }
@@ -558,8 +562,8 @@
         .btn {
             display: inline-block;
             padding: 14px 35px;
-            background-color: var(--black);
-            color: var(--white);
+            background-color: var(--gold);
+            color: var(--black);
             text-decoration: none;
             border-radius: 2px;
             font-weight: 600;
@@ -594,13 +598,13 @@
         
         .btn-outline {
             background-color: transparent;
-            border: 2px solid var(--black);
-            color: var(--black);
+            border: 2px solid var(--gold);
+            color: var(--gold);
             margin-left: 15px;
         }
         
         .btn-outline::before {
-            background-color: var(--black);
+            background-color: var(--gold);
         }
         
         .btn-outline:hover {
@@ -643,12 +647,12 @@
             font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: var(--gray-500);
+            color: var(--gray-400);
             margin-bottom: 8px;
         }
         
         .scroll-indicator i {
-            color: var(--gray-500);
+            color: var(--gray-400);
             font-size: 18px;
         }
         
@@ -669,7 +673,7 @@
             padding: 30px 20px;
             border-radius: 8px;
             transition: all 0.3s ease;
-            background-color: var(--gray-100);
+            background-color: var(--gray-900);
         }
         
         .feature-card:hover {
@@ -686,11 +690,11 @@
         .feature-card h3 {
             font-size: 1.4rem;
             margin-bottom: 15px;
-            color: var(--black);
+            color: var(--white);
         }
         
         .feature-card p {
-            color: var(--gray-600);
+            color: var(--gray-400);
             line-height: 1.6;
         }
         
@@ -723,7 +727,7 @@
         }
         
         .sales-card {
-            background-color: var(--white);
+            background-color: var(--gray-900);
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 8px 25px rgba(0,0,0,0.08);
@@ -732,6 +736,7 @@
             cursor: pointer;
             opacity: 0;
             transform: translateY(20px);
+            border: 1px solid var(--gray-800);
         }
         
         .sales-card.visible {
@@ -760,7 +765,7 @@
         
         .sales-card .product-img {
             height: 200px;
-            background-color: var(--gray-100);
+            background-color: var(--gray-800);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -796,7 +801,7 @@
         }
         
         .sales-card:hover .product-img {
-            background-color: var(--gray-200);
+            background-color: var(--gray-700);
         }
         
         .sales-card .product-info {
@@ -806,7 +811,7 @@
         .sales-card .product-info h3 {
             font-size: 1.3rem;
             margin-bottom: 12px;
-            color: var(--black);
+            color: var(--white);
         }
         
         .price-container {
@@ -817,7 +822,7 @@
         
         .original-price {
             font-size: 1.1rem;
-            color: var(--gray-500);
+            color: var(--gray-400);
             text-decoration: line-through;
             margin-right: 10px;
         }
@@ -842,7 +847,7 @@
         .section-header h2 {
             font-size: 2.5rem;
             margin-bottom: 15px;
-            color: var(--black);
+            color: var(--white);
             position: relative;
             display: inline-block;
         }
@@ -855,12 +860,12 @@
             transform: translateX(-50%);
             width: 60px;
             height: 3px;
-            background-color: var(--black);
+            background-color: var(--white);
         }
         
         .section-header p {
             font-size: 1.1rem;
-            color: var(--gray-600);
+            color: var(--gray-400);
             max-width: 700px;
             margin: 25px auto 0;
             line-height: 1.6;
@@ -873,7 +878,7 @@
         }
         
         .product-card {
-            background-color: var(--white);
+            background-color: var(--gray-900);
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
@@ -882,6 +887,7 @@
             cursor: pointer;
             opacity: 0;
             transform: translateY(20px);
+            border: 1px solid var(--gray-800);
         }
         
         .product-card.visible {
@@ -895,7 +901,7 @@
             left: 0;
             width: 100%;
             height: 4px;
-            background-color: var(--black);
+            background-color: var(--white);
             transform: scaleX(0);
             transform-origin: left;
             transition: transform 0.3s ease;
@@ -912,7 +918,7 @@
         
         .product-img {
             height: 200px;
-            background-color: var(--gray-100);
+            background-color: var(--gray-800);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -948,7 +954,7 @@
         }
         
         .product-card:hover .product-img {
-            background-color: var(--gray-200);
+            background-color: var(--gray-700);
         }
         
         .product-card:hover .product-img i {
@@ -962,11 +968,11 @@
         .product-info h3 {
             font-size: 1.2rem;
             margin-bottom: 10px;
-            color: var(--black);
+            color: var(--white);
         }
         
         .product-info p {
-            color: var(--gray-600);
+            color: var(--gray-400);
             margin-bottom: 15px;
             font-size: 0.9rem;
             line-height: 1.5;
@@ -981,15 +987,15 @@
         .product-price {
             font-size: 1.3rem;
             font-weight: 700;
-            color: var(--black);
+            color: var(--white);
         }
         
         .btn-product {
             padding: 8px 16px;
             font-size: 12px;
-            background-color: var(--black);
-            color: var(--white);
-            border: none;
+            background-color: var(--gray-900);
+            color: var(--gray-100);
+            border: 1px solid var(--gray-700);
             cursor: pointer;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -1000,13 +1006,15 @@
         }
         
         .btn-product:hover {
-            background-color: var(--gray-700);
+            background-color: var(--gray-800);
+            color: var(--gold);
+            border-color: var(--gold);
         }
         
         /* Testimonials Section */
         .testimonials {
             padding: 80px 0;
-            background-color: var(--gray-100);
+            background-color: var(--gray-800);
         }
         
         .testimonials-grid {
@@ -1016,7 +1024,7 @@
         }
         
         .testimonial-card {
-            background-color: var(--white);
+            background-color: var(--gray-900);
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
@@ -1043,7 +1051,7 @@
         .testimonial-content {
             margin-bottom: 20px;
             font-style: italic;
-            color: var(--gray-600);
+            color: var(--gray-400);
             line-height: 1.6;
         }
         
@@ -1057,23 +1065,23 @@
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background-color: var(--gray-200);
+            background-color: var(--gray-700);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--gray-500);
+            color: var(--gray-400);
             font-weight: 600;
         }
         
         .author-info h4 {
             font-size: 1rem;
             margin-bottom: 5px;
-            color: var(--black);
+            color: var(--white);
         }
         
         .author-info p {
             font-size: 0.85rem;
-            color: var(--gray-500);
+            color: var(--gray-400);
         }
         
         /* Newsletter Section */
@@ -1096,7 +1104,7 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
-            color: var(--gray-300);
+            color: var(--gray-400);
         }
         
         .newsletter-form {
@@ -1146,12 +1154,12 @@
         .about-text h2 {
             font-size: 2.5rem;
             margin-bottom: 20px;
-            color: var(--black);
+            color: var(--white);
         }
         
         .about-text p {
             margin-bottom: 20px;
-            color: var(--gray-600);
+            color: var(--gray-400);
             line-height: 1.6;
         }
         
@@ -1178,7 +1186,7 @@
         .stat-item {
             text-align: center;
             padding: 20px;
-            background-color: var(--gray-100);
+            background-color: var(--gray-900);
             border-radius: 8px;
         }
         
@@ -1190,14 +1198,14 @@
         }
         
         .stat-label {
-            color: var(--gray-600);
+            color: var(--gray-400);
             font-size: 0.9rem;
         }
         
         /* Contact Section */
         .contact {
             padding: 80px 0;
-            background-color: var(--gray-100);
+            background-color: var(--gray-800);
         }
         
         .contact-content {
@@ -1209,12 +1217,12 @@
         .contact-info h2 {
             font-size: 2.2rem;
             margin-bottom: 20px;
-            color: var(--black);
+            color: var(--white);
         }
         
         .contact-info p {
             margin-bottom: 30px;
-            color: var(--gray-600);
+            color: var(--gray-400);
             line-height: 1.6;
         }
         
@@ -1240,16 +1248,16 @@
         .contact-item h4 {
             font-size: 1rem;
             margin-bottom: 5px;
-            color: var(--black);
+            color: var(--white);
         }
         
         .contact-item p {
             margin: 0;
-            color: var(--gray-600);
+            color: var(--gray-400);
         }
         
         .contact-form {
-            background-color: var(--white);
+            background-color: var(--gray-900);
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
@@ -1258,7 +1266,7 @@
         .contact-form h3 {
             font-size: 1.5rem;
             margin-bottom: 20px;
-            color: var(--black);
+            color: var(--white);
         }
         
         .form-group {
@@ -1269,23 +1277,25 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            color: var(--gray-700);
+            color: var(--gray-100);
             font-size: 14px;
         }
         
         .form-control {
             width: 100%;
             padding: 12px 15px;
-            border: 1px solid var(--gray-300);
+            border: 1px solid var(--gray-700);
             border-radius: 4px;
             font-family: 'Montserrat', sans-serif;
             font-size: 15px;
             transition: all 0.3s ease;
+            background: var(--gray-800);
+            color: var(--gray-100);
         }
         
         .form-control:focus {
             outline: none;
-            border-color: var(--black);
+            border-color: var(--gold);
             box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
         }
         
@@ -1296,7 +1306,7 @@
         
         /* Product Detail View */
         .breadcrumb {
-            background-color: var(--gray-100);
+            background-color: var(--gray-800);
             padding: 20px 0;
         }
         
@@ -1307,22 +1317,22 @@
         }
         
         .breadcrumb-nav a {
-            color: var(--gray-600);
+            color: var(--gray-400);
             text-decoration: none;
             transition: color 0.3s ease;
         }
         
         .breadcrumb-nav a:hover {
-            color: var(--black);
+            color: var(--gold);
         }
         
         .breadcrumb-nav span {
             margin: 0 10px;
-            color: var(--gray-500);
+            color: var(--gray-400);
         }
         
         .breadcrumb-nav .current {
-            color: var(--black);
+            color: var(--white);
             font-weight: 500;
         }
         
@@ -1386,18 +1396,18 @@
         .product-info h1 {
             font-size: 2.5rem;
             margin-bottom: 15px;
-            color: var(--black);
+            color: var(--white);
         }
         
         .product-price {
             font-size: 2rem;
             font-weight: 700;
-            color: var(--black);
+            color: var(--white);
             margin-bottom: 20px;
         }
         
         .product-description {
-            color: var(--gray-600);
+            color: var(--gray-400);
             margin-bottom: 30px;
             line-height: 1.6;
             font-size: 1rem;
@@ -1410,7 +1420,7 @@
         .product-features h3 {
             font-size: 1.3rem;
             margin-bottom: 15px;
-            color: var(--black);
+            color: var(--white);
         }
         
         .features-list {
@@ -1445,7 +1455,7 @@
         .quantity-selector {
             display: flex;
             align-items: center;
-            border: 1px solid var(--gray-300);
+            border: 1px solid var(--gray-700);
             border-radius: 4px;
             overflow: hidden;
         }
@@ -1453,7 +1463,7 @@
         .quantity-btn {
             width: 40px;
             height: 40px;
-            background-color: var(--gray-100);
+            background-color: var(--gray-800);
             border: none;
             font-size: 18px;
             cursor: pointer;
@@ -1461,7 +1471,7 @@
         }
         
         .quantity-btn:hover {
-            background-color: var(--gray-200);
+            background-color: var(--gray-700);
         }
         
         .quantity-input {
@@ -1475,8 +1485,8 @@
         
         .btn-order {
             padding: 14px 40px;
-            background-color: var(--black);
-            color: var(--white);
+            background-color: var(--gray-900);
+            color: var(--gray-100);
             text-decoration: none;
             border-radius: 4px;
             font-weight: 600;
@@ -1488,7 +1498,7 @@
             position: relative;
             overflow: hidden;
             z-index: 1;
-            border: none;
+            border: 1px solid var(--gray-700);
             cursor: pointer;
         }
         
@@ -1513,9 +1523,9 @@
             margin-left: 15px;
             padding: 14px 30px;
             background-color: transparent;
-            color: var(--black);
+            color: var(--gray-100);
             text-decoration: none;
-            border: 2px solid var(--black);
+            border: 2px solid var(--gold);
             border-radius: 4px;
             font-weight: 600;
             font-size: 15px;
@@ -1526,8 +1536,8 @@
         }
         
         .btn-back:hover {
-            background-color: var(--black);
-            color: var(--white);
+            background-color: var(--gold);
+            color: var(--black);
         }
         
         /* Shopping Cart Sidebar */
@@ -1537,7 +1547,7 @@
             right: -400px;
             width: 400px;
             height: 100%;
-            background-color: var(--white);
+            background-color: var(--gray-900);
             box-shadow: -5px 0 15px rgba(0,0,0,0.1);
             z-index: 1000;
             transition: right 0.3s ease;
@@ -1551,7 +1561,7 @@
         
         .cart-header {
             padding: 20px;
-            border-bottom: 1px solid var(--gray-200);
+            border-bottom: 1px solid var(--gray-700);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -1559,7 +1569,7 @@
         
         .cart-header h2 {
             font-size: 1.5rem;
-            color: var(--black);
+            color: var(--white);
         }
         
         .cart-close {
@@ -1567,12 +1577,12 @@
             border: none;
             font-size: 20px;
             cursor: pointer;
-            color: var(--gray-600);
+            color: var(--gray-400);
             transition: color 0.3s ease;
         }
         
         .cart-close:hover {
-            color: var(--black);
+            color: var(--gold);
         }
         
         .cart-body {
@@ -1584,13 +1594,13 @@
         .cart-empty {
             text-align: center;
             padding: 40px 20px;
-            color: var(--gray-500);
+            color: var(--gray-400);
         }
         
         .cart-empty i {
             font-size: 3rem;
             margin-bottom: 15px;
-            color: var(--gray-300);
+            color: var(--gray-700);
         }
         
         .cart-item {
@@ -1598,7 +1608,7 @@
             gap: 15px;
             margin-bottom: 20px;
             padding-bottom: 20px;
-            border-bottom: 1px solid var(--gray-200);
+            border-bottom: 1px solid var(--gray-700);
         }
         
         .cart-item:last-child {
@@ -1626,11 +1636,11 @@
         .cart-item-name {
             font-weight: 600;
             margin-bottom: 5px;
-            color: var(--black);
+            color: var(--white);
         }
         
         .cart-item-price {
-            color: var(--gray-600);
+            color: var(--gray-400);
             margin-bottom: 10px;
         }
         
@@ -1643,7 +1653,7 @@
         .cart-item-quantity button {
             width: 30px;
             height: 30px;
-            border: 1px solid var(--gray-300);
+            border: 1px solid var(--gray-700);
             background: none;
             border-radius: 4px;
             cursor: pointer;
@@ -1651,7 +1661,7 @@
         }
         
         .cart-item-quantity button:hover {
-            background-color: var(--gray-100);
+            background-color: var(--gray-700);
         }
         
         .cart-item-quantity span {
@@ -1662,19 +1672,19 @@
         .cart-item-remove {
             background: none;
             border: none;
-            color: var(--gray-500);
+            color: var(--gray-400);
             cursor: pointer;
             transition: color 0.3s ease;
             margin-left: 10px;
         }
         
         .cart-item-remove:hover {
-            color: var(--accent);
+            color: var(--gold);
         }
         
         .cart-footer {
             padding: 20px;
-            border-top: 1px solid var(--gray-200);
+            border-top: 1px solid var(--gray-700);
         }
         
         .cart-total {
@@ -1732,7 +1742,7 @@
         }
         
         .auth-modal-content {
-            background-color: var(--white);
+            background-color: var(--gray-900);
             max-width: 450px;
             width: 90%;
             margin: 40px auto;
@@ -1762,7 +1772,7 @@
         
         .auth-tabs {
             display: flex;
-            border-bottom: 1px solid var(--gray-200);
+            border-bottom: 1px solid var(--gray-700);
         }
         
         .auth-tab {
@@ -1772,14 +1782,14 @@
             background: none;
             border: none;
             font-weight: 600;
-            color: var(--gray-600);
+            color: var(--gray-400);
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
         }
         
         .auth-tab.active {
-            color: var(--black);
+            color: var(--gold);
         }
         
         .auth-tab.active::after {
@@ -1789,7 +1799,7 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background-color: var(--black);
+            background-color: var(--gold);
         }
         
         .auth-tab-content {
@@ -1811,16 +1821,18 @@
         .auth-form .form-control {
             width: 100%;
             padding: 12px 15px;
-            border: 1px solid var(--gray-300);
+            border: 1px solid var(--gray-700);
             border-radius: 4px;
             font-family: 'Montserrat', sans-serif;
             font-size: 15px;
             transition: all 0.3s ease;
+            background: var(--gray-800);
+            color: var(--gray-100);
         }
         
         .auth-form .form-control:focus {
             outline: none;
-            border-color: var(--black);
+            border-color: var(--gold);
             box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
         }
         
@@ -1836,26 +1848,26 @@
         }
         
         .auth-form .forgot-password a {
-            color: var(--gray-600);
+            color: var(--gray-400);
             text-decoration: none;
             font-size: 14px;
             transition: color 0.3s ease;
         }
         
         .auth-form .forgot-password a:hover {
-            color: var(--black);
+            color: var(--gold);
         }
         
         .auth-social {
             margin-top: 30px;
             padding-top: 20px;
-            border-top: 1px solid var(--gray-200);
+            border-top: 1px solid var(--gray-700);
         }
         
         .auth-social h3 {
             text-align: center;
             margin-bottom: 15px;
-            color: var(--gray-600);
+            color: var(--gray-400);
             font-size: 14px;
             font-weight: 500;
         }
@@ -1868,7 +1880,7 @@
         .auth-social-btn {
             flex: 1;
             padding: 10px;
-            border: 1px solid var(--gray-300);
+            border: 1px solid var(--gray-700);
             background: none;
             border-radius: 4px;
             cursor: pointer;
@@ -1881,7 +1893,7 @@
         }
         
         .auth-social-btn:hover {
-            background-color: var(--gray-100);
+            background-color: var(--gray-700);
         }
         
         .auth-social-btn.facebook {
@@ -1896,14 +1908,14 @@
         .error-message {
             text-align: center;
             padding: 60px 20px;
-            background-color: var(--gray-100);
+            background-color: var(--gray-800);
             border-radius: 8px;
             margin-bottom: 40px;
         }
         
         .error-message i {
             font-size: 4rem;
-            color: var(--gray-500);
+            color: var(--gray-400);
             margin-bottom: 20px;
             animation: float 3s ease-in-out infinite;
         }
@@ -1911,11 +1923,11 @@
         .error-message h2 {
             font-size: 2rem;
             margin-bottom: 15px;
-            color: var(--gray-700);
+            color: var(--white);
         }
         
         .error-message p {
-            color: var(--gray-600);
+            color: var(--gray-400);
             margin-bottom: 30px;
             max-width: 600px;
             margin-left: auto;
@@ -1945,7 +1957,7 @@
         }
         
         .modal-content {
-            background-color: var(--white);
+            background-color: var(--gray-900);
             max-width: 600px;
             width: 90%;
             margin: 40px auto;
@@ -1999,7 +2011,7 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            color: var(--gray-700);
+            color: var(--gray-100);
             font-size: 14px;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -2008,17 +2020,18 @@
         .form-control {
             width: 100%;
             padding: 12px;
-            border: 1px solid var(--gray-200);
+            border: 1px solid var(--gray-700);
             border-radius: 4px;
             font-family: 'Montserrat', sans-serif;
             font-size: 15px;
             transition: all 0.3s ease;
-            background-color: var(--white);
+            background: var(--gray-800);
+            color: var(--gray-100);
         }
         
         .form-control:focus {
             outline: none;
-            border-color: var(--black);
+            border-color: var(--gold);
             box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
         }
         
@@ -2045,18 +2058,18 @@
         .file-upload-label {
             display: block;
             padding: 12px;
-            background-color: var(--gray-100);
+            background-color: var(--gray-800);
             border: 1px dashed var(--gray-400);
             border-radius: 4px;
             text-align: center;
-            color: var(--gray-600);
+            color: var(--gray-400);
             font-weight: 500;
             transition: all 0.3s ease;
             font-size: 15px;
         }
         
         .file-upload:hover .file-upload-label {
-            background-color: var(--gray-200);
+            background-color: var(--gray-700);
         }
         
         .file-upload-label i {
@@ -2073,7 +2086,7 @@
         }
         
         .order-summary {
-            background-color: var(--gray-100);
+            background-color: var(--gray-800);
             padding: 20px;
             border-radius: 8px;
             margin-bottom: 25px;
@@ -2082,16 +2095,16 @@
         .order-summary h3 {
             font-size: 1.2rem;
             margin-bottom: 15px;
-            color: var(--black);
+            color: var(--white);
             padding-bottom: 12px;
-            border-bottom: 1px solid var(--gray-300);
+            border-bottom: 1px solid var(--gray-700);
         }
         
         .summary-row {
             display: flex;
             justify-content: space-between;
             margin-bottom: 10px;
-            color: var(--gray-700);
+            color: var(--gray-100);
             font-size: 15px;
         }
         
@@ -2100,8 +2113,8 @@
             font-size: 1.2rem;
             margin-top: 15px;
             padding-top: 12px;
-            border-top: 1px solid var(--gray-300);
-            color: var(--black);
+            border-top: 1px solid var(--gray-700);
+            color: var(--white);
         }
         
         /* Notification */
@@ -2156,7 +2169,7 @@
         .notification-body {
             font-size: 14px;
             line-height: 1.5;
-            color: var(--gray-300);
+            color: var(--gray-400);
         }
         
         .notification-close {
@@ -2329,7 +2342,7 @@
         /* Improved Admin Panel */
         .admin-tabs {
             display: flex;
-            border-bottom: 1px solid var(--gray-300);
+            border-bottom: 1px solid var(--gray-700);
             margin-bottom: 25px;
         }
         
@@ -2339,14 +2352,14 @@
             border: none;
             cursor: pointer;
             font-weight: 500;
-            color: var(--gray-600);
+            color: var(--gray-400);
             border-bottom: 2px solid transparent;
             transition: all 0.3s ease;
         }
         
         .admin-tab.active {
-            color: var(--admin);
-            border-bottom-color: var(--admin);
+            color: var(--gold);
+            border-bottom-color: var(--gold);
         }
         
         .admin-tab-content {
@@ -2360,14 +2373,14 @@
         .admin-product-list {
             max-height: 300px;
             overflow-y: auto;
-            border: 1px solid var(--gray-300);
+            border: 1px solid var(--gray-700);
             border-radius: 8px;
             margin-bottom: 25px;
         }
         
         .admin-product-item {
             padding: 15px;
-            border-bottom: 1px solid var(--gray-200);
+            border-bottom: 1px solid var(--gray-700);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -2376,7 +2389,7 @@
         }
         
         .admin-product-item:hover {
-            background-color: var(--gray-100);
+            background-color: var(--gray-700);
         }
         
         .admin-product-item:last-child {
@@ -2399,7 +2412,7 @@
         .admin-action-btn {
             background: none;
             border: none;
-            color: var(--gray-600);
+            color: var(--gray-400);
             cursor: pointer;
             padding: 6px;
             border-radius: 4px;
@@ -2407,7 +2420,7 @@
         }
         
         .admin-action-btn:hover {
-            background-color: var(--gray-200);
+            background-color: var(--gray-700);
         }
         
         .admin-action-btn.delete:hover {
@@ -2418,7 +2431,7 @@
         .admin-form-section {
             margin-bottom: 25px;
             padding-bottom: 25px;
-            border-bottom: 1px solid var(--gray-200);
+            border-bottom: 1px solid var(--gray-700);
         }
         
         .admin-form-section:last-child {
@@ -2430,7 +2443,7 @@
         .admin-form-section h3 {
             font-size: 18px;
             margin-bottom: 20px;
-            color: var(--gray-700);
+            color: var(--white);
         }
         
         .admin-features-list {
@@ -2451,7 +2464,7 @@
         .admin-feature-remove {
             background: none;
             border: none;
-            color: var(--gray-500);
+            color: var(--gray-400);
             cursor: pointer;
             padding: 6px;
             border-radius: 4px;
@@ -2464,9 +2477,9 @@
         }
         
         .admin-add-feature {
-            background-color: var(--gray-100);
-            border: 1px dashed var(--gray-300);
-            color: var(--gray-600);
+            background-color: var(--gray-800);
+            border: 1px dashed var(--gray-700);
+            color: var(--gray-400);
             padding: 10px 15px;
             border-radius: 4px;
             cursor: pointer;
@@ -2479,13 +2492,13 @@
         }
         
         .admin-add-feature:hover {
-            background-color: var(--gray-200);
+            background-color: var(--gray-700);
         }
         
         .admin-image-preview {
             width: 100%;
             height: 150px;
-            background-color: var(--gray-100);
+            background-color: var(--gray-800);
             border-radius: 8px;
             margin-top: 15px;
             display: flex;
@@ -2512,18 +2525,18 @@
         }
         
         .admin-btn-secondary {
-            background-color: var(--gray-200);
-            color: var(--gray-700);
+            background-color: var(--gray-700);
+            color: var(--gray-100);
         }
         
         .admin-btn-secondary:hover {
-            background-color: var(--gray-300);
+            background-color: var(--gray-600);
         }
         
         /* Footer */
         footer {
-            background-color: var(--black);
-            color: var(--white);
+            background: var(--gray-900);
+            color: var(--gray-100);
             padding: 80px 0 40px;
         }
         
@@ -2588,7 +2601,7 @@
         }
         
         .footer-links a:hover {
-            color: var(--white);
+            color: var(--gold);
         }
         
         .footer-links a:hover::after {
@@ -2640,7 +2653,7 @@
             text-align: center;
             padding-top: 30px;
             border-top: 1px solid rgba(255,255,255,0.1);
-            color: var(--gray-500);
+            color: var(--gray-400);
             font-size: 14px;
         }
         
@@ -2986,7 +2999,7 @@
             display: inline-block;
             margin-left: 12px;
             cursor: pointer;
-            color: var(--gray-700);
+            color: var(--gray-300);
             font-size: 20px;
             vertical-align: middle;
             transition: color 0.2s, transform 0.2s;
