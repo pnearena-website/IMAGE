@@ -446,6 +446,69 @@
             width: 16px;
         }
         
+        /* Language Selector */
+        .language-selector {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            z-index: 99;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+        
+        .language-selector.show {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+        }
+        
+        .language-option {
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .language-option:hover {
+            background-color: var(--gray-100);
+        }
+        
+        .language-option.active {
+            background-color: var(--gray-200);
+            font-weight: 600;
+        }
+        
+        .language-toggle {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background-color: var(--black);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+        
+        .language-toggle:hover {
+            background-color: var(--gray-700);
+            transform: scale(1.1);
+        }
+        
         /* Main Content */
         .main-content {
             margin-top: 70px;
@@ -983,29 +1046,6 @@
             line-height: 1.5;
         }
         
-        .product-stock {
-            font-size: 0.85rem;
-            margin: 8px 0;
-            padding: 4px 8px;
-            border-radius: 4px;
-            display: inline-block;
-        }
-        
-        .product-stock.in-stock {
-            background-color: rgba(76, 175, 80, 0.1);
-            color: var(--admin);
-        }
-        
-        .product-stock.low-stock {
-            background-color: rgba(255, 152, 0, 0.1);
-            color: var(--warning);
-        }
-        
-        .product-stock.out-of-stock {
-            background-color: rgba(244, 67, 54, 0.1);
-            color: var(--error);
-        }
-        
         .product-footer {
             display: flex;
             justify-content: space-between;
@@ -1038,12 +1078,6 @@
         .btn-product:hover {
             background-color: var(--black);
             color: var(--white);
-        }
-        
-        /* Disable buttons with opacity */
-        button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
         }
         
         /* Testimonials Section */
@@ -2315,30 +2349,6 @@
             visibility: visible;
         }
         
-        /* Connection Status Indicator */
-        #connection-status {
-            position: fixed;
-            bottom: 90px;
-            right: 20px;
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 12px;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        #connection-status.online {
-            background-color: rgba(76, 175, 80, 0.8);
-            color: white;
-        }
-        
-        #connection-status.offline {
-            background-color: rgba(244, 67, 54, 0.8);
-            color: white;
-        }
-        
         /* Admin Mode Styles */
         .admin-edit-btn {
             position: absolute;
@@ -2714,6 +2724,30 @@
             padding: 4px;
         }
         
+        /* Stock indicators */
+        .stock-indicator {
+            font-size: 0.8em;
+            margin-top: 5px;
+            padding: 3px 6px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        
+        .stock-low {
+            background-color: #fff3e0;
+            color: #e65100;
+        }
+        
+        .stock-out {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+        
+        .stock-good {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+        
         /* Footer */
         footer {
             background-color: var(--black);
@@ -3036,7 +3070,7 @@
             }
             
             .about-stats {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(3, 1fr);
                 gap: 15px;
             }
             
@@ -3145,12 +3179,6 @@
                 bottom: 20px;
                 right: 20px;
             }
-            
-            #connection-status {
-                bottom: 70px;
-                right: 15px;
-                font-size: 10px;
-            }
         }
     </style>
 </head>
@@ -3190,6 +3218,17 @@
             </div>
         </div>
     </header>
+    
+    <!-- Language Toggle -->
+    <button class="language-toggle" id="language-toggle">
+        <i class="fas fa-globe"></i>
+    </button>
+    
+    <div class="language-selector" id="language-selector">
+        <div class="language-option active" data-lang="en">
+            <i class="fas fa-flag-usa"></i> English
+        </div>
+    </div>
     
     <!-- Admin Toolbar (shown when in admin mode) -->
     <div class="admin-toolbar" id="admin-toolbar">
@@ -4079,13 +4118,8 @@
         <i class="fas fa-arrow-up"></i>
     </button>
     
-    <!-- Connection Status Indicator -->
-    <div id="connection-status" class="online">
-        <i class="fas fa-wifi"></i> Online
-    </div>
-    
     <script>
-        // Language translations (English only)
+        // Language translations
         const translations = {
             en: {
                 nav: {
@@ -4274,10 +4308,7 @@
                     fillAllFields: "Please fill in all fields",
                     passwordMismatch: "Passwords do not match",
                     acceptTerms: "Please accept the terms and conditions",
-                    invalidEmail: "Please enter a valid email address",
-                    outOfStock: "Out of Stock",
-                    insufficientStock: "Insufficient Stock",
-                    maxQuantityReached: "Maximum Quantity Reached"
+                    invalidEmail: "Please enter a valid email address"
                 },
                 cart: {
                     title: "Your Cart",
@@ -4535,7 +4566,11 @@
         const logoutBtn = document.getElementById('logout-btn');
         const loadingOverlay = document.getElementById('loading-overlay');
         const backToTopButton = document.getElementById('backToTop');
-        const connectionStatus = document.getElementById('connection-status');
+        
+        // Language elements
+        const languageToggle = document.getElementById('language-toggle');
+        const languageSelector = document.getElementById('language-selector');
+        const languageOptions = document.querySelectorAll('.language-option');
         
         // View elements
         const homeView = document.getElementById('home-view');
@@ -4612,11 +4647,113 @@
         // Google Apps Script URL
         const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyD6DSQDAMkUvEeR4Zf39eD9UIvMUcbuHAdVbDTZDIHi_72bKsnENLIm4LWMOjWhhE/exec';
         
-        // Connection status
-        let connectionStatus = 'online';
+        // Inventory Management Functions
+        async function loadInventoryData() {
+            try {
+                const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=getInventory&t=${Date.now()}`);
+                const result = await response.json();
+                
+                if (result.status === 'success' && result.inventory) {
+                    // Update product stock from inventory data
+                    result.inventory.forEach(item => {
+                        const productId = item[0]; // Assuming first column is product ID
+                        const stock = parseInt(item[1]); // Assuming second column is stock
+                        
+                        if (products[productId]) {
+                            products[productId].stock = stock;
+                        }
+                    });
+                    
+                    // Update UI if products are displayed
+                    if (document.getElementById('product-grid').children.length > 0) {
+                        renderProducts();
+                        renderSalesProducts();
+                    }
+                    
+                    return true;
+                } else {
+                    console.error('Failed to load inventory data:', result.message);
+                    return false;
+                }
+            } catch (error) {
+                console.error('Error loading inventory data:', error);
+                return false;
+            }
+        }
+        
+        async function updateInventoryInSheet(productId, newStock) {
+            try {
+                const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=updateInventory&t=${Date.now()}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        productId: productId,
+                        stock: newStock
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.status === 'success') {
+                    return true;
+                } else {
+                    console.error('Failed to update inventory:', result.message);
+                    return false;
+                }
+            } catch (error) {
+                console.error('Error updating inventory:', error);
+                return false;
+            }
+        }
+        
+        function checkInventory(productId, quantity) {
+            const product = products[productId];
+            if (!product) return false;
+            
+            return product.stock >= quantity;
+        }
         
         // Initialize language
         function initLanguage() {
+            // Set default language to English
+            currentLanguage = 'en';
+            updateLanguageUI();
+            
+            // Set up language toggle
+            languageToggle.addEventListener('click', () => {
+                languageSelector.classList.toggle('show');
+            });
+            
+            // Set up language options (only English now)
+            languageOptions.forEach(option => {
+                // Only allow English
+                if (option.dataset.lang === 'en') {
+                    option.addEventListener('click', () => {
+                        languageSelector.classList.remove('show');
+                    });
+                } else {
+                    // Remove non-English options
+                    option.remove();
+                }
+            });
+            
+            // Close language selector when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!languageToggle.contains(e.target) && !languageSelector.contains(e.target)) {
+                    languageSelector.classList.remove('show');
+                }
+            });
+        }
+        
+        // Update language UI
+        function updateLanguageUI() {
+            // Update active language option
+            languageOptions.forEach(option => {
+                option.classList.toggle('active', option.dataset.lang === currentLanguage);
+            });
+            
             // Update all translatable elements
             document.querySelectorAll('[data-i18n]').forEach(element => {
                 const key = element.getAttribute('data-i18n');
@@ -4711,87 +4848,9 @@
             }
         }
         
-        // Inventory management functions
-        async function loadInventoryData() {
-            try {
-                const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=getInventory&t=${Date.now()}`);
-                const result = await response.json();
-                
-                if (result.status === 'success' && result.inventory) {
-                    // Update products with inventory data
-                    result.inventory.forEach(item => {
-                        if (products[item.id]) {
-                            products[item.id].stock = parseInt(item.stock);
-                        }
-                    });
-                    
-                    // Save updated products to localStorage
-                    localStorage.setItem('products', JSON.stringify(products));
-                    
-                    return true;
-                }
-                return false;
-            } catch (error) {
-                console.error('Error loading inventory data:', error);
-                return false;
-            }
-        }
-        
-        async function updateInventoryInSheet(productId, newStock) {
-            try {
-                const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=updateInventory&id=${productId}&stock=${newStock}&t=${Date.now()}`);
-                const result = await response.json();
-                
-                if (result.status === 'success') {
-                    return true;
-                }
-                return false;
-            } catch (error) {
-                console.error('Error updating inventory:', error);
-                return false;
-            }
-        }
-        
-        function checkInventory(productId, quantity) {
-            const product = products[productId];
-            if (!product) return false;
-            
-            return product.stock >= quantity;
-        }
-        
-        // Check connection status
-        async function checkConnection() {
-            try {
-                const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=ping&t=${Date.now()}`, {
-                    method: 'HEAD',
-                    cache: 'no-cache'
-                });
-                
-                if (response.ok) {
-                    connectionStatus = 'online';
-                    updateConnectionStatusUI();
-                } else {
-                    throw new Error('Server responded with error');
-                }
-            } catch (error) {
-                connectionStatus = 'offline';
-                updateConnectionStatusUI();
-            }
-        }
-        
-        function updateConnectionStatusUI() {
-            if (connectionStatus === 'online') {
-                connectionStatus.className = 'online';
-                connectionStatus.innerHTML = '<i class="fas fa-wifi"></i> Online';
-            } else {
-                connectionStatus.className = 'offline';
-                connectionStatus.innerHTML = '<i class="fas fa-wifi-slash"></i> Offline';
-            }
-        }
-        
         // Initialize products on page load
         async function initializeProducts() {
-            // Load inventory data from Google Sheets
+            // Load inventory data first
             await loadInventoryData();
             
             renderProducts();
@@ -4885,21 +4944,14 @@
                 priceHtml = `RM ${product.price}`;
             }
             
-            // Stock status
-            let stockStatus = '';
-            let stockClass = '';
-            let buttonDisabled = '';
-            
-            if (product.stock <= 0) {
-                stockStatus = 'Out of Stock';
-                stockClass = 'out-of-stock';
-                buttonDisabled = 'disabled';
+            // Stock indicator
+            let stockIndicator = '';
+            if (product.stock <= 5) {
+                stockIndicator = `<div class="stock-indicator stock-out">Only ${product.stock} left in stock!</div>`;
             } else if (product.stock <= 10) {
-                stockStatus = `Low Stock: ${product.stock}`;
-                stockClass = 'low-stock';
+                stockIndicator = `<div class="stock-indicator stock-low">Low stock: ${product.stock} available</div>`;
             } else {
-                stockStatus = `In Stock: ${product.stock}`;
-                stockClass = 'in-stock';
+                stockIndicator = `<div class="stock-indicator stock-good">In stock: ${product.stock} available</div>`;
             }
             
             card.innerHTML = `
@@ -4909,11 +4961,11 @@
                 <div class="product-info">
                     <h3 data-i18n="productsDetail.${product.name}">${getTranslation(`productsDetail.${product.name}`) || product.name}</h3>
                     <p data-i18n="product.description">${getTranslation('product.description') || 'Premium quality product'}</p>
-                    <div class="product-stock ${stockClass}">${stockStatus}</div>
                     <div class="product-footer">
                         <div class="product-price" data-product="${productId}">${priceHtml}</div>
-                        <button class="btn-product add-to-cart" data-product="${productId}" ${buttonDisabled} data-i18n="product.addToCart">Add to Cart</button>
+                        <button class="btn-product add-to-cart" data-i18n="product.addToCart">Add to Cart</button>
                     </div>
+                    ${stockIndicator}
                 </div>
             `;
             
@@ -4928,23 +4980,6 @@
             
             const discount = Math.round((1 - product.salePrice / product.price) * 100);
             
-            // Stock status
-            let stockStatus = '';
-            let stockClass = '';
-            let buttonDisabled = '';
-            
-            if (product.stock <= 0) {
-                stockStatus = 'Out of Stock';
-                stockClass = 'out-of-stock';
-                buttonDisabled = 'disabled';
-            } else if (product.stock <= 10) {
-                stockStatus = `Low Stock: ${product.stock}`;
-                stockClass = 'low-stock';
-            } else {
-                stockStatus = `In Stock: ${product.stock}`;
-                stockClass = 'in-stock';
-            }
-            
             card.innerHTML = `
                 <div class="sales-badge">-${discount}%</div>
                 <div class="product-img view-details" data-product="${productId}">
@@ -4952,13 +4987,12 @@
                 </div>
                 <div class="product-info">
                     <h3 data-i18n="productsDetail.${product.name}">${getTranslation(`productsDetail.${product.name}`) || product.name}</h3>
-                    <div class="product-stock ${stockClass}">${stockStatus}</div>
                     <div class="price-container">
                         <div class="original-price">RM ${product.price}</div>
                         <div class="sales-price" data-product="${productId}">RM ${product.salePrice}</div>
                     </div>
                     <div class="product-footer">
-                        <button class="btn-product add-to-cart" data-product="${productId}" ${buttonDisabled} data-i18n="product.addToCart">Add to Cart</button>
+                        <button class="btn-product add-to-cart" data-i18n="product.addToCart">Add to Cart</button>
                     </div>
                 </div>
             `;
@@ -5017,134 +5051,6 @@
                     badge.textContent = `-${discount}%`;
                 }
             });
-            
-            // Update stock status
-            updateProductStockStatus(productId);
-        }
-        
-        // Update product stock status on the page
-        function updateProductStockStatus(productId) {
-            const product = products[productId];
-            if (!product) return;
-            
-            // Update product card stock status
-            const productCards = document.querySelectorAll(`.product-card[data-product="${productId}"]`);
-            productCards.forEach(card => {
-                const stockElement = card.querySelector('.product-stock');
-                const addButton = card.querySelector('.add-to-cart');
-                
-                if (stockElement) {
-                    let stockStatus = '';
-                    let stockClass = '';
-                    let buttonDisabled = '';
-                    
-                    if (product.stock <= 0) {
-                        stockStatus = 'Out of Stock';
-                        stockClass = 'out-of-stock';
-                        buttonDisabled = 'disabled';
-                    } else if (product.stock <= 10) {
-                        stockStatus = `Low Stock: ${product.stock}`;
-                        stockClass = 'low-stock';
-                    } else {
-                        stockStatus = `In Stock: ${product.stock}`;
-                        stockClass = 'in-stock';
-                    }
-                    
-                    stockElement.textContent = stockStatus;
-                    stockElement.className = `product-stock ${stockClass}`;
-                }
-                
-                if (addButton) {
-                    if (product.stock <= 0) {
-                        addButton.disabled = true;
-                    } else {
-                        addButton.disabled = false;
-                    }
-                }
-            });
-            
-            // Update sales card stock status
-            const salesCards = document.querySelectorAll(`.sales-card[data-product="${productId}"]`);
-            salesCards.forEach(card => {
-                const stockElement = card.querySelector('.product-stock');
-                const addButton = card.querySelector('.add-to-cart');
-                
-                if (stockElement) {
-                    let stockStatus = '';
-                    let stockClass = '';
-                    let buttonDisabled = '';
-                    
-                    if (product.stock <= 0) {
-                        stockStatus = 'Out of Stock';
-                        stockClass = 'out-of-stock';
-                        buttonDisabled = 'disabled';
-                    } else if (product.stock <= 10) {
-                        stockStatus = `Low Stock: ${product.stock}`;
-                        stockClass = 'low-stock';
-                    } else {
-                        stockStatus = `In Stock: ${product.stock}`;
-                        stockClass = 'in-stock';
-                    }
-                    
-                    stockElement.textContent = stockStatus;
-                    stockElement.className = `product-stock ${stockClass}`;
-                }
-                
-                if (addButton) {
-                    if (product.stock <= 0) {
-                        addButton.disabled = true;
-                    } else {
-                        addButton.disabled = false;
-                    }
-                }
-            });
-            
-            // Update product detail view if active
-            if (productView.classList.contains('active') && currentProductId === productId) {
-                updateProductDetailStockStatus();
-            }
-        }
-        
-        // Update product detail view stock status
-        function updateProductDetailStockStatus() {
-            if (!currentProduct) return;
-            
-            // Remove existing stock indicator if any
-            const existingStockIndicator = document.querySelector('.product-detail .product-stock');
-            if (existingStockIndicator) {
-                existingStockIndicator.remove();
-            }
-            
-            // Create new stock indicator
-            let stockInfo = '';
-            let stockClass = '';
-            let orderButtonDisabled = '';
-            let addToCartButtonDisabled = '';
-            
-            if (currentProduct.stock <= 0) {
-                stockInfo = 'Out of Stock';
-                stockClass = 'out-of-stock';
-                orderButtonDisabled = 'disabled';
-                addToCartButtonDisabled = 'disabled';
-            } else if (currentProduct.stock <= 10) {
-                stockInfo = `Low Stock: ${currentProduct.stock} units available`;
-                stockClass = 'low-stock';
-            } else {
-                stockInfo = `In Stock: ${currentProduct.stock} units available`;
-                stockClass = 'in-stock';
-            }
-            
-            const stockInfoElement = document.createElement('div');
-            stockInfoElement.className = `product-stock ${stockClass}`;
-            stockInfoElement.textContent = stockInfo;
-            
-            // Insert stock info before product actions
-            const productActions = document.querySelector('.product-actions');
-            productActions.parentNode.insertBefore(stockInfoElement, productActions);
-            
-            // Update order and add to cart buttons
-            document.getElementById('order-button').disabled = orderButtonDisabled;
-            document.getElementById('add-to-cart-btn').disabled = addToCartButtonDisabled;
         }
         
         // Shopping cart functions
@@ -5167,26 +5073,24 @@
             
             // Check inventory
             if (!checkInventory(productId, quantity)) {
-                const errorTitle = getTranslation('notification.outOfStock');
-                const errorMessage = `Sorry, there are only ${product.stock} units available for this product.`;
+                const errorTitle = getTranslation('notification.error');
+                const errorMessage = `Insufficient stock. Only ${product.stock} items available.`;
                 showNotification(errorTitle, errorMessage, 'error');
                 return;
             }
             
             // Check if product already in cart
             const existingItem = cart.find(item => item.id === productId);
-            const newQuantity = existingItem ? existingItem.quantity + quantity : quantity;
-            
-            // Check if new quantity exceeds stock
-            if (newQuantity > product.stock) {
-                const errorTitle = getTranslation('notification.insufficientStock');
-                const errorMessage = `Sorry, you cannot add more than ${product.stock} units of this product to your cart.`;
-                showNotification(errorTitle, errorMessage, 'error');
-                return;
-            }
             
             if (existingItem) {
-                existingItem.quantity = newQuantity;
+                // Check if adding more would exceed inventory
+                if (!checkInventory(productId, existingItem.quantity + quantity)) {
+                    const errorTitle = getTranslation('notification.error');
+                    const errorMessage = `Cannot add more items. Only ${product.stock} items available in total.`;
+                    showNotification(errorTitle, errorMessage, 'error');
+                    return;
+                }
+                existingItem.quantity += quantity;
             } else {
                 cart.push({
                     id: productId,
@@ -5213,13 +5117,8 @@
         function updateCartQuantity(productId, quantity) {
             const item = cart.find(item => item.id === productId);
             if (item) {
-                const product = products[productId];
-                if (product) {
-                    // Ensure quantity doesn't exceed stock
-                    quantity = Math.min(Math.max(1, quantity), product.stock);
-                    item.quantity = quantity;
-                    saveCart();
-                }
+                item.quantity = Math.max(1, quantity);
+                saveCart();
             }
         }
         
@@ -5287,14 +5186,7 @@
                         const productId = btn.dataset.id;
                         const item = cart.find(item => item.id === productId);
                         if (item) {
-                            const product = products[productId];
-                            if (product && item.quantity < product.stock) {
-                                updateCartQuantity(productId, item.quantity + 1);
-                            } else {
-                                const errorTitle = getTranslation('notification.maxQuantityReached');
-                                const errorMessage = `You cannot add more than ${product.stock} units of this product to your cart.`;
-                                showNotification(errorTitle, errorMessage, 'error');
-                            }
+                            updateCartQuantity(productId, item.quantity + 1);
                         }
                     });
                 });
@@ -5348,7 +5240,7 @@
         }
         
         // Page state persistence
-        window.addEventListener('DOMContentLoaded', async () => {
+        window.addEventListener('DOMContentLoaded', () => {
             // Initialize language
             initLanguage();
             
@@ -5365,7 +5257,7 @@
             }
             
             // Initialize products
-            await initializeProducts();
+            initializeProducts();
             
             // Check if there's a saved view state
             const savedView = localStorage.getItem('currentView');
@@ -5389,12 +5281,6 @@
             
             // Initialize form data persistence
             initializeFormPersistence();
-            
-            // Check connection status
-            await checkConnection();
-            
-            // Check connection every 30 seconds
-            setInterval(checkConnection, 30000);
         });
         
         // Show home view
@@ -5521,9 +5407,6 @@
                         item.classList.add('visible');
                     });
                 }, 100);
-                
-                // Update stock information
-                updateProductDetailStockStatus();
                 
                 // Show product container, hide error message
                 productContainer.style.display = 'grid';
@@ -5699,23 +5582,6 @@
         // Set up order button
         orderButton.addEventListener('click', () => {
             if (currentProduct) {
-                // Check if product is in stock
-                if (currentProduct.stock <= 0) {
-                    const errorTitle = getTranslation('notification.outOfStock');
-                    const errorMessage = 'This product is currently out of stock.';
-                    showNotification(errorTitle, errorMessage, 'error');
-                    return;
-                }
-                
-                // Check if requested quantity exceeds stock
-                const quantity = parseInt(quantityInputProduct.value) || 1;
-                if (quantity > currentProduct.stock) {
-                    const errorTitle = getTranslation('notification.insufficientStock');
-                    const errorMessage = `Only ${currentProduct.stock} units are available for this product.`;
-                    showNotification(errorTitle, errorMessage, 'error');
-                    return;
-                }
-                
                 // Set product info in the summary
                 const nameKey = `productsDetail.${currentProduct.name}`;
                 const nameTranslation = getTranslation(nameKey);
@@ -5759,14 +5625,7 @@
         
         quantityIncrease.addEventListener('click', () => {
             const currentValue = parseInt(quantityInputProduct.value) || 1;
-            const maxValue = currentProduct ? currentProduct.stock : 999;
-            if (currentValue < maxValue) {
-                quantityInputProduct.value = currentValue + 1;
-            } else {
-                const errorTitle = getTranslation('notification.maxQuantityReached');
-                const errorMessage = `You cannot add more than ${maxValue} units of this product.`;
-                showNotification(errorTitle, errorMessage, 'error');
-            }
+            quantityInputProduct.value = currentValue + 1;
         });
         
         // Parallax effect for hero section
@@ -6010,6 +5869,21 @@
                 });
                 
                 if (result.status === 'success') {
+                    // Update inventory
+                    const productId = formData.productId;
+                    const quantity = parseInt(formData.quantity);
+                    
+                    if (products[productId]) {
+                        const newStock = products[productId].stock - quantity;
+                        products[productId].stock = newStock;
+                        
+                        // Update inventory in Google Sheet
+                        await updateInventoryInSheet(productId, newStock);
+                        
+                        // Update UI
+                        updateProductPrices(productId);
+                    }
+                    
                     // Close modal
                     modal.classList.remove('show');
                     setTimeout(() => {
@@ -6544,9 +6418,6 @@
                         // Save to localStorage
                         localStorage.setItem('products', JSON.stringify(products));
                         
-                        // Update inventory in Google Sheets
-                        updateInventoryInSheet(productId, 0);
-                        
                         // Close modal
                         adminModal.classList.remove('show');
                         setTimeout(() => {
@@ -6860,7 +6731,7 @@
             // Export button
             adminModal.querySelector('#export-orders-btn').addEventListener('click', () => {
                 // Replace with your actual Google Sheet URL
-                window.open('https://docs.google.com/spreadsheets/d/1K9fB_xVbsPYpZAh5oeVA52NZrWo_q9zEmRy72mWT45Y/edit', '_blank');
+                window.open('https://docs.google.com/spreadsheets/d/1K9fB_xVbsPYpZAh5oeVA52NZrWo_q9zEmRy72mWT45Y/edit?usp=sharing', '_blank');
             });
             
             // Close button
@@ -7246,9 +7117,6 @@
                         // Save to localStorage
                         localStorage.setItem('products', JSON.stringify(products));
                         
-                        // Update inventory in Google Sheets
-                        updateInventoryInSheet(productId, 0);
-                        
                         // Close modal
                         adminModal.classList.remove('show');
                         setTimeout(() => {
@@ -7289,126 +7157,123 @@
             });
             
             // Form submission
-            adminForm.addEventListener('submit', async (e) => {
+            adminForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 
                 // Show save indicator
                 saveIndicator.classList.add('show');
                 
-                // Get form values
-                const name = adminModal.querySelector('#admin-name').value;
-                const icon = adminModal.querySelector('#admin-icon').value;
-                const description = adminModal.querySelector('#admin-description').value;
-                const price = parseFloat(adminModal.querySelector('#admin-price').value);
-                const salePrice = adminModal.querySelector('#admin-sale-price').value ? parseFloat(adminModal.querySelector('#admin-sale-price').value) : null;
-                const stock = parseInt(adminModal.querySelector('#admin-stock').value);
-                const onSale = adminModal.querySelector('#admin-on-sale').checked;
-                const image = adminModal.querySelector('#admin-image').value;
-                
-                // Get features
-                const featuresInputs = adminModal.querySelectorAll('#admin-features-list input');
-                const features = Array.from(featuresInputs).map(input => input.value).filter(value => value.trim() !== '');
-                
-                if (isNewProduct) {
-                    // Generate new product ID
-                    const newProductId = name.toLowerCase().replace(/\s+/g, '-');
+                // Simulate saving delay for better UX
+                setTimeout(() => {
+                    // Get form values
+                    const name = adminModal.querySelector('#admin-name').value;
+                    const icon = adminModal.querySelector('#admin-icon').value;
+                    const description = adminModal.querySelector('#admin-description').value;
+                    const price = parseFloat(adminModal.querySelector('#admin-price').value);
+                    const salePrice = adminModal.querySelector('#admin-sale-price').value ? parseFloat(adminModal.querySelector('#admin-sale-price').value) : null;
+                    const stock = parseInt(adminModal.querySelector('#admin-stock').value);
+                    const onSale = adminModal.querySelector('#admin-on-sale').checked;
+                    const image = adminModal.querySelector('#admin-image').value;
                     
-                    // Create new product
-                    products[newProductId] = {
-                        name: name,
-                        icon: icon,
-                        price: price,
-                        salePrice: salePrice,
-                        onSale: onSale,
-                        stock: stock,
-                        image: image || `https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80`,
-                        images: [
-                            image || `https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80`,
-                            `https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80`,
-                            `https://images.unsplash.com/photo-1556740758-1c716d4ab267?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80`
-                        ],
-                        description: description,
-                        features: name
-                    };
+                    // Get features
+                    const featuresInputs = adminModal.querySelectorAll('#admin-features-list input');
+                    const features = Array.from(featuresInputs).map(input => input.value).filter(value => value.trim() !== '');
                     
-                    // Add features to translations
-                    translations.en.features[name] = features;
-                    
-                    // Save to localStorage
-                    localStorage.setItem('products', JSON.stringify(products));
-                    
-                    // Update inventory in Google Sheets
-                    await updateInventoryInSheet(newProductId, stock);
-                    
-                    // Hide save indicator
-                    saveIndicator.classList.remove('show');
-                    
-                    // Close modal
-                    adminModal.classList.remove('show');
-                    setTimeout(() => {
-                        document.body.removeChild(adminModal);
-                    }, 300);
-                    
-                    // Refresh products
-                    renderProducts();
-                    renderSalesProducts();
-                    
-                    // Show notification
-                    const productAddedTitle = getTranslation('notification.productAdded');
-                    const productAddedMessage = getTranslation('notification.productAddedMessage');
-                    showNotification(productAddedTitle, productAddedMessage, 'admin');
-                } else {
-                    // Update existing product
-                    const oldName = product.name;
-                    
-                    product.name = name;
-                    product.icon = icon;
-                    product.price = price;
-                    product.salePrice = salePrice;
-                    product.onSale = onSale;
-                    product.stock = stock;
-                    product.image = image;
-                    product.description = description;
-                    
-                    // Update features if name changed
-                    if (oldName !== name) {
-                        // Copy features from old name to new name
+                    if (isNewProduct) {
+                        // Generate new product ID
+                        const newProductId = name.toLowerCase().replace(/\s+/g, '-');
+                        
+                        // Create new product
+                        products[newProductId] = {
+                            name: name,
+                            icon: icon,
+                            price: price,
+                            salePrice: salePrice,
+                            onSale: onSale,
+                            stock: stock,
+                            image: image || `https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80`,
+                            images: [
+                                image || `https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80`,
+                                `https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80`,
+                                `https://images.unsplash.com/photo-1556740758-1c716d4ab267?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80`
+                            ],
+                            description: description,
+                            features: name
+                        };
+                        
+                        // Add features to translations
                         translations.en.features[name] = features;
                         
-                        // Update features reference
-                        product.features = name;
+                        // Save to localStorage
+                        localStorage.setItem('products', JSON.stringify(products));
+                        
+                        // Hide save indicator
+                        saveIndicator.classList.remove('show');
+                        
+                        // Close modal
+                        adminModal.classList.remove('show');
+                        setTimeout(() => {
+                            document.body.removeChild(adminModal);
+                        }, 300);
+                        
+                        // Refresh products
+                        renderProducts();
+                        renderSalesProducts();
+                        
+                        // Show notification
+                        const productAddedTitle = getTranslation('notification.productAdded');
+                        const productAddedMessage = getTranslation('notification.productAddedMessage');
+                        showNotification(productAddedTitle, productAddedMessage, 'admin');
                     } else {
-                        // Just update the features
-                        translations.en.features[name] = features;
+                        // Update existing product
+                        const oldName = product.name;
+                        
+                        product.name = name;
+                        product.icon = icon;
+                        product.price = price;
+                        product.salePrice = salePrice;
+                        product.onSale = onSale;
+                        product.stock = stock;
+                        product.image = image;
+                        product.description = description;
+                        
+                        // Update features if name changed
+                        if (oldName !== name) {
+                            // Copy features from old name to new name
+                            translations.en.features[name] = features;
+                            
+                            // Update features reference
+                            product.features = name;
+                        } else {
+                            // Just update the features
+                            translations.en.features[name] = features;
+                        }
+                        
+                        // Save to localStorage
+                        localStorage.setItem('products', JSON.stringify(products));
+                        
+                        // Update product prices on the page
+                        updateProductPrices(productId);
+                        
+                        // Hide save indicator
+                        saveIndicator.classList.remove('show');
+                        
+                        // Close modal
+                        adminModal.classList.remove('show');
+                        setTimeout(() => {
+                            document.body.removeChild(adminModal);
+                        }, 300);
+                        
+                        // Refresh the current view if needed
+                        if (document.getElementById('product-view').classList.contains('active') && currentProductId === productId) {
+                            showProductView(productId);
+                        }
+                        
+                        const productUpdatedTitle = getTranslation('notification.productUpdated');
+                        const productUpdatedMessage = getTranslation('notification.productUpdatedMessage');
+                        showNotification(productUpdatedTitle, productUpdatedMessage, 'admin');
                     }
-                    
-                    // Save to localStorage
-                    localStorage.setItem('products', JSON.stringify(products));
-                    
-                    // Update inventory in Google Sheets
-                    await updateInventoryInSheet(productId, stock);
-                    
-                    // Update product prices on the page
-                    updateProductPrices(productId);
-                    
-                    // Hide save indicator
-                    saveIndicator.classList.remove('show');
-                    
-                    // Close modal
-                    adminModal.classList.remove('show');
-                    setTimeout(() => {
-                        document.body.removeChild(adminModal);
-                    }, 300);
-                    
-                    // Refresh the current view if needed
-                    if (document.getElementById('product-view').classList.contains('active') && currentProductId === productId) {
-                        showProductView(productId);
-                    }
-                    
-                    const productUpdatedTitle = getTranslation('notification.productUpdated');
-                    const productUpdatedMessage = getTranslation('notification.productUpdatedMessage');
-                    showNotification(productUpdatedTitle, productUpdatedMessage, 'admin');
-                }
+                }, 800);
             });
         }
         
